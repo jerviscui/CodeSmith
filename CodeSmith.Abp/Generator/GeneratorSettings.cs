@@ -13,9 +13,10 @@ namespace CodeSmith.Abp.Generator
             EntityNaming = EntityNaming.Singular;
             TableNaming = TableNaming.Singular;
             CleanExpressions = new List<string> { @"^\d+" };
-            IgnoreExpressions = new List<string>();
+            IgnoreExpressions = new List<string> { @"^(sp|tbl|udf|vw|_)_" };
             IgnoreColumns = new List<string>();
             RenameRules = new Dictionary<string, string>();
+            ContextNaming = ContextNaming.Plural;
         }
 
         public TableNaming TableNaming { get; set; }

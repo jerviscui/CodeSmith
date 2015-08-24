@@ -42,22 +42,36 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Abp.Application\Abp.Application.Generator.cst" />
-    <None Include="Abp.EntityFramework\Abp.EntityFramework.Generator.cst" />
-    <None Include="Abp.Core\Abp.Core.Generator.cst" />
-    <None Include="Abp.Web\Abp.Web.Generator.cst" />
+    <None Include="Abp.Application\Abp.Application.GetDtosPage.Editable.cst" />
+    <None Include="Abp.Application\Abp.Application.GetDtosPage.Generated.cst" />
+    <None Include="Abp.Application\Abp.Application.Dto.Generated.cst" />
+    <None Include="Abp.Application\Abp.Application.Dto.Editable.cst" />
+    <None Include="Abp.Application\Abp.Application.IService.Generated.cst" />
+    <None Include="Abp.Application\Abp.Application.Mapping.Generated.cst" />
+    <None Include="Abp.Application\Abp.Application.Service.Generated.cst" />
+    <None Include="Abp.Application\Generator.cst" />
+    <None Include="Abp.Core\Abp.Core.Entity.Generated.cst" />
+    <None Include="Abp.Core\Generator.cst" />
+    <None Include="Abp.EntityFramework\Abp.EntityFramework.DbContext.Generated.cst" />
+    <None Include="Abp.EntityFramework\Abp.EntityFramework.Mapping.Generated.cst" />
+    <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.Generated.cst" />
+    <None Include="Abp.EntityFramework\Generator.cst" />
+    <None Include="Abp.Core\Abp.Core.IRepository.Generated.cst" />
+    <None Include="Abp.Web\Abp.Web.Api.Generated.cst" />
+    <None Include="Abp.Web\Generator.cst" />
     <None Include="Abp.Web\Abp.Web.List.cst" />
     <None Include="Abp.Web\Abp.Web.Edit.cst" />
     <None Include="Abp.Web\Abp.Web.Controller.cst" />
-    <None Include="Abp.Web\Abp.Web.Api.cst" />
-    <None Include="Abp.Application\Abp.Application.IService.cst" />
-    <None Include="Abp.Application\Abp.Application.Mapping.cst" />
-    <None Include="Abp.EntityFramework\Abp.EntityFramework.DbContext.cst" />
-    <None Include="Abp.Application\Abp.Application.Service.cst" />
-    <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.cst" />
-    <None Include="Abp.EntityFramework\Abp.EntityFramework.Mapping.cst" />
-    <None Include="Abp.Core\Abp.Core.IRepository.cst" />
-    <None Include="Abp.Core\Abp.Core.Entity.cst" />
+    <None Include="Abp.Web\Abp.Web.Api.Editable.cst" />
+    <None Include="Abp.Application\Abp.Application.IService.Editable.cst" />
+    <None Include="Abp.Application\Abp.Application.Mapping.Editable.cst" />
+    <None Include="Abp.EntityFramework\Abp.EntityFramework.DbContext.Editable.cst" />
+    <None Include="Abp.Application\Abp.Application.Service.Editable.cst" />
+    <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.Editable.cst" />
+    <None Include="Abp.EntityFramework\Abp.EntityFramework.Mapping.Editable.cst" />
+    <None Include="Abp.Core\Abp.Core.IRepository.Editable.cst" />
+    <None Include="Abp.Core\Abp.Core.Entity.Editable.cst" />
+    <None Include="Test.cst" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

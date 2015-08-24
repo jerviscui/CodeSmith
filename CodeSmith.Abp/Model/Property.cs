@@ -2,6 +2,8 @@ using System;
 using System.Data;
 using System.Diagnostics;
 using System.Xml.Serialization;
+using CodeSmith.Abp.Extensions;
+using SchemaExplorer;
 
 namespace CodeSmith.Abp.Model
 {
@@ -106,5 +108,17 @@ namespace CodeSmith.Abp.Model
         }
 
         public string Default { get; set; }
+
+        public DataObjectBase ColumnSchemaObject { get; set; }
+
+        public string Describe
+        {
+            get
+            {
+                if (ColumnSchemaObject == null) return "";
+                return ColumnSchemaObject.Description.IsNull()
+                    ? ColumnSchemaObject.Name : ColumnSchemaObject.Description;
+            }
+        }      
     }
 }
