@@ -1,0 +1,56 @@
+﻿<%@ Template Language="C#" TargetLanguage="Text" Debug="True" Encoding="UTF-8" OutputType="None" %>
+<%@ Assembly Name="SchemaExplorer" Path="../../libs" %>
+<%@ Assembly Name="CodeSmith.Abp"  Path="../../libs" %>
+
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.Abp" %>
+<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
+<%@ Import Namespace="CodeSmith.Abp.Model" %>
+<%@ Import Namespace="CodeSmith.Abp.Generator" %>
+
+<%@ Property Name="AbpCoreNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="MappingNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="ContextNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="RepositoryNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="AbpEntityFrameworkNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+
+<%@ Property Name="DbContextClassName" Type="System.String"  Category="ClassName" Optional="False" %>
+<%@ Property Name="RepositoryBaseClassName" Type="System.String"  Category="ClassName" Optional="False" %>
+<%@ Property Name="SoureDatabase" Type="SchemaExplorer.DatabaseSchema"  Category="Data" %>
+
+<%@ Register Name="DbContextEditableClass" Template="Abp.EntityFramework.DbContext.Editable.cst" %>
+<%@ Register Name="DbContextGeneratedClass" Template="Abp.EntityFramework.DbContext.Generated.cst" %>
+<%@ Register Name="MappingEditableClass" Template="Abp.EntityFramework.Mapping.Editable.cst" %>
+<%@ Register Name="MappingGeneratedClass" Template="Abp.EntityFramework.Mapping.Generated.cst" %>
+<%@ Register Name="RepositoryEditableClass" Template="Abp.EntityFramework.Repository.Editable.cst" %>
+<%@ Register Name="RepositoryGeneratedClass" Template="Abp.EntityFramework.Repository.Generated.cst" %>
+<% Generator();%>
+ 
+<script runat="template">
+
+public void Generator()
+{
+    string rootPath = System.IO.Directory.GetCurrentDirectory();
+    this.Response.WriteLine(rootPath);
+    CodeSmith.Abp.Generator.Generator generator = new CodeSmith.Abp.Generator.Generator();    
+    CodeSmith.Abp.Model.EntityContext context = generator.Generate(SoureDatabase);
+    AbpGenerator.CreateMultipleContextClass<DbContextGeneratedClass,DbContextEditableClass>(context,
+        this,
+        dbContext => DbContextClassName + ".Generated.cs",
+        dbContext => DbContextClassName + ".cs",
+        rootPath);
+    AbpGenerator.CreateMultipleEntityClass<MappingGeneratedClass,MappingEditableClass>(context,
+        this,
+        entity => @"Mapping\" + entity.ClassName + "Map.Generated.cs",
+        entity => @"Mapping\" + entity.ClassName + "Map.cs",
+        rootPath);
+    AbpGenerator.CreateMultipleEntityClass<RepositoryGeneratedClass,RepositoryEditableClass>(context,
+        this,
+        entity => @"Repositories\" + entity.ClassName + "Repository.Generated.cs",
+        entity => @"Repositories\" + entity.ClassName + "Repository.cs",
+        rootPath);
+}
+</script>

@@ -1,0 +1,28 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%@ Assembly Name="SchemaExplorer" Path="../../libs" %>
+<%@ Assembly Name="CodeSmith.Abp"  Path="../../libs" %>
+
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.Abp" %>
+<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
+<%@ Import Namespace="CodeSmith.Abp.Model" %>
+<%@ Import Namespace="CodeSmith.Abp.Generator" %>
+
+<%@ Property Name="AbpCoreNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="ApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="IBaseApplicationClassName" Type="System.String"  Category="ClassName" Optional="False" %>
+<%@ Property Name="Entity"Type="CodeSmith.Abp.Model.Entity" Category="Data" Optional="False" %>
+using <%=AbpCoreNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>;
+using <%=ApplicationNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>.Dtos;
+
+namespace <%=ApplicationNamespace%>.<%= Entity.TableName.ToPluralPascalCase() %>
+{
+    public partial interface I<%= Entity.ClassName %>AppService : <%=IBaseApplicationClassName%><<%= Entity.ClassName %>Dto, <%=Entity.Properties.First(t=>t.ColumnName=="Id").SystemType.ToNullableType() %>, Get<%= Entity.ClassName.ToPluralPascalCase() %>PageInput, <%= Entity.ClassName %>Dto, <%= Entity.ClassName %>Dto>
+    {
+
+    }
+}
+
