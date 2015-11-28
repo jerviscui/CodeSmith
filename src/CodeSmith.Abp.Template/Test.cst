@@ -1,0 +1,30 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True"  Encoding="UTF-8" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
+
+<%@ Import Namespace="CodeSmith.Abp" %>
+<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
+<%@ Import Namespace="CodeSmith.Abp.Model" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+ 
+<%@ Property Name="EntityNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="EnumItems"Type="System.Collections.Generic.List<EnumItem>" Category="Data"  %>
+<%@ Property Name="SoureDatabase" Type="SchemaExplorer.DatabaseSchema" %>
+
+<%@ Register Name="EntityEditableClass" Template="Abp.Core/Abp.Core.Entity.Editable.cst" %>
+
+<%
+//System.Diagnostics.Debugger.Launch();  
+//System.Diagnostics.Debugger.Break();  
+EnumItems = EnumItems ?? new List<EnumItem>();
+CodeSmith.Abp.Generator.Generator generator = new CodeSmith.Abp.Generator.Generator();
+CodeSmith.Abp.Model.EntityContext context =  generator.Generate(SoureDatabase);
+EntityEditableClass  entityEditableClass = this.Create<EntityEditableClass>();
+this.CopyPropertiesTo(entityEditableClass);
+entityEditableClass.Entity = context.Entities.First(t=>t.ClassName=="TFProofread");
+
+entityEditableClass.RenderToFile("f:\\1.class",true);
+%>
