@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace CodeSmith.EntityFramework
 {
+    /// <summary>
+    /// 名称唯一处理类
+    /// </summary>
     public class UniqueNamer
     {
         private readonly ConcurrentDictionary<string, HashSet<string>> _names;

@@ -1,8 +1,11 @@
 ﻿using System.Diagnostics;
 
-namespace CodeSmith.EntityFramework.Model
+namespace CodeSmith.EntityFramework
 {
-    [DebuggerDisplay("Context: {ContextName}, Database: {DatabaseName}")]
+    /// <summary>
+    /// 上下文对象
+    /// </summary>
+    [DebuggerDisplay("上下文对象: {ContextName}, 数据库: {DatabaseName}")]
     public class EntityContext : EntityBase
     {
         public EntityContext()
@@ -10,17 +13,33 @@ namespace CodeSmith.EntityFramework.Model
             Entities = new EntityCollection();
         }
 
+        /// <summary>
+        /// 上下文类名
+        /// </summary>
         public string ClassName { get; set; }
+
+        /// <summary>
+        /// 数据库名
+        /// </summary>
         public string DatabaseName { get; set; }
 
+        /// <summary>
+        /// 实体集合
+        /// </summary>
         public EntityCollection Entities { get; set; }
 
+        /// <summary>
+        /// 重新命名实体
+        /// </summary>
+        /// <param name="originalName"></param>
+        /// <param name="newName"></param>
         public void RenameEntity(string originalName, string newName)
         {
             if (originalName == newName)
                 return;
 
-            Debug.WriteLine("Rename Entity '{0}' to '{1}'.", originalName, newName);
+            Debug.WriteLine("重新命名实体 '{0}' 为 '{1}'.", originalName, newName);
+
             foreach (var entity in Entities)
             {
                 if (entity.ClassName == originalName)
@@ -36,12 +55,18 @@ namespace CodeSmith.EntityFramework.Model
             }
         }
 
+        /// <summary>
+        /// 重新命名属性名
+        /// </summary>
+        /// <param name="entityName"></param>
+        /// <param name="originalName"></param>
+        /// <param name="newName"></param>
         public void RenameProperty(string entityName, string originalName, string newName)
         {
             if (originalName == newName)
                 return;
 
-            Debug.WriteLine("Rename Property '{0}' to '{1}' in Entity '{2}'.", originalName, newName, entityName);
+            Debug.WriteLine("将 '{2}' 实体中 '{0}' 属性，重新命名为 '{1}'.", originalName, newName, entityName);
             foreach (var entity in Entities)
             {
                 if (entity.ClassName == entityName)

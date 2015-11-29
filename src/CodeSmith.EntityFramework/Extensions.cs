@@ -5,12 +5,6 @@ using CodeSmith.Engine;
 
 namespace CodeSmith.EntityFramework
 {
-    public enum CodeLanguage
-    {
-        CSharp,
-        VisualBasic
-    }
-
     public static class Extensions
     {
         private static readonly HashSet<string> CsharpKeywords;

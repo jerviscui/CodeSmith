@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace CodeSmith.EntityFramework.Model
+namespace CodeSmith.EntityFramework
 {
-    [DebuggerDisplay("Suffix: {NameSuffix}, IsKey: {IsKey}, IsUnique: {IsUnique}")]
+    /// <summary>
+    /// 数据库存储过程对应EF方法
+    /// </summary>
+    [DebuggerDisplay("后缀: {NameSuffix}, IsKey: {IsKey}, IsUnique: {IsUnique}")]
     public class Method : EntityBase
     {
         public Method()
