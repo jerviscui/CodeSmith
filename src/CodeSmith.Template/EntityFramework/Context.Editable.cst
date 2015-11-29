@@ -1,0 +1,40 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith.EntityFramework" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.EntityFramework" %>
+<%-- 模板参数 --%>
+<%@ Property Name="EntityContext" Type="CodeSmith.EntityFramework.EntityContext"  %>
+<%@ Property Name="ContextNamespace" Type="System.String"  %>
+<%@ Property Name="ContextBaseClass" Type="System.String" Default="System.Data.Entity.DbContext" Optional="True"  %>
+<%@ Property Name="EntityNamespace" Type="System.String"  %>
+<%@ Property Name="MappingNamespace" Type="System.String"  %>
+<%@ Property Name="InterfaceMode" Type="Boolean" Default="False" Optional="True" %>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+<% if(ContextNamespace != EntityNamespace) { %>
+using <%= EntityNamespace %>;
+<% }  %>
+<% if(ContextNamespace != MappingNamespace) { %>
+using <%= MappingNamespace %>;
+<% }  %>
+
+namespace <%= ContextNamespace %>
+{
+<% if (InterfaceMode) { %>
+    public partial interface I<%= EntityContext.ClassName.ToSafeName() %>
+    {
+
+    }
+    
+<% } // if interface %>    
+    public partial class <%= EntityContext.ClassName.ToSafeName() %>
+    {
+    }
+}

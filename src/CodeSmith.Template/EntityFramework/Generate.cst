@@ -1,0 +1,394 @@
+﻿<%@ Template Language="C#" TargetLanguage="Text" Debug="True" OutputType="None"  %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="CodeSmith.EntityFramework" Path="../../../libs" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.EntityFramework" %>
+<%-- 模板参数 --%>
+<%@ Property Name="SourceDatabase" Type="SchemaExplorer.SchemaSelector" Category="1.Database" OnChanged="OnSourceDatabaseChanged" Description="源数据库。" %>
+<%-- 模板参数 类名--%>
+<%@ Property Name="ContextNamespace" Type="System.String" Category="2.Class" OnChanged="OnContextNamespaceChanged" Description="数据上下文类文件的命名空间。"%>
+<%@ Property Name="EntityNamespace" Type="System.String" Category="2.Class" Description="实体类文件的命名空间。"%>
+<%@ Property Name="MappingNamespace" Type="System.String" Category="2.Class" Description="映射类文件的命名空间。"%>
+<%-- 模板参数 路径--%>
+<%@ Property Name="ContextDirectory" Category="3.Output" Type="System.String" Default=".\" Optional="True "Description="保存生成的上下文文件的文件夹。" 
+             Editor="System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
+<%@ Property Name="EntityDirectory" Category="3.Output" Type="System.String" Default=".\Entities" Optional="True"  Description="保存生成的实体文件的文件夹。"
+             Editor="System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
+<%@ Property Name="MappingDirectory" Category="3.Output" Type="System.String" Default=".\Mapping" Optional="True" Description="保存生成的映射文件的文件夹。"
+             Editor="System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
+<%-- 模板参数 命名规则--%>
+<%@ Property Name="TableNaming" Type="CodeSmith.EntityFramework.TableNaming" Category="4.Hints" Default="Singular" Description="表类名的命名方式。" %>
+<%@ Property Name="EntityNaming" Type="CodeSmith.EntityFramework.EntityNaming" Category="4.Hints" Default="Singular" Description="实体类名的命名方式。" %>
+<%@ Property Name="RelationshipNaming" Type="CodeSmith.EntityFramework.RelationshipNaming" Category="4.Hints" Default="Plural" Description="映射类名的命名方式。" %>
+<%@ Property Name="ContextNaming" Type="CodeSmith.EntityFramework.ContextNaming" Category="4.Hints" Default="Plural" Description="数据上下文类名方式。" %>
+<%@ Property Name="CleanExpressions" Type="CodeSmith.CustomProperties.StringCollection" Category="5.Customization" Default="^(sp|tbl|udf|vw)_" Optional="True" Description="正则表达式列表清理表，视图和列名。" %>
+<%@ Property Name="InterfaceMode" Type="Boolean" Category="5.Customization" Default="False" Optional="True" Description="使用接口的DbContext。" %>
+<%@ Property Name="IncludeViews" Type="Boolean" Category="5.Customization" Default="False" Optional="True" Description="是否过滤视图。" %>
+<%@ Property Name="ContextBaseClass" Type="System.String" Category="5.Customization" Default="System.Data.Entity.DbContext" Optional="True" Description="基类的DbContext文件。"%>
+<%@ Property Name="RenameMapping" Type="CodeSmith.CustomProperties.NameValueCollection" Category="5.Customization" Default="" Optional="True" Description="名称值对自定义重命名。名称是原来的名字，值是新的名称。" %>
+<%-- 模板 查询扩展--%>
+<%@ Property Name="IncludeQuery" Type="Boolean" Category="6.Query" Default="False" Optional="True" Description="是否使用查询扩展。" %>
+<%@ Property Name="QueryNamespace" Type="System.String" Category="6.Query" Optional="True" Description="查询扩展文件的命名空间。"%>
+<%@ Property Name="QueryDirectory" Category="6.Query" Type="System.String" Default=".\Queries" Optional="True" Description="保存生成的查询扩展文件的文件夹。"
+             Editor="System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
+<%@ Property Name="MethodPrefix" Category="6.Query" Type="System.String" Default="By" Optional="True" Description="查询方法名称的前缀。" %>
+<%@ Property Name="UniqueMethodPrefix" Category="6.Query" Type="System.String" Default="GetBy" Optional="True" Description="查询方法名称的前缀。" %>
+<%@ Property Name="MethodKeySuffix" Category="6.Query" Type="System.String" Default="Key" Optional="False" Description="主键关键查询方法名称的后缀。" %>
+<%-- 模板 Mock--%>
+<%@ Property Name="IncludeMock" Type="Boolean" Category="7.Mock" Default="False" Optional="True" Description="是否使用Mock。" %>
+<%@ Property Name="MockNamespace" Type="System.String" Category="7.Mock" Optional="True" Description="Mock文件命名空间。"%>
+<%@ Property Name="MockDirectory" Category="7.Mock" Type="System.String" Default=".\Mocks" Optional="True" Description="保存生成的查询扩展文件的文件夹。"
+             Editor="System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
+<%@ Property Name="Internalize" Type="Boolean" Category="7.Mock" Default="True" Optional="True" Description="是否模拟文件内部。" %>
+<%-- 模板--%>
+<%@ Register Name="ContextGeneratedClass" Template="Context.Generated.cst" MergeProperties="False" %>
+<%@ Register Name="ContextEditableClass" Template="Context.Editable.cst" MergeProperties="False" %>
+<%@ Register Name="EntityGeneratedClass" Template="Entity.Generated.cst" MergeProperties="False" %>
+<%@ Register Name="EntityEditableClass" Template="Entity.Editable.cst" MergeProperties="False" %>
+<%@ Register Name="MappingGeneratedClass" Template="Mapping.Generated.cst" MergeProperties="False" %>
+<%@ Register Name="MappingEditableClass" Template="Mapping.Editable.cst" MergeProperties="False" %>
+<%@ Register Name="QueryGeneratedClass" Template="Query.Generated.cst" MergeProperties="False" %>
+<%@ Register Name="QueryEditableClass" Template="Query.Editable.cst" MergeProperties="False" %>
+<%@ Register Name="MockedContextGeneratedClass" Template="MockedContext.Generated.cst" MergeProperties="False" %>
+<%@ Register Name="MockedContextEditableClass" Template="MockedContext.Editable.cst" MergeProperties="False" %>
+
+Generating Entities ...
+<% Generate(); %>
+
+<script runat="template">
+    public void Generate()
+    {
+        Stopwatch watch = Stopwatch.StartNew();
+        string outputDirectory = Path.GetFullPath(ContextDirectory);
+
+        if (!Directory.Exists(outputDirectory))
+            Directory.CreateDirectory(outputDirectory);
+
+        if (SourceDatabase != null)
+        {
+            this.Progress.MaximumValue = (SourceDatabase.Tables.Count * 3) + 1;
+            this.Progress.Step = 1;
+        }
+
+        Generator generator = new Generator();
+        generator.Settings.TableNaming = TableNaming;
+        generator.Settings.EntityNaming = EntityNaming;
+        generator.Settings.RelationshipNaming = RelationshipNaming;
+        generator.Settings.ContextNaming = ContextNaming;
+        
+        generator.Settings.IncludeViews = IncludeViews;
+
+        /*
+        generator.Settings.InclusionMode = InclusionMode;
+        
+        if (IgnoreList != null)
+            foreach(string s in IgnoreList)
+              if (!string.IsNullOrEmpty(s))
+                generator.Settings.IgnoreExpressions.Add(s);
+
+        if (IgnoreColumns != null)
+            foreach(string s in IgnoreColumns)
+              if (!string.IsNullOrEmpty(s))
+                generator.Settings.IgnoreColumns.Add(s);
+        */
+        
+        if (CleanExpressions != null)
+            foreach(string s in CleanExpressions)
+              if (!string.IsNullOrEmpty(s))
+                generator.Settings.CleanExpressions.Add(s);
+
+        if (RenameMapping != null)
+            foreach(NameValueEntry pair in RenameMapping)
+                generator.Settings.RenameRules[pair.Key] = pair.Value;
+          
+        generator.SchemaItemProcessed += OnSchemaItemProcessed;
+        
+        // generate from database
+        EntityContext context = generator.Generate(SourceDatabase);
+        
+        // update model from source files
+        //Synchronizer.UpdateFromSource(context, ContextDirectory, MappingDirectory);
+        
+        CreateContextClass(context);
+        CreateMappingClasses(context);
+        CreateEntityClasses(context);
+        
+        if (IncludeQuery && !string.IsNullOrEmpty(QueryNamespace))
+            CreateQueryClasses(context);
+        
+        if (IncludeMock && !string.IsNullOrEmpty(MockNamespace))
+            CreateMockClass(context);
+        
+        this.RegisterReference("System.Configuration");
+        this.RegisterReference("System.Data");
+        this.RegisterReference("System.Runtime.Serialization");
+        this.RegisterReference("EntityFramework");
+
+        watch.Stop();
+        Response.WriteLine("Generate Time: " + watch.ElapsedMilliseconds + " ms");
+    }
+
+    public void CreateContextClass(EntityContext entityContext)
+    {
+        ContextGeneratedClass generatedClass = this.Create<ContextGeneratedClass>();
+        this.CopyPropertiesTo(generatedClass);
+
+        ContextEditableClass editableClass = this.Create<ContextEditableClass>();
+        this.CopyPropertiesTo(editableClass);
+
+        string rootDirectory = Path.GetFullPath(ContextDirectory);
+        string className = entityContext.ClassName;
+
+        string editableFile = className + ".cs";
+        editableFile = Path.Combine(rootDirectory, editableFile);
+
+        if (!File.Exists(editableFile))
+        {
+          editableClass.EntityContext = entityContext;
+
+          Response.WriteLine(editableFile);
+          editableClass.RenderToFile(editableFile, true);
+        }
+
+        string generatedFile = className + ".Generated.cs";
+        generatedFile = Path.Combine(rootDirectory, generatedFile);
+
+        generatedClass.EntityContext = entityContext;
+
+        Response.WriteLine(generatedFile);
+        generatedClass.RenderToFile(generatedFile, editableFile, true);
+    }
+
+    public void CreateMappingClasses(EntityContext entityContext)
+    {
+        MappingGeneratedClass generatedClass = this.Create<MappingGeneratedClass>();
+        this.CopyPropertiesTo(generatedClass);
+
+        MappingEditableClass editableClass = this.Create<MappingEditableClass>();
+        this.CopyPropertiesTo(editableClass);
+
+        foreach(Entity entity in entityContext.Entities)
+        {
+            Stopwatch watch = Stopwatch.StartNew();
+
+             Debug.WriteLine(string.Format(
+                "Creating Mapping Class '{0}' ...",
+                entity.ClassName));
+
+            string rootDirectory = Path.GetFullPath(MappingDirectory);
+            CreateMapping(generatedClass, editableClass, entity, rootDirectory);
+
+            Debug.WriteLine(string.Format(
+                "Created Mapping Class '{0}' in {1} ms.",
+                entity.ClassName,
+                watch.Elapsed.TotalMilliseconds.ToString()));
+
+            this.Progress.PerformStep();
+        }
+    }
+
+    public void CreateMapping(MappingGeneratedClass generatedClass, MappingEditableClass editableClass, Entity entity, string rootDirectory)
+    {
+        string className = entity.MappingName;
+
+        string editableFile = className + ".cs";
+        editableFile = Path.Combine(rootDirectory, editableFile);
+
+        if (!File.Exists(editableFile))
+        {
+          editableClass.Entity = entity;
+
+          Response.WriteLine(editableFile);
+          editableClass.RenderToFile(editableFile, true);
+        }
+
+        string generatedFile = className + ".Generated.cs";
+        generatedFile = Path.Combine(rootDirectory, generatedFile);
+
+        generatedClass.Entity = entity;
+
+        Response.WriteLine(generatedFile);
+        generatedClass.RenderToFile(generatedFile, editableFile, true);
+    }
+
+    public void CreateEntityClasses(EntityContext entityContext)
+    {
+        EntityGeneratedClass generatedClass = this.Create<EntityGeneratedClass>();
+        this.CopyPropertiesTo(generatedClass);
+
+        EntityEditableClass editableClass = this.Create<EntityEditableClass>();
+        this.CopyPropertiesTo(editableClass);
+
+        foreach(Entity entity in entityContext.Entities)
+        {
+            Stopwatch watch = Stopwatch.StartNew();
+
+             Debug.WriteLine(string.Format(
+                "Creating Entity Class '{0}' ...",
+                entity.ClassName));
+
+            string rootDirectory = Path.GetFullPath(EntityDirectory);
+            CreateEntity(generatedClass, editableClass, entity, rootDirectory);
+
+            Debug.WriteLine(string.Format(
+                "Created Entity Class '{0}' in {1} ms.",
+                entity.ClassName,
+                watch.Elapsed.TotalMilliseconds.ToString()));
+
+            this.Progress.PerformStep();
+        }
+    }
+
+    public void CreateEntity(EntityGeneratedClass generatedClass, EntityEditableClass editableClass, Entity entity, string rootDirectory)
+    {
+        string className = entity.ClassName;
+
+        string editableFile = className + ".cs";
+        editableFile = Path.Combine(rootDirectory, editableFile);
+
+        if (!File.Exists(editableFile))
+        {
+          editableClass.Entity = entity;
+
+          Response.WriteLine(editableFile);
+          editableClass.RenderToFile(editableFile, true);
+        }
+
+        string generatedFile = className + ".Generated.cs";
+        generatedFile = Path.Combine(rootDirectory, generatedFile);
+
+        generatedClass.Entity = entity;
+
+        Response.WriteLine(generatedFile);
+        generatedClass.RenderToFile(generatedFile, editableFile, true);
+    }
+
+    public void CreateQueryClasses(EntityContext entityContext)
+    {
+        QueryGeneratedClass generatedClass = this.Create<QueryGeneratedClass>();
+        this.CopyPropertiesTo(generatedClass);
+
+        QueryEditableClass editableClass = this.Create<QueryEditableClass>();
+        this.CopyPropertiesTo(editableClass);
+
+        foreach(Entity entity in entityContext.Entities)
+        {
+            Stopwatch watch = Stopwatch.StartNew();
+
+             Debug.WriteLine(string.Format(
+                "Creating Query Class '{0}'Extensions ...",
+                entity.ClassName));
+
+            string rootDirectory = Path.GetFullPath(QueryDirectory);
+            CreateQuery(generatedClass, editableClass, entity, rootDirectory);
+
+            Debug.WriteLine(string.Format(
+                "Created Query Class '{0}Extensions' in {1} ms.",
+                entity.ClassName,
+                watch.Elapsed.TotalMilliseconds.ToString()));
+
+            this.Progress.PerformStep();
+        }
+    }
+
+    public void CreateQuery(QueryGeneratedClass generatedClass, QueryEditableClass editableClass, Entity entity, string rootDirectory)
+    {
+        string className = entity.ClassName;
+
+        string editableFile = className + "Extensions.cs";
+        editableFile = Path.Combine(rootDirectory, editableFile);
+
+        if (!File.Exists(editableFile))
+        {
+          editableClass.Entity = entity;
+
+          Response.WriteLine(editableFile);
+          editableClass.RenderToFile(editableFile, true);
+        }
+
+        string generatedFile = className + "Extensions.Generated.cs";
+        generatedFile = Path.Combine(rootDirectory, generatedFile);
+
+        generatedClass.Entity = entity;
+
+        Response.WriteLine(generatedFile);
+        generatedClass.RenderToFile(generatedFile, editableFile, true);
+    }
+       
+    public void CreateMockClass(EntityContext entityContext)
+    {
+        MockedContextGeneratedClass generatedClass = this.Create<MockedContextGeneratedClass>();
+        this.CopyPropertiesTo(generatedClass);
+
+        MockedContextEditableClass editableClass = this.Create<MockedContextEditableClass>();
+        this.CopyPropertiesTo(editableClass);
+
+        string rootDirectory = Path.GetFullPath(MockDirectory);
+        string className = "Fake" + entityContext.ClassName;
+
+        string editableFile = className + ".cs";
+        editableFile = Path.Combine(rootDirectory, editableFile);
+
+        if (!File.Exists(editableFile))
+        {
+          editableClass.EntityContext = entityContext;
+
+          Response.WriteLine(editableFile);
+          editableClass.RenderToFile(editableFile, true);
+        }
+
+        string generatedFile = className + ".Generated.cs";
+        generatedFile = Path.Combine(rootDirectory, generatedFile);
+
+        generatedClass.EntityContext = entityContext;
+
+        Response.WriteLine(generatedFile);
+        generatedClass.RenderToFile(generatedFile, editableFile, true);
+    }
+    
+    private void OnSchemaItemProcessed(object sender, SchemaItemProcessedEventArgs e)
+    {
+        this.Progress.PerformStep();
+        Response.WriteLine(e.Name);
+    }
+
+    private void OnSourceDatabaseChanged(object sender, EventArgs e)
+    {
+        if (SourceDatabase == null)
+            return;
+
+        string name = StringUtil.ToPascalCase(SourceDatabase.Database.Name);
+
+        if (string.IsNullOrEmpty(ContextNamespace))
+            ContextNamespace = name + ".Data";
+
+    }
+
+    private void OnContextNamespaceChanged(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(ContextNamespace))
+            return;
+
+        if (string.IsNullOrEmpty(EntityNamespace))
+            EntityNamespace = ContextNamespace + ".Entities";
+
+        if (string.IsNullOrEmpty(MappingNamespace))
+            MappingNamespace = ContextNamespace + ".Mapping";
+        
+        if (string.IsNullOrEmpty(QueryNamespace))
+            QueryNamespace = ContextNamespace + ".Queries";
+
+        if (string.IsNullOrEmpty(MockNamespace))
+            MockNamespace = ContextNamespace + ".Mocks";
+
+    }
+
+</script>

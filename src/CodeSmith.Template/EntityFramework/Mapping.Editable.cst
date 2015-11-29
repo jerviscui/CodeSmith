@@ -1,0 +1,32 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith.EntityFramework" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.EntityFramework" %>
+<%-- 模板参数 --%>
+<%@ Property Name="Entity" Type="CodeSmith.EntityFramework.Entity"  %>
+<%@ Property Name="ContextNamespace" Type="System.String"  %>
+<%@ Property Name="EntityNamespace" Type="System.String"  %>
+<%@ Property Name="MappingNamespace" Type="System.String"  %>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+<% if(MappingNamespace != EntityNamespace) { %>
+using <%= EntityNamespace %>;
+<% }  %>
+
+namespace <%= MappingNamespace %>
+{
+    public partial class <%= Entity.MappingName.ToSafeName() %>
+    {
+        public void InitializeMapping()
+        {
+
+        }
+    }
+}

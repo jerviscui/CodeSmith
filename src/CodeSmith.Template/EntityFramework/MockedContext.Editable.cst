@@ -1,0 +1,34 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith.EntityFramework" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.EntityFramework" %>
+<%-- 模板参数 --%>
+<%@ Property Name="EntityContext" Type="CodeSmith.EntityFramework.EntityContext"  %>
+<%@ Property Name="MockNamespace" Type="System.String"  %>
+<%@ Property Name="ContextNamespace" Type="System.String"  %>
+<%@ Property Name="EntityNamespace" Type="System.String"  %>
+<%@ Property Name="MappingNamespace" Type="System.String"  %>
+<%@ Property Name="Internalize" Type="Boolean" %>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+<% if(ContextNamespace != EntityNamespace) { %>
+using <%= EntityNamespace %>;
+<% }  %>
+
+namespace <%= MockNamespace %>
+{
+    <%= Internalize ? "internal" : "public" %> partial class Fake<%= EntityContext.ClassName.ToSafeName() %>
+    {
+    }
+    
+    <%= Internalize ? "internal" : "public" %> partial class FakeDbSet<TEntity>
+    {    
+    }
+}

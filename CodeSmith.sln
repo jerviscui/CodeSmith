@@ -9,41 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp.Template", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp.Test", "test\CodeSmith.Abp.Test\CodeSmith.Abp.Test.csproj", "{A881950A-5AEB-4C53-A8BF-E5C6D1EB530F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{37AD26C0-AD25-474C-9A4B-D34124F04A28}"
-	ProjectSection(SolutionItems) = preProject
-		libs\CodeSmith.Abp.dll = libs\CodeSmith.Abp.dll
-		libs\CodeSmith.Core.dll = libs\CodeSmith.Core.dll
-		libs\CodeSmith.Engine.dll = libs\CodeSmith.Engine.dll
-		libs\ICSharpCode.NRefactory.Cecil.dll = libs\ICSharpCode.NRefactory.Cecil.dll
-		libs\ICSharpCode.NRefactory.CSharp.dll = libs\ICSharpCode.NRefactory.CSharp.dll
-		libs\ICSharpCode.NRefactory.dll = libs\ICSharpCode.NRefactory.dll
-		libs\ICSharpCode.NRefactory.Xml.dll = libs\ICSharpCode.NRefactory.Xml.dll
-		libs\ICSharpCode.SharpZipLib.dll = libs\ICSharpCode.SharpZipLib.dll
-		libs\Mono.Cecil.dll = libs\Mono.Cecil.dll
-		libs\Mono.Cecil.Mdb.dll = libs\Mono.Cecil.Mdb.dll
-		libs\Mono.Cecil.Pdb.dll = libs\Mono.Cecil.Pdb.dll
-		libs\Mono.Cecil.Rocks.dll = libs\Mono.Cecil.Rocks.dll
-		libs\SchemaExplorer.ADOXSchemaProvider.dll = libs\SchemaExplorer.ADOXSchemaProvider.dll
-		libs\SchemaExplorer.DB2zOSSchemaProvider.dll = libs\SchemaExplorer.DB2zOSSchemaProvider.dll
-		libs\SchemaExplorer.dll = libs\SchemaExplorer.dll
-		libs\SchemaExplorer.ISeriesSchemaProvider.dll = libs\SchemaExplorer.ISeriesSchemaProvider.dll
-		libs\SchemaExplorer.MySQLSchemaProvider.dll = libs\SchemaExplorer.MySQLSchemaProvider.dll
-		libs\SchemaExplorer.OracleSchemaProvider.dll = libs\SchemaExplorer.OracleSchemaProvider.dll
-		libs\SchemaExplorer.PostgreSQLSchemaProvider.dll = libs\SchemaExplorer.PostgreSQLSchemaProvider.dll
-		libs\SchemaExplorer.SQLAnywhereSchemaProvider.dll = libs\SchemaExplorer.SQLAnywhereSchemaProvider.dll
-		libs\SchemaExplorer.SqlCompact4SchemaProvider.dll = libs\SchemaExplorer.SqlCompact4SchemaProvider.dll
-		libs\SchemaExplorer.SqlCompactSchemaProvider.dll = libs\SchemaExplorer.SqlCompactSchemaProvider.dll
-		libs\SchemaExplorer.SQLiteSchemaProvider.dll = libs\SchemaExplorer.SQLiteSchemaProvider.dll
-		libs\SchemaExplorer.SqlSchemaProvider.dll = libs\SchemaExplorer.SqlSchemaProvider.dll
-		libs\SchemaExplorer.VistaDB4SchemaProvider.dll = libs\SchemaExplorer.VistaDB4SchemaProvider.dll
-		libs\SchemaExplorer.VistaDBSchemaProvider.dll = libs\SchemaExplorer.VistaDBSchemaProvider.dll
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F5F84E4D-7BFC-46BE-A133-8E85FB197265}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.EntityFramework", "src\CodeSmith.EntityFramework\CodeSmith.EntityFramework.csproj", "{328B41CF-AF11-4116-9631-F9412E631DA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.EntityFramework.Test", "test\CodeSmith.EntityFramework.Test\CodeSmith.EntityFramework.Test.csproj", "{C14FDD37-2D81-4978-B0E7-7B815D39EDCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Template", "src\CodeSmith.Template\CodeSmith.Template.csproj", "{EC8C6459-37A3-4FDA-9CF2-B2BA41EE8DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Template.Test", "test\CodeSmith.Template.Test\CodeSmith.Template.Test.csproj", "{8499BA03-A642-4062-8051-151FE67195B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +45,14 @@ Global
 		{C14FDD37-2D81-4978-B0E7-7B815D39EDCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C14FDD37-2D81-4978-B0E7-7B815D39EDCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C14FDD37-2D81-4978-B0E7-7B815D39EDCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8C6459-37A3-4FDA-9CF2-B2BA41EE8DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8C6459-37A3-4FDA-9CF2-B2BA41EE8DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8C6459-37A3-4FDA-9CF2-B2BA41EE8DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8C6459-37A3-4FDA-9CF2-B2BA41EE8DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8499BA03-A642-4062-8051-151FE67195B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8499BA03-A642-4062-8051-151FE67195B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8499BA03-A642-4062-8051-151FE67195B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8499BA03-A642-4062-8051-151FE67195B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +60,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A881950A-5AEB-4C53-A8BF-E5C6D1EB530F} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
 		{C14FDD37-2D81-4978-B0E7-7B815D39EDCB} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
+		{8499BA03-A642-4062-8051-151FE67195B1} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
 	EndGlobalSection
 EndGlobal

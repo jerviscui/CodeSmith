@@ -1,0 +1,24 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith.EntityFramework" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith.EntityFramework" %>
+<%-- 模板参数 --%>
+<%@ Property Name="Entity" Type="CodeSmith.EntityFramework.Entity"  %>
+<%@ Property Name="EntityNamespace" Type="System.String"  %>
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace <%= EntityNamespace %>
+{
+    public partial class <%= Entity.ClassName.ToSafeName() %>
+    {
+
+    }
+}

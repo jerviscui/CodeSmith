@@ -1,6 +1,6 @@
 ﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True"  Encoding="UTF-8" %>
 <%@ Assembly Name="SchemaExplorer" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
+<%@ Assembly Name="CodeSmith.Abp" Src="../../../libs/CodeSmith.EntityFramework.dll" %>
 
 <%@ Import Namespace="CodeSmith.Abp" %>
 <%@ Import Namespace="CodeSmith.Abp.Extensions" %>
