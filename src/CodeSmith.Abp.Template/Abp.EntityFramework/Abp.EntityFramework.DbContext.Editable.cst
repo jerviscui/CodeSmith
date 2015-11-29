@@ -1,6 +1,6 @@
 ﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
 <%@ Assembly Name="SchemaExplorer" Path="../../../libs" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../../libs" %>
+<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
 
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>

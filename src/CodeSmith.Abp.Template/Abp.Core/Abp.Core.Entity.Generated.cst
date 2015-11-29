@@ -49,7 +49,7 @@ namespace <%= AbpCoreNamespace %>.<%= Entity.TableName.ToPluralPascalCase() %>
     public partial class <%= Entity.ClassName.ToSafeName() %> <%= Entity.ToEntityInterface() %>
     {
         public <%= Entity.ClassName.ToSafeName() %>()
-        {
+        { 
 <% foreach(var p in Entity.Properties.Where(p => !string.IsNullOrEmpty(p.Default))) { %>
 <% if(EnumItems.IsHaveEnum(Entity.ClassName,p.ColumnName)) { %>
             <%= p.PropertyName.ToSafeName() %> = (<%= EnumItems.GetEnumType(Entity.ClassName,p.ColumnName) %>)<%= Regex.Replace(p.Default, @"[\(\) ]", "").Trim() %>;
