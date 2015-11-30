@@ -145,6 +145,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TableSchemaExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Generator\AbpGenerator.cs" />
     <Compile Include="Model\EnumItem.cs" />
     <Compile Include="Parser\CodeLanguage.cs" />
     <Compile Include="Generator\Generator.cs" />

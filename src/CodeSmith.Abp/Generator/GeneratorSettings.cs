@@ -9,8 +9,8 @@ namespace CodeSmith.Abp.Generator
     {
         public GeneratorSettings()
         {
-            RelationshipNaming = RelationshipNaming.ListSuffix;
-            EntityNaming = EntityNaming.Singular;
+            RelationshipNaming = RelationshipNaming.None;
+            EntityNaming = EntityNaming.Preserve;
             TableNaming = TableNaming.Singular;
             CleanExpressions = new List<string> { @"^\d+" };
             IgnoreExpressions = new List<string> { @"^(sp|tbl|udf|vw|_)_" };
