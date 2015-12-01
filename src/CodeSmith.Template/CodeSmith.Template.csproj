@@ -53,7 +53,6 @@
     <None Include="EntityFramework\MockedContext.Generated.cst" />
     <None Include="EntityFramework\Query.Editable.cst" />
     <None Include="EntityFramework\Query.Generated.cst" />
-    <None Include="TestTemplate.cst" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

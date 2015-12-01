@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Template", "src\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Template.Test", "test\CodeSmith.Template.Test\CodeSmith.Template.Test.csproj", "{8499BA03-A642-4062-8051-151FE67195B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp0741.Template", "src\CodeSmith.Abp0741.Template\CodeSmith.Abp0741.Template.csproj", "{C98B07A2-ABCD-4C8A-A151-6E9271AB64C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp0741", "src\CodeSmith.Abp0741\CodeSmith.Abp0741.csproj", "{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{8499BA03-A642-4062-8051-151FE67195B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8499BA03-A642-4062-8051-151FE67195B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8499BA03-A642-4062-8051-151FE67195B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98B07A2-ABCD-4C8A-A151-6E9271AB64C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98B07A2-ABCD-4C8A-A151-6E9271AB64C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98B07A2-ABCD-4C8A-A151-6E9271AB64C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98B07A2-ABCD-4C8A-A151-6E9271AB64C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
