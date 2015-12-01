@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace CodeSmith.EntityFramework
+namespace CodeSmith.Model
 {
     public class RelationshipCollection
         : ObservableCollection<Relationship>

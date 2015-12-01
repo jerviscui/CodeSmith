@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeSmith.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
+    <Reference Include="CodeSmith.Engine, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
+    <Reference Include="SchemaExplorer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,8 +42,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EFContentTemplate.cs" />
+    <Compile Include="EFRelationshipTemplate.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GeneratorSettings.cs" />
+    <Compile Include="Model\EntityCollection.cs" />
+    <Compile Include="Model\EntityContext.cs" />
+    <Compile Include="SchemaItemProcessedEventArgs.cs" />
+    <Compile Include="Settings\Cardinality.cs" />
+    <Compile Include="Settings\CodeLanguage.cs" />
+    <Compile Include="Settings\ContextNaming.cs" />
+    <Compile Include="Settings\EntityNaming.cs" />
+    <Compile Include="Settings\RelationshipNaming.cs" />
+    <Compile Include="Settings\TableNaming.cs" />
+    <Compile Include="Settings\UniqueNamer.cs" />
+    <Compile Include="SingleTemplate.cs" />
+    <Compile Include="Model\Entity.cs" />
+    <Compile Include="Model\EntityBase.cs" />
+    <Compile Include="EFEntityTemplate.cs" />
+    <Compile Include="ISingleTemplate.cs" />
+    <Compile Include="Model\Method.cs" />
+    <Compile Include="Model\MethodCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Property.cs" />
+    <Compile Include="Model\PropertyCollection.cs" />
+    <Compile Include="Model\Relationship.cs" />
+    <Compile Include="Model\RelationshipCollection.cs" />
+    <Compile Include="EFPropertyTemplate.cs" />
+    <Compile Include="TemplateContent.cs" />
+    <Compile Include="UniqueNamer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

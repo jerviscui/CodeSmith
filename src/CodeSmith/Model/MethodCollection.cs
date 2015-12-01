@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace CodeSmith.EntityFramework
+namespace CodeSmith.Model
 {
     public class MethodCollection
         : ObservableCollection<Method>

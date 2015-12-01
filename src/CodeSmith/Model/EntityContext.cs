@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace CodeSmith.EntityFramework
+namespace CodeSmith.Model
 {
     /// <summary>
     /// 上下文对象

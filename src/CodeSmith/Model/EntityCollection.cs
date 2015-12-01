@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace CodeSmith.EntityFramework
+namespace CodeSmith.Model
 {
     /// <summary>
     /// 实体集合

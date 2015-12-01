@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp0741.Template"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp0741", "src\CodeSmith.Abp0741\CodeSmith.Abp0741.csproj", "{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith", "src\CodeSmith\CodeSmith.csproj", "{90154430-8192-4C1A-A3B2-A02BDBFB03AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E4ADAC-75B1-4F7A-A998-6A5B6721D666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90154430-8192-4C1A-A3B2-A02BDBFB03AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90154430-8192-4C1A-A3B2-A02BDBFB03AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90154430-8192-4C1A-A3B2-A02BDBFB03AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90154430-8192-4C1A-A3B2-A02BDBFB03AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

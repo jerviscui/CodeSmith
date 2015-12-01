@@ -1,5 +1,4 @@
-﻿using System;
-using CodeSmith.Model;
+﻿using CodeSmith.Model;
 using SchemaExplorer;
 
 namespace CodeSmith
@@ -9,11 +8,13 @@ namespace CodeSmith
 
         private readonly EntityContext _entityContext;
         private readonly TemplateContent _content;
+        private readonly ISingleTemplate<Property, DataObjectBase> _propertyTemplate;
 
-        public EFEntityTemplate(EntityContext entityContext, TemplateContent content)
+        public EFEntityTemplate(EntityContext entityContext, TemplateContent content, ISingleTemplate<Property, DataObjectBase> propertyTemplate)
         {
             _entityContext = entityContext;
             _content = content;
+            _propertyTemplate = propertyTemplate;
         }
 
         public Entity Get(TableSchema tableSchema)
@@ -41,13 +42,10 @@ namespace CodeSmith
 
             entity.Properties = new PropertyCollection();
 
-            foreach (DataObjectBase dataObjectBase in tableSchema.Columns.Selected())
+            foreach (ColumnSchema dataObjectBase in tableSchema.Columns.Selected())
             {
-                ISingleTemplate<Property, DataObjectBase> template = SingleTemplate<Property, DataObjectBase>();
-                 entity.Properties.Add();
+                entity.Properties.Add(_propertyTemplate.Get(dataObjectBase));
             }
-
-
             return entity;
         }
     }

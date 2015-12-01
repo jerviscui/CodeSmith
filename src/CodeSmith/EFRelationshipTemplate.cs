@@ -18,7 +18,7 @@ namespace CodeSmith
         public EFRelationshipTemplate(TemplateContent content, Entity foreignEntity)
         {
             _content = content;
-            this._foreignEntity = foreignEntity;
+            _foreignEntity = foreignEntity;
         }
 
         public override Relationship Get(TableKeySchema tableKeySchema)

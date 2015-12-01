@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace CodeSmith.Abp0741
+namespace CodeSmith
 {
     /// <summary>
     /// 名称唯一处理类
