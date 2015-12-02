@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
+  <variables>
+    <add key="ConnectionString1" value="Server=127.0.0.1;Database=yt_qd_ytsf;Uid=root;Pwd=123qwe!@#;" />
+  </variables>
+  <propertySets>
+    <propertySet name="Generator.txt" output="Generator.txt" template="..\..\..\src\CodeSmith.Abp.Template\Abp.EntityFramework\Generator.cst">
+      <property name="AbpEntityFrameworkDirectory">E:\Oneself\CodeSmith\test\CodeSmith.Abp.Template.Test\EntityFramework</property>
+      <property name="TableNaming">Singular</property>
+      <property name="EntityNaming">Singular</property>
+      <property name="RelationshipNaming">Plural</property>
+      <property name="ContextNaming">Plural</property>
+      <property name="CleanExpressions">
+        <stringList>
+      <string>^(sp|tbl|udf|vw)_</string>
+    </stringList>
+      </property>
+      <property name="IncludeViews">False</property>
+      <property name="SourceDatabase">
+        <connectionString>$(ConnectionString1)</connectionString>
+        <providerType>SchemaExplorer.MySQLSchemaProvider,SchemaExplorer.MySQLSchemaProvider</providerType>
+        <mode>Exclude</mode>
+      </property>
+      <property name="AbpEntityFrameworkNamespace">CodeSmith.Abp.Template.Test.EntityFramework</property>
+      <property name="AbpCoreNamespace">CodeSmith.Abp.Template.Test.Core</property>
+      <property name="RepositoryBaseClassName">RepositoryBase</property>
+    </propertySet>
+  </propertySets>
+</codeSmith>

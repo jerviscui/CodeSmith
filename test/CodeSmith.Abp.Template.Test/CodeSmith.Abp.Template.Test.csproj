@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2EC0D40A-68A1-4985-BE76-16C5759B640A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeSmith.Abp.Template.Test</RootNamespace>
+    <AssemblyName>CodeSmith.Abp.Template.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Abp, Version=0.7.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.0.7.4.1\lib\net451\Abp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Abp.EntityFramework, Version=0.7.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.EntityFramework.0.7.4.1\lib\net451\Abp.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.LoggingFacility.3.3.0\lib\net45\Castle.Facilities.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.DynamicFilters, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.DynamicFilters.1.4.1\lib\net40\EntityFramework.DynamicFilters.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.0.34.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\Dto.cs" />
+    <Compile Include="Core\Bsbutton\Bsbutton.cs" />
+    <Compile Include="Core\Bsbutton\Bsbutton.Generated.cs">
+      <DependentUpon>Bsbutton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsbutton\IBsbuttonRepository.cs" />
+    <Compile Include="Core\Bsbutton\IBsbuttonRepository.Generated.cs">
+      <DependentUpon>IBsbuttonRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsdictionary\Bsdictionary.cs" />
+    <Compile Include="Core\Bsdictionary\Bsdictionary.Generated.cs">
+      <DependentUpon>Bsdictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsdictionary\IBsdictionaryRepository.cs" />
+    <Compile Include="Core\Bsdictionary\IBsdictionaryRepository.Generated.cs">
+      <DependentUpon>IBsdictionaryRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsmenubutton\Bsmenubutton.cs" />
+    <Compile Include="Core\Bsmenubutton\Bsmenubutton.Generated.cs">
+      <DependentUpon>Bsmenubutton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsmenubutton\IBsmenubuttonRepository.cs" />
+    <Compile Include="Core\Bsmenubutton\IBsmenubuttonRepository.Generated.cs">
+      <DependentUpon>IBsmenubuttonRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsmenu\Bsmenu.cs" />
+    <Compile Include="Core\Bsmenu\Bsmenu.Generated.cs">
+      <DependentUpon>Bsmenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsmenu\IBsmenuRepository.cs" />
+    <Compile Include="Core\Bsmenu\IBsmenuRepository.Generated.cs">
+      <DependentUpon>IBsmenuRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bspermission\Bspermission.cs" />
+    <Compile Include="Core\Bspermission\Bspermission.Generated.cs">
+      <DependentUpon>Bspermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bspermission\IBspermissionRepository.cs" />
+    <Compile Include="Core\Bspermission\IBspermissionRepository.Generated.cs">
+      <DependentUpon>IBspermissionRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsrole\Bsrole.cs" />
+    <Compile Include="Core\Bsrole\Bsrole.Generated.cs">
+      <DependentUpon>Bsrole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsrole\IBsroleRepository.cs" />
+    <Compile Include="Core\Bsrole\IBsroleRepository.Generated.cs">
+      <DependentUpon>IBsroleRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsuserfeedback\Bsuserfeedback.cs" />
+    <Compile Include="Core\Bsuserfeedback\Bsuserfeedback.Generated.cs">
+      <DependentUpon>Bsuserfeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsuserfeedback\IBsuserfeedbackRepository.cs" />
+    <Compile Include="Core\Bsuserfeedback\IBsuserfeedbackRepository.Generated.cs">
+      <DependentUpon>IBsuserfeedbackRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsuseroperatelog\Bsuseroperatelog.cs" />
+    <Compile Include="Core\Bsuseroperatelog\Bsuseroperatelog.Generated.cs">
+      <DependentUpon>Bsuseroperatelog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsuseroperatelog\IBsuseroperatelogRepository.cs" />
+    <Compile Include="Core\Bsuseroperatelog\IBsuseroperatelogRepository.Generated.cs">
+      <DependentUpon>IBsuseroperatelogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsuser\Bsuser.cs" />
+    <Compile Include="Core\Bsuser\Bsuser.Generated.cs">
+      <DependentUpon>Bsuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bsuser\IBsuserRepository.cs" />
+    <Compile Include="Core\Bsuser\IBsuserRepository.Generated.cs">
+      <DependentUpon>IBsuserRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmacquisitionlog\Cmacquisitionlog.cs" />
+    <Compile Include="Core\Cmacquisitionlog\Cmacquisitionlog.Generated.cs">
+      <DependentUpon>Cmacquisitionlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmacquisitionlog\ICmacquisitionlogRepository.cs" />
+    <Compile Include="Core\Cmacquisitionlog\ICmacquisitionlogRepository.Generated.cs">
+      <DependentUpon>ICmacquisitionlogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmaddressconfig\Cmaddressconfig.cs" />
+    <Compile Include="Core\Cmaddressconfig\Cmaddressconfig.Generated.cs">
+      <DependentUpon>Cmaddressconfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmaddressconfig\ICmaddressconfigRepository.cs" />
+    <Compile Include="Core\Cmaddressconfig\ICmaddressconfigRepository.Generated.cs">
+      <DependentUpon>ICmaddressconfigRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmaddress\Cmaddress.cs" />
+    <Compile Include="Core\Cmaddress\Cmaddress.Generated.cs">
+      <DependentUpon>Cmaddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmaddress\ICmaddressRepository.cs" />
+    <Compile Include="Core\Cmaddress\ICmaddressRepository.Generated.cs">
+      <DependentUpon>ICmaddressRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmdictionaryconfig\Cmdictionaryconfig.cs" />
+    <Compile Include="Core\Cmdictionaryconfig\Cmdictionaryconfig.Generated.cs">
+      <DependentUpon>Cmdictionaryconfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmdictionaryconfig\ICmdictionaryconfigRepository.cs" />
+    <Compile Include="Core\Cmdictionaryconfig\ICmdictionaryconfigRepository.Generated.cs">
+      <DependentUpon>ICmdictionaryconfigRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmsensorinfo\Cmsensorinfo.cs" />
+    <Compile Include="Core\Cmsensorinfo\Cmsensorinfo.Generated.cs">
+      <DependentUpon>Cmsensorinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Cmsensorinfo\ICmsensorinfoRepository.cs" />
+    <Compile Include="Core\Cmsensorinfo\ICmsensorinfoRepository.Generated.cs">
+      <DependentUpon>ICmsensorinfoRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfclosedwallfacilities\ITfclosedwallfacilitiesRepository.cs" />
+    <Compile Include="Core\Tfclosedwallfacilities\ITfclosedwallfacilitiesRepository.Generated.cs">
+      <DependentUpon>ITfclosedwallfacilitiesRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfclosedwallfacilities\Tfclosedwallfacilities.cs" />
+    <Compile Include="Core\Tfclosedwallfacilities\Tfclosedwallfacilities.Generated.cs">
+      <DependentUpon>Tfclosedwallfacilities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfclosedwallfeature\ITfclosedwallfeatureRepository.cs" />
+    <Compile Include="Core\Tfclosedwallfeature\ITfclosedwallfeatureRepository.Generated.cs">
+      <DependentUpon>ITfclosedwallfeatureRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfclosedwallfeature\Tfclosedwallfeature.cs" />
+    <Compile Include="Core\Tfclosedwallfeature\Tfclosedwallfeature.Generated.cs">
+      <DependentUpon>Tfclosedwallfeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfdrilling\ITfdrillingRepository.cs" />
+    <Compile Include="Core\Tfdrilling\ITfdrillingRepository.Generated.cs">
+      <DependentUpon>ITfdrillingRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfdrilling\Tfdrilling.cs" />
+    <Compile Include="Core\Tfdrilling\Tfdrilling.Generated.cs">
+      <DependentUpon>Tfdrilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfenclosedwallledger\ITfenclosedwallledgerRepository.cs" />
+    <Compile Include="Core\Tfenclosedwallledger\ITfenclosedwallledgerRepository.Generated.cs">
+      <DependentUpon>ITfenclosedwallledgerRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfenclosedwallledger\Tfenclosedwallledger.cs" />
+    <Compile Include="Core\Tfenclosedwallledger\Tfenclosedwallledger.Generated.cs">
+      <DependentUpon>Tfenclosedwallledger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfgasdrainage\ITfgasdrainageRepository.cs" />
+    <Compile Include="Core\Tfgasdrainage\ITfgasdrainageRepository.Generated.cs">
+      <DependentUpon>ITfgasdrainageRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfgasdrainage\Tfgasdrainage.cs" />
+    <Compile Include="Core\Tfgasdrainage\Tfgasdrainage.Generated.cs">
+      <DependentUpon>Tfgasdrainage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfgasdrilling\ITfgasdrillingRepository.cs" />
+    <Compile Include="Core\Tfgasdrilling\ITfgasdrillingRepository.Generated.cs">
+      <DependentUpon>ITfgasdrillingRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfgasdrilling\Tfgasdrilling.cs" />
+    <Compile Include="Core\Tfgasdrilling\Tfgasdrilling.Generated.cs">
+      <DependentUpon>Tfgasdrilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfkeyhead\ITfkeyheadRepository.cs" />
+    <Compile Include="Core\Tfkeyhead\ITfkeyheadRepository.Generated.cs">
+      <DependentUpon>ITfkeyheadRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfkeyhead\Tfkeyhead.cs" />
+    <Compile Include="Core\Tfkeyhead\Tfkeyhead.Generated.cs">
+      <DependentUpon>Tfkeyhead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfkindlefirewall\ITfkindlefirewallRepository.cs" />
+    <Compile Include="Core\Tfkindlefirewall\ITfkindlefirewallRepository.Generated.cs">
+      <DependentUpon>ITfkindlefirewallRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfkindlefirewall\Tfkindlefirewall.cs" />
+    <Compile Include="Core\Tfkindlefirewall\Tfkindlefirewall.Generated.cs">
+      <DependentUpon>Tfkindlefirewall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfmonitorabnormal\ITfmonitorabnormalRepository.cs" />
+    <Compile Include="Core\Tfmonitorabnormal\ITfmonitorabnormalRepository.Generated.cs">
+      <DependentUpon>ITfmonitorabnormalRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfmonitorabnormal\Tfmonitorabnormal.cs" />
+    <Compile Include="Core\Tfmonitorabnormal\Tfmonitorabnormal.Generated.cs">
+      <DependentUpon>Tfmonitorabnormal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfmonitoranalog\ITfmonitoranalogRepository.cs" />
+    <Compile Include="Core\Tfmonitoranalog\ITfmonitoranalogRepository.Generated.cs">
+      <DependentUpon>ITfmonitoranalogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfmonitoranalog\Tfmonitoranalog.cs" />
+    <Compile Include="Core\Tfmonitoranalog\Tfmonitoranalog.Generated.cs">
+      <DependentUpon>Tfmonitoranalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfpointclosedwall\ITfpointclosedwallRepository.cs" />
+    <Compile Include="Core\Tfpointclosedwall\ITfpointclosedwallRepository.Generated.cs">
+      <DependentUpon>ITfpointclosedwallRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfpointclosedwall\Tfpointclosedwall.cs" />
+    <Compile Include="Core\Tfpointclosedwall\Tfpointclosedwall.Generated.cs">
+      <DependentUpon>Tfpointclosedwall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfproofread\ITfproofreadRepository.cs" />
+    <Compile Include="Core\Tfproofread\ITfproofreadRepository.Generated.cs">
+      <DependentUpon>ITfproofreadRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfproofread\Tfproofread.cs" />
+    <Compile Include="Core\Tfproofread\Tfproofread.Generated.cs">
+      <DependentUpon>Tfproofread.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfworkingface\ITfworkingfaceRepository.cs" />
+    <Compile Include="Core\Tfworkingface\ITfworkingfaceRepository.Generated.cs">
+      <DependentUpon>ITfworkingfaceRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tfworkingface\Tfworkingface.cs" />
+    <Compile Include="Core\Tfworkingface\Tfworkingface.Generated.cs">
+      <DependentUpon>Tfworkingface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wsclosedwallfeature\IWsclosedwallfeatureRepository.cs" />
+    <Compile Include="Core\Wsclosedwallfeature\IWsclosedwallfeatureRepository.Generated.cs">
+      <DependentUpon>IWsclosedwallfeatureRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wsclosedwallfeature\Wsclosedwallfeature.cs" />
+    <Compile Include="Core\Wsclosedwallfeature\Wsclosedwallfeature.Generated.cs">
+      <DependentUpon>Wsclosedwallfeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wsgas\IWsgasRepository.cs" />
+    <Compile Include="Core\Wsgas\IWsgasRepository.Generated.cs">
+      <DependentUpon>IWsgasRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wsgas\Wsgas.cs" />
+    <Compile Include="Core\Wsgas\Wsgas.Generated.cs">
+      <DependentUpon>Wsgas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wsoutburstprevention\IWsoutburstpreventionRepository.cs" />
+    <Compile Include="Core\Wsoutburstprevention\IWsoutburstpreventionRepository.Generated.cs">
+      <DependentUpon>IWsoutburstpreventionRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wsoutburstprevention\Wsoutburstprevention.cs" />
+    <Compile Include="Core\Wsoutburstprevention\Wsoutburstprevention.Generated.cs">
+      <DependentUpon>Wsoutburstprevention.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wswork\IWsworkRepository.cs" />
+    <Compile Include="Core\Wswork\IWsworkRepository.Generated.cs">
+      <DependentUpon>IWsworkRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Wswork\Wswork.cs" />
+    <Compile Include="Core\Wswork\Wswork.Generated.cs">
+      <DependentUpon>Wswork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ztconstructionsite\IZtconstructionsiteRepository.cs" />
+    <Compile Include="Core\Ztconstructionsite\IZtconstructionsiteRepository.Generated.cs">
+      <DependentUpon>IZtconstructionsiteRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ztconstructionsite\Ztconstructionsite.cs" />
+    <Compile Include="Core\Ztconstructionsite\Ztconstructionsite.Generated.cs">
+      <DependentUpon>Ztconstructionsite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ztfieldiinspection\IZtfieldiinspectionRepository.cs" />
+    <Compile Include="Core\Ztfieldiinspection\IZtfieldiinspectionRepository.Generated.cs">
+      <DependentUpon>IZtfieldiinspectionRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ztfieldiinspection\Ztfieldiinspection.cs" />
+    <Compile Include="Core\Ztfieldiinspection\Ztfieldiinspection.Generated.cs">
+      <DependentUpon>Ztfieldiinspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Zthole\IZtholeRepository.cs" />
+    <Compile Include="Core\Zthole\IZtholeRepository.Generated.cs">
+      <DependentUpon>IZtholeRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Zthole\Zthole.cs" />
+    <Compile Include="Core\Zthole\Zthole.Generated.cs">
+      <DependentUpon>Zthole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ztporeplate\IZtporeplateRepository.cs" />
+    <Compile Include="Core\Ztporeplate\IZtporeplateRepository.Generated.cs">
+      <DependentUpon>IZtporeplateRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ztporeplate\Ztporeplate.cs" />
+    <Compile Include="Core\Ztporeplate\Ztporeplate.Generated.cs">
+      <DependentUpon>Ztporeplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsbuttonMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsbuttonMap.Generated.cs">
+      <DependentUpon>BsbuttonMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsdictionaryMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsdictionaryMap.Generated.cs">
+      <DependentUpon>BsdictionaryMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsmenubuttonMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsmenubuttonMap.Generated.cs">
+      <DependentUpon>BsmenubuttonMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsmenuMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsmenuMap.Generated.cs">
+      <DependentUpon>BsmenuMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BspermissionMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BspermissionMap.Generated.cs">
+      <DependentUpon>BspermissionMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsroleMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsroleMap.Generated.cs">
+      <DependentUpon>BsroleMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsuserfeedbackMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsuserfeedbackMap.Generated.cs">
+      <DependentUpon>BsuserfeedbackMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsuserMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsuserMap.Generated.cs">
+      <DependentUpon>BsuserMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\BsuseroperatelogMap.cs" />
+    <Compile Include="EntityFramework\Mapping\BsuseroperatelogMap.Generated.cs">
+      <DependentUpon>BsuseroperatelogMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\CmacquisitionlogMap.cs" />
+    <Compile Include="EntityFramework\Mapping\CmacquisitionlogMap.Generated.cs">
+      <DependentUpon>CmacquisitionlogMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\CmaddressconfigMap.cs" />
+    <Compile Include="EntityFramework\Mapping\CmaddressconfigMap.Generated.cs">
+      <DependentUpon>CmaddressconfigMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\CmaddressMap.cs" />
+    <Compile Include="EntityFramework\Mapping\CmaddressMap.Generated.cs">
+      <DependentUpon>CmaddressMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\CmdictionaryconfigMap.cs" />
+    <Compile Include="EntityFramework\Mapping\CmdictionaryconfigMap.Generated.cs">
+      <DependentUpon>CmdictionaryconfigMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\CmsensorinfoMap.cs" />
+    <Compile Include="EntityFramework\Mapping\CmsensorinfoMap.Generated.cs">
+      <DependentUpon>CmsensorinfoMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfclosedwallfacilitiesMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfclosedwallfacilitiesMap.Generated.cs">
+      <DependentUpon>TfclosedwallfacilitiesMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfclosedwallfeatureMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfclosedwallfeatureMap.Generated.cs">
+      <DependentUpon>TfclosedwallfeatureMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfdrillingMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfdrillingMap.Generated.cs">
+      <DependentUpon>TfdrillingMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfenclosedwallledgerMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfenclosedwallledgerMap.Generated.cs">
+      <DependentUpon>TfenclosedwallledgerMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfgasdrainageMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfgasdrainageMap.Generated.cs">
+      <DependentUpon>TfgasdrainageMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfgasdrillingMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfgasdrillingMap.Generated.cs">
+      <DependentUpon>TfgasdrillingMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfkeyheadMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfkeyheadMap.Generated.cs">
+      <DependentUpon>TfkeyheadMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfkindlefirewallMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfkindlefirewallMap.Generated.cs">
+      <DependentUpon>TfkindlefirewallMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfmonitorabnormalMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfmonitorabnormalMap.Generated.cs">
+      <DependentUpon>TfmonitorabnormalMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfmonitoranalogMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfmonitoranalogMap.Generated.cs">
+      <DependentUpon>TfmonitoranalogMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfpointclosedwallMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfpointclosedwallMap.Generated.cs">
+      <DependentUpon>TfpointclosedwallMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfproofreadMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfproofreadMap.Generated.cs">
+      <DependentUpon>TfproofreadMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\TfworkingfaceMap.cs" />
+    <Compile Include="EntityFramework\Mapping\TfworkingfaceMap.Generated.cs">
+      <DependentUpon>TfworkingfaceMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\WsclosedwallfeatureMap.cs" />
+    <Compile Include="EntityFramework\Mapping\WsclosedwallfeatureMap.Generated.cs">
+      <DependentUpon>WsclosedwallfeatureMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\WsgasMap.cs" />
+    <Compile Include="EntityFramework\Mapping\WsgasMap.Generated.cs">
+      <DependentUpon>WsgasMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\WsoutburstpreventionMap.cs" />
+    <Compile Include="EntityFramework\Mapping\WsoutburstpreventionMap.Generated.cs">
+      <DependentUpon>WsoutburstpreventionMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\WsworkMap.cs" />
+    <Compile Include="EntityFramework\Mapping\WsworkMap.Generated.cs">
+      <DependentUpon>WsworkMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\ZtconstructionsiteMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ZtconstructionsiteMap.Generated.cs">
+      <DependentUpon>ZtconstructionsiteMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\ZtfieldiinspectionMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ZtfieldiinspectionMap.Generated.cs">
+      <DependentUpon>ZtfieldiinspectionMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\ZtholeMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ZtholeMap.Generated.cs">
+      <DependentUpon>ZtholeMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Mapping\ZtporeplateMap.cs" />
+    <Compile Include="EntityFramework\Mapping\ZtporeplateMap.Generated.cs">
+      <DependentUpon>ZtporeplateMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\RepositoryBase.cs" />
+    <Compile Include="EntityFramework\Repositories\BsbuttonRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsbuttonRepository.Generated.cs">
+      <DependentUpon>BsbuttonRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsdictionaryRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsdictionaryRepository.Generated.cs">
+      <DependentUpon>BsdictionaryRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsmenubuttonRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsmenubuttonRepository.Generated.cs">
+      <DependentUpon>BsmenubuttonRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsmenuRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsmenuRepository.Generated.cs">
+      <DependentUpon>BsmenuRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BspermissionRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BspermissionRepository.Generated.cs">
+      <DependentUpon>BspermissionRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsroleRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsroleRepository.Generated.cs">
+      <DependentUpon>BsroleRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsuserfeedbackRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsuserfeedbackRepository.Generated.cs">
+      <DependentUpon>BsuserfeedbackRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsuseroperatelogRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsuseroperatelogRepository.Generated.cs">
+      <DependentUpon>BsuseroperatelogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\BsuserRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\BsuserRepository.Generated.cs">
+      <DependentUpon>BsuserRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\CmacquisitionlogRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\CmacquisitionlogRepository.Generated.cs">
+      <DependentUpon>CmacquisitionlogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\CmaddressconfigRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\CmaddressconfigRepository.Generated.cs">
+      <DependentUpon>CmaddressconfigRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\CmaddressRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\CmaddressRepository.Generated.cs">
+      <DependentUpon>CmaddressRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\CmdictionaryconfigRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\CmdictionaryconfigRepository.Generated.cs">
+      <DependentUpon>CmdictionaryconfigRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\CmsensorinfoRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\CmsensorinfoRepository.Generated.cs">
+      <DependentUpon>CmsensorinfoRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfclosedwallfacilitiesRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfclosedwallfacilitiesRepository.Generated.cs">
+      <DependentUpon>TfclosedwallfacilitiesRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfclosedwallfeatureRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfclosedwallfeatureRepository.Generated.cs">
+      <DependentUpon>TfclosedwallfeatureRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfdrillingRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfdrillingRepository.Generated.cs">
+      <DependentUpon>TfdrillingRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfenclosedwallledgerRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfenclosedwallledgerRepository.Generated.cs">
+      <DependentUpon>TfenclosedwallledgerRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfgasdrainageRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfgasdrainageRepository.Generated.cs">
+      <DependentUpon>TfgasdrainageRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfgasdrillingRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfgasdrillingRepository.Generated.cs">
+      <DependentUpon>TfgasdrillingRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfkeyheadRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfkeyheadRepository.Generated.cs">
+      <DependentUpon>TfkeyheadRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfkindlefirewallRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfkindlefirewallRepository.Generated.cs">
+      <DependentUpon>TfkindlefirewallRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfmonitorabnormalRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfmonitorabnormalRepository.Generated.cs">
+      <DependentUpon>TfmonitorabnormalRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfmonitoranalogRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfmonitoranalogRepository.Generated.cs">
+      <DependentUpon>TfmonitoranalogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfpointclosedwallRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfpointclosedwallRepository.Generated.cs">
+      <DependentUpon>TfpointclosedwallRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfproofreadRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfproofreadRepository.Generated.cs">
+      <DependentUpon>TfproofreadRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\TfworkingfaceRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TfworkingfaceRepository.Generated.cs">
+      <DependentUpon>TfworkingfaceRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\WsclosedwallfeatureRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\WsclosedwallfeatureRepository.Generated.cs">
+      <DependentUpon>WsclosedwallfeatureRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\WsgasRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\WsgasRepository.Generated.cs">
+      <DependentUpon>WsgasRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\WsoutburstpreventionRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\WsoutburstpreventionRepository.Generated.cs">
+      <DependentUpon>WsoutburstpreventionRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\WsworkRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\WsworkRepository.Generated.cs">
+      <DependentUpon>WsworkRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\ZtconstructionsiteRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ZtconstructionsiteRepository.Generated.cs">
+      <DependentUpon>ZtconstructionsiteRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\ZtfieldiinspectionRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ZtfieldiinspectionRepository.Generated.cs">
+      <DependentUpon>ZtfieldiinspectionRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\ZtholeRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ZtholeRepository.Generated.cs">
+      <DependentUpon>ZtholeRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Repositories\ZtporeplateRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ZtporeplateRepository.Generated.cs">
+      <DependentUpon>ZtporeplateRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\YtQdYtsfContext.cs" />
+    <Compile Include="EntityFramework\YtQdYtsfContext.Generated.cs">
+      <DependentUpon>YtQdYtsfContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Core\Generator.csp" />
+    <None Include="EntityFramework\Generator.csp" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

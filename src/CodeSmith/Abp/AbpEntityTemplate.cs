@@ -72,6 +72,7 @@ namespace CodeSmith
                 output += ",ISoftDelete";
 
             abpEntity.Inherited = output;
+            abpEntity.Description = tableSchema.Description.IsNullOrWhiteSpace() ? tableSchema.FullName : tableSchema.Description;
 
             return abpEntity;
         }

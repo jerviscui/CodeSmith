@@ -40,14 +40,14 @@ namespace CodeSmith
             string editableFile = Path.Combine(rootDirectory, getEditableNameFun(entityContext));
             if (!File.Exists(editableFile))
             {
-                editableClass.SetProperty("EntityContext", entityContext);
+                editableClass.SetProperty("ContextEntity", entityContext);
                 codeTemplate.Response.WriteLine(editableFile);
                 editableClass.RenderToFile(editableFile, true);
             }
 
             //创建生成文件
             string generatedFile = Path.Combine(rootDirectory, getGeneratedNamegFun(entityContext));
-            generatedClass.SetProperty("EntityContext", entityContext);
+            generatedClass.SetProperty("ContextEntity", entityContext);
             codeTemplate.Response.WriteLine(generatedFile);
             generatedClass.RenderToFile(generatedFile, editableFile, true);
         }

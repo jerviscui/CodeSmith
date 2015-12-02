@@ -1,4 +1,4 @@
-﻿<%@ Template Language="C#" TargetLanguage="Text" Debug="True" %>
+﻿<%@ Template Language="C#" TargetLanguage="Text" Debug="True" OutputType="None" %>
 <%-- 解析dll类库 --%>
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Assembly Name="CodeSmith" Path="../../../libs" %>
@@ -76,14 +76,14 @@ public void GeneratorCode()
     
     Generator.CreateMultipleEntityClass<EntityGeneratedClass,EntityEditabledClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName + @"\" + entity.ClassName + ".Generated.cs",
-        entity => entity.ClassName + @"\" + entity.ClassName + ".cs",
+        entity => entity.ClassName + @"\" + entity.ClassName.ToSafeName() + ".Generated.cs",
+        entity => entity.ClassName + @"\" + entity.ClassName.ToSafeName() + ".cs",
         outputDirectory);
         
     Generator.CreateMultipleEntityClass<IRepositoryGeneratedClass,IRepositoryEditabledClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName + @"\I" + entity.ClassName + "Repository.Generated.cs",
-        entity => entity.ClassName + @"\I" + entity.ClassName + "Repository.cs",
+        entity => entity.ClassName + @"\I" + entity.ClassName.ToSafeName() + "Repository.Generated.cs",
+        entity => entity.ClassName + @"\I" + entity.ClassName.ToSafeName() + "Repository.cs",
         outputDirectory);
         
     watch.Stop();

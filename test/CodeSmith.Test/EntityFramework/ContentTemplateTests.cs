@@ -24,6 +24,7 @@ namespace CodeSmith.Test.EntityFramework
                 Console.WriteLine(entity.ClassName);
                 Console.WriteLine(entity.PrimaryKey != null ? entity.PrimaryKey.SystemType.ToType() : "");
                 Console.WriteLine(entity.Inherited);
+                Console.WriteLine(entity.Description);
             }
         }
     }
