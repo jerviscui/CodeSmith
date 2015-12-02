@@ -1,4 +1,5 @@
-﻿namespace CodeSmith.Settings
+﻿// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     public enum ContextNaming
     {

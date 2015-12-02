@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using CodeSmith.Engine;
-using CodeSmith.Settings;
 
 namespace CodeSmith
 {

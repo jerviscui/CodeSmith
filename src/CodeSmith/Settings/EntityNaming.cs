@@ -1,4 +1,5 @@
-﻿namespace CodeSmith.Settings
+﻿// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 实体命名规则

@@ -1,13 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 实体集合
     /// </summary>
-    public class EntityCollection
-        : ObservableCollection<Entity>
+    public class EntityCollection<TEntity, TProperty>
+        : ObservableCollection<TEntity>
+        where TEntity : Entity<TProperty>
+        where TProperty : Property
     {
         /// <summary>
         /// 是否已经处理
@@ -19,7 +21,7 @@ namespace CodeSmith.Model
         /// </summary>
         /// <param name="fullName">表全名,例如:dbo.BSUser。</param>
         /// <returns></returns>
-        public Entity ByTable(string fullName)
+        public TEntity ByTable(string fullName)
         {
             return this.FirstOrDefault(x => x.FullName == fullName);
         }
@@ -30,7 +32,7 @@ namespace CodeSmith.Model
         /// <param name="tableName"></param>
         /// <param name="tableSchema">例如：dbo</param>
         /// <returns></returns>
-        public Entity ByTable(string tableName, string tableSchema)
+        public TEntity ByTable(string tableName, string tableSchema)
         {
             return this.FirstOrDefault(x => x.TableName == tableName && x.TableSchema == tableSchema);
         }
@@ -40,7 +42,7 @@ namespace CodeSmith.Model
         /// </summary>
         /// <param name="className"></param>
         /// <returns></returns>
-        public Entity ByClass(string className)
+        public TEntity ByClass(string className)
         {
             return this.FirstOrDefault(x => x.ClassName == className);
         }
@@ -50,7 +52,7 @@ namespace CodeSmith.Model
         /// </summary>
         /// <param name="contextName"></param>
         /// <returns></returns>
-        public Entity ByContext(string contextName)
+        public TEntity ByContext(string contextName)
         {
             return this.FirstOrDefault(x => x.ContextName == contextName);
         }

@@ -9,14 +9,15 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeSmith</RootNamespace>
     <AssemblyName>CodeSmith</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\libs\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,6 +35,7 @@
     <Reference Include="CodeSmith.Engine, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
     <Reference Include="SchemaExplorer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,8 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EFContentTemplate.cs" />
-    <Compile Include="EFRelationshipTemplate.cs" />
+    <Compile Include="Abp\AbpDbContentTemplate.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="Abp\AbpEntity.cs" />
+    <Compile Include="Abp\AbpEntityProperty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abp\AbpEntityPropertyTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abp\AbpEntityTemplate.cs" />
+    <Compile Include="EntityFramework\MethodTemplate.cs" />
+    <Compile Include="EntityFramework\DbContentTemplate.cs" />
+    <Compile Include="EntityFramework\RelationshipTemplate.cs" />
+    <Compile Include="EntityFramework\ViewEntityTemplate.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GeneratorSettings.cs" />
     <Compile Include="Model\EntityCollection.cs" />
@@ -55,11 +69,10 @@
     <Compile Include="Settings\EntityNaming.cs" />
     <Compile Include="Settings\RelationshipNaming.cs" />
     <Compile Include="Settings\TableNaming.cs" />
-    <Compile Include="Settings\UniqueNamer.cs" />
     <Compile Include="SingleTemplate.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\EntityBase.cs" />
-    <Compile Include="EFEntityTemplate.cs" />
+    <Compile Include="EntityFramework\EntityTemplate.cs" />
     <Compile Include="ISingleTemplate.cs" />
     <Compile Include="Model\Method.cs" />
     <Compile Include="Model\MethodCollection.cs" />
@@ -68,9 +81,12 @@
     <Compile Include="Model\PropertyCollection.cs" />
     <Compile Include="Model\Relationship.cs" />
     <Compile Include="Model\RelationshipCollection.cs" />
-    <Compile Include="EFPropertyTemplate.cs" />
+    <Compile Include="EntityFramework\PropertyTemplate.cs" />
     <Compile Include="TemplateContent.cs" />
     <Compile Include="UniqueNamer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

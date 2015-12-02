@@ -3,7 +3,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 属性 对象

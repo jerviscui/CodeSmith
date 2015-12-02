@@ -151,12 +151,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CodeSmith.Abp\CodeSmith.Abp.csproj">
-      <Project>{b42e4369-e894-4139-8490-ce5ffd6205b0}</Project>
-      <Name>CodeSmith.Abp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

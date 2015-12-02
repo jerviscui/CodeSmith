@@ -2,17 +2,18 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
-    public class PropertyCollection
-        : ObservableCollection<Property>
+    public class PropertyCollection<TProperty>
+        : ObservableCollection<TProperty> where TProperty : Property
     {
         public bool IsProcessed { get; set; }
 
         /// <summary>
         /// 获取主键集合
         /// </summary>
-        public IEnumerable<Property> PrimaryKeys
+        public IEnumerable<TProperty> PrimaryKeys
         {
             get { return this.Where(p => p.IsPrimaryKey == true); }
         }
@@ -20,7 +21,7 @@ namespace CodeSmith.Model
         /// <summary>
         /// 获取外键集合
         /// </summary>
-        public IEnumerable<Property> ForeignKeys
+        public IEnumerable<TProperty> ForeignKeys
         {
             get { return this.Where(p => p.IsForeignKey == true); }
         }
@@ -30,7 +31,7 @@ namespace CodeSmith.Model
         /// </summary>
         /// <param name="columnName"></param>
         /// <returns></returns>
-        public Property ByColumn(string columnName)
+        public TProperty ByColumn(string columnName)
         {
             return this.FirstOrDefault(x => x.ColumnName == columnName);
         }
@@ -40,7 +41,7 @@ namespace CodeSmith.Model
         /// </summary>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public Property ByProperty(string propertyName)
+        public TProperty ByProperty(string propertyName)
         {
             return this.FirstOrDefault(x => x.PropertyName == propertyName);
         }

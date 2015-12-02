@@ -4,23 +4,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CodeSmith.Engine;
-using CodeSmith.Model;
 using SchemaExplorer;
 
 namespace CodeSmith
 {
     public class TemplateContent
     {
-        public readonly GeneratorSettings GeneratorSettings;
+        public readonly GeneratorSettings Settings;
 
         public readonly UniqueNamer UniqueNamer;
 
-        public TemplateContent(GeneratorSettings generatorSettings, UniqueNamer uniqueNamer)
+        public TemplateContent(GeneratorSettings settings, UniqueNamer uniqueNamer)
         {
-            GeneratorSettings = generatorSettings;
+            Settings = settings;
             UniqueNamer = uniqueNamer;
         }
-
   
         /// <summary>
         /// 获取数据库表中外键与主键所有的属性名称
@@ -30,7 +28,7 @@ namespace CodeSmith
         /// <param name="name">主表表名</param>
         /// <param name="isRequired"></param>
         /// <returns></returns>
-        public List<string> GetKeyMembers(Entity entity, IEnumerable<MemberColumnSchema> members, string name, out bool isRequired)
+        public List<string> GetKeyMembers<TProperty>(Entity<TProperty> entity, IEnumerable<MemberColumnSchema> members, string name, out bool isRequired) where TProperty : Property
         {
             var keyMembers = new List<string>();
             isRequired = false;
@@ -135,7 +133,7 @@ namespace CodeSmith
         /// <returns></returns>
         public string ToClassName(string name)
         {
-            name = GeneratorSettings.EntityName(name);
+            name = Settings.EntityName(name);
             string legalName = ToLegalName(name);
 
             return legalName;
@@ -163,7 +161,7 @@ namespace CodeSmith
         /// <returns></returns>
         public string ToLegalName(string name)
         {
-            string legalName = GeneratorSettings.CleanName(name);
+            string legalName = Settings.CleanName(name);
             legalName = StringUtil.ToPascalCase(legalName);
 
             return legalName;

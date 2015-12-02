@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using CodeSmith.Engine;
-using CodeSmith.Settings;
 
 namespace CodeSmith
 {
@@ -18,6 +17,7 @@ namespace CodeSmith
             TableNaming = TableNaming.Singular;
             CleanExpressions = new List<string> { @"^\d+" };
             RenameRules = new Dictionary<string, string>();
+            EnumTyps = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -43,11 +43,16 @@ namespace CodeSmith
         public List<string> CleanExpressions { get; set; }
 
         /// <summary>
+        /// 枚举类型
+        /// </summary>
+        public Dictionary<string, string> EnumTyps { get; set; }
+
+        /// <summary>
         /// 需要重新命名的表名规则
         /// </summary>
 
         public Dictionary<string, string> RenameRules { get; set; }
-       
+
         /// <summary>
         /// 生成代码是否包含视图
         /// </summary>

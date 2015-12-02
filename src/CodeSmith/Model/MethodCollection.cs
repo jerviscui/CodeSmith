@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     public class MethodCollection
         : ObservableCollection<Method>

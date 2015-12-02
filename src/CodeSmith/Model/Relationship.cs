@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using CodeSmith.Settings;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 映射对象

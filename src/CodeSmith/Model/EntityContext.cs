@@ -1,16 +1,19 @@
 ﻿using System.Diagnostics;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 上下文对象
     /// </summary>
     [DebuggerDisplay("上下文对象: {ContextName}, 数据库: {DatabaseName}")]
-    public class EntityContext : EntityBase
+    public class EntityContext<TEntity, TProperty> : EntityBase
+        where TProperty : Property
+        where TEntity : Entity<TProperty>
     {
         public EntityContext()
         {
-            Entities = new EntityCollection();
+            Entities = new EntityCollection<TEntity, TProperty>();
         }
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace CodeSmith.Model
         /// <summary>
         /// 实体集合
         /// </summary>
-        public EntityCollection Entities { get; set; }
+        public EntityCollection<TEntity, TProperty> Entities { get; set; }
 
         /// <summary>
         /// 重新命名实体

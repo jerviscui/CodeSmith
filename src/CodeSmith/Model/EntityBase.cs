@@ -1,6 +1,7 @@
 ﻿using System.Xml.Serialization;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 是否已经处理

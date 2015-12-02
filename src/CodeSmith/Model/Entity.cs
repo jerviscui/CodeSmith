@@ -1,16 +1,17 @@
 ﻿using System.Diagnostics;
 
-namespace CodeSmith.Model
+// ReSharper disable once CheckNamespace
+namespace CodeSmith
 {
     /// <summary>
     /// 实体
     /// </summary>
     [DebuggerDisplay("Class: {ClassName}, Table: {FullName}, Context: {ContextName}")]
-    public class Entity : EntityBase
+    public class Entity<TProperty> : EntityBase where TProperty : Property
     {
         public Entity()
         {
-            Properties = new PropertyCollection();
+            Properties = new PropertyCollection<TProperty>();
             Relationships = new RelationshipCollection();
             Methods = new MethodCollection();
         }
@@ -42,7 +43,7 @@ namespace CodeSmith.Model
         /// <summary>
         /// 所有属性
         /// </summary>
-        public PropertyCollection Properties { get; set; }
+        public PropertyCollection<TProperty> Properties { get; set; }
         /// <summary>
         /// 映射关系
         /// </summary>
