@@ -20,6 +20,12 @@
         <connectionString>$(ConnectionString1)</connectionString>
         <providerType>SchemaExplorer.MySQLSchemaProvider,SchemaExplorer.MySQLSchemaProvider</providerType>
         <mode>Exclude</mode>
+<<<<<<< HEAD
+=======
+        <tables>
+      <table>__migrationhistory</table>
+    </tables>
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
       </property>
       <property name="AbpEntityFrameworkNamespace">CodeSmith.Abp.Template.Test.EntityFramework</property>
       <property name="AbpCoreNamespace">CodeSmith.Abp.Template.Test.Core</property>

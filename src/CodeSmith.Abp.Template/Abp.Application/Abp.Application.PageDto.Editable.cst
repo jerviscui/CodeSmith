@@ -1,0 +1,30 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="Entity" Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %> 
+using System;
+using System.Collections.Generic;
+using Abp.Application.Services.Dto;
+using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
+
+// ReSharper disable once CheckNamespace
+namespace <%= AbpApplicationNamespace %>
+{
+    public partial class Get<%= Entity.ClassName.ToSafeName() %>PageInput
+    {
+        public Get<%= Entity.ClassName.ToSafeName() %>PageInput()
+        {
+
+        }
+    }
+}
+

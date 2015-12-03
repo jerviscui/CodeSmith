@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp.Template", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp.Template.Test", "test\CodeSmith.Abp.Template.Test\CodeSmith.Abp.Template.Test.csproj", "{2EC0D40A-68A1-4985-BE76-16C5759B640A}"
 EndProject
+<<<<<<< HEAD
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaExplorer.MySQLSchemaProvider", "src\SchemaExplorer.MySQLSchemaProvider\SchemaExplorer.MySQLSchemaProvider.csproj", "{801C5FAE-7200-4470-B00C-9589585500B6}"
+EndProject
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +64,13 @@ Global
 		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
+		{801C5FAE-7200-4470-B00C-9589585500B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801C5FAE-7200-4470-B00C-9589585500B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801C5FAE-7200-4470-B00C-9589585500B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801C5FAE-7200-4470-B00C-9589585500B6}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

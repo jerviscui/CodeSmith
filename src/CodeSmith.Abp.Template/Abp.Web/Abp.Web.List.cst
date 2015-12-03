@@ -1,22 +1,20 @@
-﻿<%@ Template Language="C#" TargetLanguage="HTML" Debug="True" Encoding="UTF-8" %>
-<%@ Assembly Name="SchemaExplorer" Path="../../../libs" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
-
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.Text.RegularExpressions" %>
-<%@ Import Namespace="CodeSmith.Abp" %>
-<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
-<%@ Import Namespace="CodeSmith.Abp.Model" %>
-<%@ Import Namespace="CodeSmith.Abp.Generator" %>
-
-<%@ Property Name="Entity"Type="CodeSmith.Abp.Model.Entity" Category="Data" Optional="False" %>
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="AbpWebNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="Entity"Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %>
 <div id="layout" class="easyui-layout" fit="true">
     <div data-options="region:'north'" border="false" class="button_area">
-        <a href="javascript:;" onclick="javascript: window.page.opencreate();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
-        <a href="javascript:;" onclick="javascript: window.page.openmodify();" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
-        <a href="javascript:;" onclick="javascript: window.page.remove();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">移除</a>
+        <a href="javascript:;" onclick="javascript: window.page.onCreate();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+        <a href="javascript:;" onclick="javascript: window.page.onModify();" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+        <a href="javascript:;" onclick="javascript: window.page.onRemove();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">移除</a>
     </div>
     <div data-options="region:'center'" border="false">
         <table id="datagrid"></table>
@@ -28,10 +26,10 @@
         <input type="hidden" name="Id" />
         <div style="width: 80%">
             <ul>
-<% foreach(Property property in Entity.Properties){%>
+<% foreach(AbpEntityProperty property in Entity.Properties){%>
                 <li>
-                    <label><%= property.Describe %>:</label>
-                    <input class="easyui-textbox" name="<%= property.PropertyName %>"  />
+                    <label><%= property.Explain %>:</label>
+                    <input class="easyui-textbox" name="<%= property.PropertyName.ToSafeName() %>"  />
                 </li>  
 <%}%>             
             </ul>
@@ -45,8 +43,7 @@
             var page = {
                 load: function () {
                     $('#datagrid').datagrid({
-                        url: '/Api/<%= Entity.ClassName %>/PageQuery',
-                        title: '列表',
+                        url: '/Server/<%= Entity.ClassName.ToSafeName() %>/PageQuery',                   
                         idField: 'Id',
                         selectOnCheck: false,
                         border: false,
@@ -55,41 +52,40 @@
                         nowrap: false,
                         columns: [[
 <% foreach(Property property in Entity.Properties){%>
-                                { field: '<%= property.PropertyName %>', title: "<%=property.Describe  %>", width: '<%=  Convert.ToInt32(90/Entity.Properties.Count())%>%', align: 'center', sortable: true },
-<%}%>                                                                 
-                                { field: 'Operation', title: "操作" }                              
+                                { field: '<%= property.PropertyName.ToSafeName() %>', title: "<%=property.Explain  %>", width: '<%=  Convert.ToInt32(90/Entity.Properties.Count())%>%', align: 'center', sortable: true },
+<%}%>                                                                                                         
                             ]]
                     });
                 },            
-                opencreate: function () {
+                onCreate: function () {
                     ///<summary>创建</summary>
                     $.parentWindow({
                         title: '创建',
-                        url: '/<%= Entity.ClassName %>/Edit',
+                        url: '/<%= Entity.ClassName.ToSafeName() %>/Edit',
                         onClose: function () {
                             $('#datagrid').datagrid('reload');
                         }
                     });
                 },
-                openmodify: function () {
+                onModify: function () {
                     ///<summary>修改</summary>
                     $('#datagrid').datagrid('getSelectedOf', function (row) {
                         ///<summary>创建</summary>
                         $.parentWindow({
                             title: '修改',
-                            url: '/<%= Entity.ClassName %>/Edit/?id=' + row.Id,
+                            url: '/<%= Entity.ClassName.ToSafeName() %>/Edit/?id=' + row.Id,
                             onClose: function () {
                                 $('#datagrid').datagrid('reload');
                             }
                         });
                     });
                 },
-                remove: function () {
+                onRemove: function () {
                     ///<summary>移除</summary>
                     $('#datagrid').datagrid('getSelectedOf', function (row) {
                         $.confirm('确认是否删除?', function (r) {
                             if (r) {
-                                $.useajax(' /Api/<%= Entity.ClassName %>/Delete', { Id: row.Id }, function () {
+                                $.useajax('/Server/<%= Entity.ClassName.ToSafeName() %>/Delete', { Id: row.Id }, function () {
                                     $('#datagrid').datagrid('reload');
                                 });
                             }

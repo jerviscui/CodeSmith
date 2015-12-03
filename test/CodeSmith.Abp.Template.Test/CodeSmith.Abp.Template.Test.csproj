@@ -33,16 +33,38 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="Abp, Version=0.7.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Abp.0.7.4.1\lib\net451\Abp.dll</HintPath>
+=======
+    <Reference Include="Abp, Version=0.7.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.0.7.5.0\lib\net452\Abp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Abp.AutoMapper, Version=0.7.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.AutoMapper.0.7.5.0\lib\net452\Abp.AutoMapper.dll</HintPath>
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
       <Private>True</Private>
     </Reference>
     <Reference Include="Abp.EntityFramework, Version=0.7.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Abp.EntityFramework.0.7.4.1\lib\net451\Abp.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+=======
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
       <Private>True</Private>
     </Reference>
     <Reference Include="Castle.Facilities.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -95,7 +117,578 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Application\Dto.cs" />
+=======
+    <Compile Include="Application\Bsbutton\BsbuttonAppService.cs" />
+    <Compile Include="Application\Bsbutton\BsbuttonAppService.Generated.cs">
+      <DependentUpon>BsbuttonAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsbutton\Dtos\BsbuttonDto.cs" />
+    <Compile Include="Application\Bsbutton\Dtos\BsbuttonDto.Generated.cs">
+      <DependentUpon>BsbuttonDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsbutton\Dtos\GetBsbuttonPageInput.cs" />
+    <Compile Include="Application\Bsbutton\Dtos\GetBsbuttonPageInput.Generated.cs">
+      <DependentUpon>GetBsbuttonPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsbutton\IBsbuttonAppService.cs" />
+    <Compile Include="Application\Bsbutton\IBsbuttonAppService.Generated.cs">
+      <DependentUpon>IBsbuttonAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsdictionary\BsdictionaryAppService.cs" />
+    <Compile Include="Application\Bsdictionary\BsdictionaryAppService.Generated.cs">
+      <DependentUpon>BsdictionaryAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsdictionary\Dtos\BsdictionaryDto.cs" />
+    <Compile Include="Application\Bsdictionary\Dtos\BsdictionaryDto.Generated.cs">
+      <DependentUpon>BsdictionaryDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsdictionary\Dtos\GetBsdictionaryPageInput.cs" />
+    <Compile Include="Application\Bsdictionary\Dtos\GetBsdictionaryPageInput.Generated.cs">
+      <DependentUpon>GetBsdictionaryPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsdictionary\IBsdictionaryAppService.cs" />
+    <Compile Include="Application\Bsdictionary\IBsdictionaryAppService.Generated.cs">
+      <DependentUpon>IBsdictionaryAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenubutton\BsmenubuttonAppService.cs" />
+    <Compile Include="Application\Bsmenubutton\BsmenubuttonAppService.Generated.cs">
+      <DependentUpon>BsmenubuttonAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenubutton\Dtos\BsmenubuttonDto.cs" />
+    <Compile Include="Application\Bsmenubutton\Dtos\BsmenubuttonDto.Generated.cs">
+      <DependentUpon>BsmenubuttonDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenubutton\Dtos\GetBsmenubuttonPageInput.cs" />
+    <Compile Include="Application\Bsmenubutton\Dtos\GetBsmenubuttonPageInput.Generated.cs">
+      <DependentUpon>GetBsmenubuttonPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenubutton\IBsmenubuttonAppService.cs" />
+    <Compile Include="Application\Bsmenubutton\IBsmenubuttonAppService.Generated.cs">
+      <DependentUpon>IBsmenubuttonAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenu\BsmenuAppService.cs" />
+    <Compile Include="Application\Bsmenu\BsmenuAppService.Generated.cs">
+      <DependentUpon>BsmenuAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenu\Dtos\BsmenuDto.cs" />
+    <Compile Include="Application\Bsmenu\Dtos\BsmenuDto.Generated.cs">
+      <DependentUpon>BsmenuDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenu\Dtos\GetBsmenuPageInput.cs" />
+    <Compile Include="Application\Bsmenu\Dtos\GetBsmenuPageInput.Generated.cs">
+      <DependentUpon>GetBsmenuPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsmenu\IBsmenuAppService.cs" />
+    <Compile Include="Application\Bsmenu\IBsmenuAppService.Generated.cs">
+      <DependentUpon>IBsmenuAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bspermission\BspermissionAppService.cs" />
+    <Compile Include="Application\Bspermission\BspermissionAppService.Generated.cs">
+      <DependentUpon>BspermissionAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bspermission\Dtos\BspermissionDto.cs" />
+    <Compile Include="Application\Bspermission\Dtos\BspermissionDto.Generated.cs">
+      <DependentUpon>BspermissionDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bspermission\Dtos\GetBspermissionPageInput.cs" />
+    <Compile Include="Application\Bspermission\Dtos\GetBspermissionPageInput.Generated.cs">
+      <DependentUpon>GetBspermissionPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bspermission\IBspermissionAppService.cs" />
+    <Compile Include="Application\Bspermission\IBspermissionAppService.Generated.cs">
+      <DependentUpon>IBspermissionAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsrole\BsroleAppService.cs" />
+    <Compile Include="Application\Bsrole\BsroleAppService.Generated.cs">
+      <DependentUpon>BsroleAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsrole\Dtos\BsroleDto.cs" />
+    <Compile Include="Application\Bsrole\Dtos\BsroleDto.Generated.cs">
+      <DependentUpon>BsroleDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsrole\Dtos\GetBsrolePageInput.cs" />
+    <Compile Include="Application\Bsrole\Dtos\GetBsrolePageInput.Generated.cs">
+      <DependentUpon>GetBsrolePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsrole\IBsroleAppService.cs" />
+    <Compile Include="Application\Bsrole\IBsroleAppService.Generated.cs">
+      <DependentUpon>IBsroleAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuserfeedback\BsuserfeedbackAppService.cs" />
+    <Compile Include="Application\Bsuserfeedback\BsuserfeedbackAppService.Generated.cs">
+      <DependentUpon>BsuserfeedbackAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuserfeedback\Dtos\BsuserfeedbackDto.cs" />
+    <Compile Include="Application\Bsuserfeedback\Dtos\BsuserfeedbackDto.Generated.cs">
+      <DependentUpon>BsuserfeedbackDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuserfeedback\Dtos\GetBsuserfeedbackPageInput.cs" />
+    <Compile Include="Application\Bsuserfeedback\Dtos\GetBsuserfeedbackPageInput.Generated.cs">
+      <DependentUpon>GetBsuserfeedbackPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuserfeedback\IBsuserfeedbackAppService.cs" />
+    <Compile Include="Application\Bsuserfeedback\IBsuserfeedbackAppService.Generated.cs">
+      <DependentUpon>IBsuserfeedbackAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuseroperatelog\BsuseroperatelogAppService.cs" />
+    <Compile Include="Application\Bsuseroperatelog\BsuseroperatelogAppService.Generated.cs">
+      <DependentUpon>BsuseroperatelogAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuseroperatelog\Dtos\BsuseroperatelogDto.cs" />
+    <Compile Include="Application\Bsuseroperatelog\Dtos\BsuseroperatelogDto.Generated.cs">
+      <DependentUpon>BsuseroperatelogDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuseroperatelog\Dtos\GetBsuseroperatelogPageInput.cs" />
+    <Compile Include="Application\Bsuseroperatelog\Dtos\GetBsuseroperatelogPageInput.Generated.cs">
+      <DependentUpon>GetBsuseroperatelogPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuseroperatelog\IBsuseroperatelogAppService.cs" />
+    <Compile Include="Application\Bsuseroperatelog\IBsuseroperatelogAppService.Generated.cs">
+      <DependentUpon>IBsuseroperatelogAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuser\BsuserAppService.cs" />
+    <Compile Include="Application\Bsuser\BsuserAppService.Generated.cs">
+      <DependentUpon>BsuserAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuser\Dtos\BsuserDto.cs" />
+    <Compile Include="Application\Bsuser\Dtos\BsuserDto.Generated.cs">
+      <DependentUpon>BsuserDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuser\Dtos\GetBsuserPageInput.cs" />
+    <Compile Include="Application\Bsuser\Dtos\GetBsuserPageInput.Generated.cs">
+      <DependentUpon>GetBsuserPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Bsuser\IBsuserAppService.cs" />
+    <Compile Include="Application\Bsuser\IBsuserAppService.Generated.cs">
+      <DependentUpon>IBsuserAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmacquisitionlog\CmacquisitionlogAppService.cs" />
+    <Compile Include="Application\Cmacquisitionlog\CmacquisitionlogAppService.Generated.cs">
+      <DependentUpon>CmacquisitionlogAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmacquisitionlog\Dtos\CmacquisitionlogDto.cs" />
+    <Compile Include="Application\Cmacquisitionlog\Dtos\CmacquisitionlogDto.Generated.cs">
+      <DependentUpon>CmacquisitionlogDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmacquisitionlog\Dtos\GetCmacquisitionlogPageInput.cs" />
+    <Compile Include="Application\Cmacquisitionlog\Dtos\GetCmacquisitionlogPageInput.Generated.cs">
+      <DependentUpon>GetCmacquisitionlogPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmacquisitionlog\ICmacquisitionlogAppService.cs" />
+    <Compile Include="Application\Cmacquisitionlog\ICmacquisitionlogAppService.Generated.cs">
+      <DependentUpon>ICmacquisitionlogAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddressconfig\CmaddressconfigAppService.cs" />
+    <Compile Include="Application\Cmaddressconfig\CmaddressconfigAppService.Generated.cs">
+      <DependentUpon>CmaddressconfigAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddressconfig\Dtos\CmaddressconfigDto.cs" />
+    <Compile Include="Application\Cmaddressconfig\Dtos\CmaddressconfigDto.Generated.cs">
+      <DependentUpon>CmaddressconfigDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddressconfig\Dtos\GetCmaddressconfigPageInput.cs" />
+    <Compile Include="Application\Cmaddressconfig\Dtos\GetCmaddressconfigPageInput.Generated.cs">
+      <DependentUpon>GetCmaddressconfigPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddressconfig\ICmaddressconfigAppService.cs" />
+    <Compile Include="Application\Cmaddressconfig\ICmaddressconfigAppService.Generated.cs">
+      <DependentUpon>ICmaddressconfigAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddress\CmaddressAppService.cs" />
+    <Compile Include="Application\Cmaddress\CmaddressAppService.Generated.cs">
+      <DependentUpon>CmaddressAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddress\Dtos\CmaddressDto.cs" />
+    <Compile Include="Application\Cmaddress\Dtos\CmaddressDto.Generated.cs">
+      <DependentUpon>CmaddressDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddress\Dtos\GetCmaddressPageInput.cs" />
+    <Compile Include="Application\Cmaddress\Dtos\GetCmaddressPageInput.Generated.cs">
+      <DependentUpon>GetCmaddressPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmaddress\ICmaddressAppService.cs" />
+    <Compile Include="Application\Cmaddress\ICmaddressAppService.Generated.cs">
+      <DependentUpon>ICmaddressAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmdictionaryconfig\CmdictionaryconfigAppService.cs" />
+    <Compile Include="Application\Cmdictionaryconfig\CmdictionaryconfigAppService.Generated.cs">
+      <DependentUpon>CmdictionaryconfigAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmdictionaryconfig\Dtos\CmdictionaryconfigDto.cs" />
+    <Compile Include="Application\Cmdictionaryconfig\Dtos\CmdictionaryconfigDto.Generated.cs">
+      <DependentUpon>CmdictionaryconfigDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmdictionaryconfig\Dtos\GetCmdictionaryconfigPageInput.cs" />
+    <Compile Include="Application\Cmdictionaryconfig\Dtos\GetCmdictionaryconfigPageInput.Generated.cs">
+      <DependentUpon>GetCmdictionaryconfigPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmdictionaryconfig\ICmdictionaryconfigAppService.cs" />
+    <Compile Include="Application\Cmdictionaryconfig\ICmdictionaryconfigAppService.Generated.cs">
+      <DependentUpon>ICmdictionaryconfigAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmsensorinfo\CmsensorinfoAppService.cs" />
+    <Compile Include="Application\Cmsensorinfo\CmsensorinfoAppService.Generated.cs">
+      <DependentUpon>CmsensorinfoAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmsensorinfo\Dtos\CmsensorinfoDto.cs" />
+    <Compile Include="Application\Cmsensorinfo\Dtos\CmsensorinfoDto.Generated.cs">
+      <DependentUpon>CmsensorinfoDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmsensorinfo\Dtos\GetCmsensorinfoPageInput.cs" />
+    <Compile Include="Application\Cmsensorinfo\Dtos\GetCmsensorinfoPageInput.Generated.cs">
+      <DependentUpon>GetCmsensorinfoPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cmsensorinfo\ICmsensorinfoAppService.cs" />
+    <Compile Include="Application\Cmsensorinfo\ICmsensorinfoAppService.Generated.cs">
+      <DependentUpon>ICmsensorinfoAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\CrudAppService.cs" />
+    <Compile Include="Application\DefaultPagedResultRequest.cs" />
+    <Compile Include="Application\DtoMappings.cs" />
+    <Compile Include="Application\DtoMappings.Generated.cs">
+      <DependentUpon>DtoMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\ICrudAppService.cs" />
+    <Compile Include="Application\ServiceBase.cs" />
+    <Compile Include="Application\Tfclosedwallfacilities\Dtos\GetTfclosedwallfacilitiesPageInput.cs" />
+    <Compile Include="Application\Tfclosedwallfacilities\Dtos\GetTfclosedwallfacilitiesPageInput.Generated.cs">
+      <DependentUpon>GetTfclosedwallfacilitiesPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfacilities\Dtos\TfclosedwallfacilitiesDto.cs" />
+    <Compile Include="Application\Tfclosedwallfacilities\Dtos\TfclosedwallfacilitiesDto.Generated.cs">
+      <DependentUpon>TfclosedwallfacilitiesDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfacilities\ITfclosedwallfacilitiesAppService.cs" />
+    <Compile Include="Application\Tfclosedwallfacilities\ITfclosedwallfacilitiesAppService.Generated.cs">
+      <DependentUpon>ITfclosedwallfacilitiesAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfacilities\TfclosedwallfacilitiesAppService.cs" />
+    <Compile Include="Application\Tfclosedwallfacilities\TfclosedwallfacilitiesAppService.Generated.cs">
+      <DependentUpon>TfclosedwallfacilitiesAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfeature\Dtos\GetTfclosedwallfeaturePageInput.cs" />
+    <Compile Include="Application\Tfclosedwallfeature\Dtos\GetTfclosedwallfeaturePageInput.Generated.cs">
+      <DependentUpon>GetTfclosedwallfeaturePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfeature\Dtos\TfclosedwallfeatureDto.cs" />
+    <Compile Include="Application\Tfclosedwallfeature\Dtos\TfclosedwallfeatureDto.Generated.cs">
+      <DependentUpon>TfclosedwallfeatureDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfeature\ITfclosedwallfeatureAppService.cs" />
+    <Compile Include="Application\Tfclosedwallfeature\ITfclosedwallfeatureAppService.Generated.cs">
+      <DependentUpon>ITfclosedwallfeatureAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfclosedwallfeature\TfclosedwallfeatureAppService.cs" />
+    <Compile Include="Application\Tfclosedwallfeature\TfclosedwallfeatureAppService.Generated.cs">
+      <DependentUpon>TfclosedwallfeatureAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfdrilling\Dtos\GetTfdrillingPageInput.cs" />
+    <Compile Include="Application\Tfdrilling\Dtos\GetTfdrillingPageInput.Generated.cs">
+      <DependentUpon>GetTfdrillingPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfdrilling\Dtos\TfdrillingDto.cs" />
+    <Compile Include="Application\Tfdrilling\Dtos\TfdrillingDto.Generated.cs">
+      <DependentUpon>TfdrillingDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfdrilling\ITfdrillingAppService.cs" />
+    <Compile Include="Application\Tfdrilling\ITfdrillingAppService.Generated.cs">
+      <DependentUpon>ITfdrillingAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfdrilling\TfdrillingAppService.cs" />
+    <Compile Include="Application\Tfdrilling\TfdrillingAppService.Generated.cs">
+      <DependentUpon>TfdrillingAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfenclosedwallledger\Dtos\GetTfenclosedwallledgerPageInput.cs" />
+    <Compile Include="Application\Tfenclosedwallledger\Dtos\GetTfenclosedwallledgerPageInput.Generated.cs">
+      <DependentUpon>GetTfenclosedwallledgerPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfenclosedwallledger\Dtos\TfenclosedwallledgerDto.cs" />
+    <Compile Include="Application\Tfenclosedwallledger\Dtos\TfenclosedwallledgerDto.Generated.cs">
+      <DependentUpon>TfenclosedwallledgerDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfenclosedwallledger\ITfenclosedwallledgerAppService.cs" />
+    <Compile Include="Application\Tfenclosedwallledger\ITfenclosedwallledgerAppService.Generated.cs">
+      <DependentUpon>ITfenclosedwallledgerAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfenclosedwallledger\TfenclosedwallledgerAppService.cs" />
+    <Compile Include="Application\Tfenclosedwallledger\TfenclosedwallledgerAppService.Generated.cs">
+      <DependentUpon>TfenclosedwallledgerAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrainage\Dtos\GetTfgasdrainagePageInput.cs" />
+    <Compile Include="Application\Tfgasdrainage\Dtos\GetTfgasdrainagePageInput.Generated.cs">
+      <DependentUpon>GetTfgasdrainagePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrainage\Dtos\TfgasdrainageDto.cs" />
+    <Compile Include="Application\Tfgasdrainage\Dtos\TfgasdrainageDto.Generated.cs">
+      <DependentUpon>TfgasdrainageDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrainage\ITfgasdrainageAppService.cs" />
+    <Compile Include="Application\Tfgasdrainage\ITfgasdrainageAppService.Generated.cs">
+      <DependentUpon>ITfgasdrainageAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrainage\TfgasdrainageAppService.cs" />
+    <Compile Include="Application\Tfgasdrainage\TfgasdrainageAppService.Generated.cs">
+      <DependentUpon>TfgasdrainageAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrilling\Dtos\GetTfgasdrillingPageInput.cs" />
+    <Compile Include="Application\Tfgasdrilling\Dtos\GetTfgasdrillingPageInput.Generated.cs">
+      <DependentUpon>GetTfgasdrillingPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrilling\Dtos\TfgasdrillingDto.cs" />
+    <Compile Include="Application\Tfgasdrilling\Dtos\TfgasdrillingDto.Generated.cs">
+      <DependentUpon>TfgasdrillingDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrilling\ITfgasdrillingAppService.cs" />
+    <Compile Include="Application\Tfgasdrilling\ITfgasdrillingAppService.Generated.cs">
+      <DependentUpon>ITfgasdrillingAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfgasdrilling\TfgasdrillingAppService.cs" />
+    <Compile Include="Application\Tfgasdrilling\TfgasdrillingAppService.Generated.cs">
+      <DependentUpon>TfgasdrillingAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkeyhead\Dtos\GetTfkeyheadPageInput.cs" />
+    <Compile Include="Application\Tfkeyhead\Dtos\GetTfkeyheadPageInput.Generated.cs">
+      <DependentUpon>GetTfkeyheadPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkeyhead\Dtos\TfkeyheadDto.cs" />
+    <Compile Include="Application\Tfkeyhead\Dtos\TfkeyheadDto.Generated.cs">
+      <DependentUpon>TfkeyheadDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkeyhead\ITfkeyheadAppService.cs" />
+    <Compile Include="Application\Tfkeyhead\ITfkeyheadAppService.Generated.cs">
+      <DependentUpon>ITfkeyheadAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkeyhead\TfkeyheadAppService.cs" />
+    <Compile Include="Application\Tfkeyhead\TfkeyheadAppService.Generated.cs">
+      <DependentUpon>TfkeyheadAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkindlefirewall\Dtos\GetTfkindlefirewallPageInput.cs" />
+    <Compile Include="Application\Tfkindlefirewall\Dtos\GetTfkindlefirewallPageInput.Generated.cs">
+      <DependentUpon>GetTfkindlefirewallPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkindlefirewall\Dtos\TfkindlefirewallDto.cs" />
+    <Compile Include="Application\Tfkindlefirewall\Dtos\TfkindlefirewallDto.Generated.cs">
+      <DependentUpon>TfkindlefirewallDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkindlefirewall\ITfkindlefirewallAppService.cs" />
+    <Compile Include="Application\Tfkindlefirewall\ITfkindlefirewallAppService.Generated.cs">
+      <DependentUpon>ITfkindlefirewallAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfkindlefirewall\TfkindlefirewallAppService.cs" />
+    <Compile Include="Application\Tfkindlefirewall\TfkindlefirewallAppService.Generated.cs">
+      <DependentUpon>TfkindlefirewallAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitorabnormal\Dtos\GetTfmonitorabnormalPageInput.cs" />
+    <Compile Include="Application\Tfmonitorabnormal\Dtos\GetTfmonitorabnormalPageInput.Generated.cs">
+      <DependentUpon>GetTfmonitorabnormalPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitorabnormal\Dtos\TfmonitorabnormalDto.cs" />
+    <Compile Include="Application\Tfmonitorabnormal\Dtos\TfmonitorabnormalDto.Generated.cs">
+      <DependentUpon>TfmonitorabnormalDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitorabnormal\ITfmonitorabnormalAppService.cs" />
+    <Compile Include="Application\Tfmonitorabnormal\ITfmonitorabnormalAppService.Generated.cs">
+      <DependentUpon>ITfmonitorabnormalAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitorabnormal\TfmonitorabnormalAppService.cs" />
+    <Compile Include="Application\Tfmonitorabnormal\TfmonitorabnormalAppService.Generated.cs">
+      <DependentUpon>TfmonitorabnormalAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitoranalog\Dtos\GetTfmonitoranalogPageInput.cs" />
+    <Compile Include="Application\Tfmonitoranalog\Dtos\GetTfmonitoranalogPageInput.Generated.cs">
+      <DependentUpon>GetTfmonitoranalogPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitoranalog\Dtos\TfmonitoranalogDto.cs" />
+    <Compile Include="Application\Tfmonitoranalog\Dtos\TfmonitoranalogDto.Generated.cs">
+      <DependentUpon>TfmonitoranalogDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitoranalog\ITfmonitoranalogAppService.cs" />
+    <Compile Include="Application\Tfmonitoranalog\ITfmonitoranalogAppService.Generated.cs">
+      <DependentUpon>ITfmonitoranalogAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfmonitoranalog\TfmonitoranalogAppService.cs" />
+    <Compile Include="Application\Tfmonitoranalog\TfmonitoranalogAppService.Generated.cs">
+      <DependentUpon>TfmonitoranalogAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfpointclosedwall\Dtos\GetTfpointclosedwallPageInput.cs" />
+    <Compile Include="Application\Tfpointclosedwall\Dtos\GetTfpointclosedwallPageInput.Generated.cs">
+      <DependentUpon>GetTfpointclosedwallPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfpointclosedwall\Dtos\TfpointclosedwallDto.cs" />
+    <Compile Include="Application\Tfpointclosedwall\Dtos\TfpointclosedwallDto.Generated.cs">
+      <DependentUpon>TfpointclosedwallDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfpointclosedwall\ITfpointclosedwallAppService.cs" />
+    <Compile Include="Application\Tfpointclosedwall\ITfpointclosedwallAppService.Generated.cs">
+      <DependentUpon>ITfpointclosedwallAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfpointclosedwall\TfpointclosedwallAppService.cs" />
+    <Compile Include="Application\Tfpointclosedwall\TfpointclosedwallAppService.Generated.cs">
+      <DependentUpon>TfpointclosedwallAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfproofread\Dtos\GetTfproofreadPageInput.cs" />
+    <Compile Include="Application\Tfproofread\Dtos\GetTfproofreadPageInput.Generated.cs">
+      <DependentUpon>GetTfproofreadPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfproofread\Dtos\TfproofreadDto.cs" />
+    <Compile Include="Application\Tfproofread\Dtos\TfproofreadDto.Generated.cs">
+      <DependentUpon>TfproofreadDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfproofread\ITfproofreadAppService.cs" />
+    <Compile Include="Application\Tfproofread\ITfproofreadAppService.Generated.cs">
+      <DependentUpon>ITfproofreadAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfproofread\TfproofreadAppService.cs" />
+    <Compile Include="Application\Tfproofread\TfproofreadAppService.Generated.cs">
+      <DependentUpon>TfproofreadAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfworkingface\Dtos\GetTfworkingfacePageInput.cs" />
+    <Compile Include="Application\Tfworkingface\Dtos\GetTfworkingfacePageInput.Generated.cs">
+      <DependentUpon>GetTfworkingfacePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfworkingface\Dtos\TfworkingfaceDto.cs" />
+    <Compile Include="Application\Tfworkingface\Dtos\TfworkingfaceDto.Generated.cs">
+      <DependentUpon>TfworkingfaceDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfworkingface\ITfworkingfaceAppService.cs" />
+    <Compile Include="Application\Tfworkingface\ITfworkingfaceAppService.Generated.cs">
+      <DependentUpon>ITfworkingfaceAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Tfworkingface\TfworkingfaceAppService.cs" />
+    <Compile Include="Application\Tfworkingface\TfworkingfaceAppService.Generated.cs">
+      <DependentUpon>TfworkingfaceAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsclosedwallfeature\Dtos\GetWsclosedwallfeaturePageInput.cs" />
+    <Compile Include="Application\Wsclosedwallfeature\Dtos\GetWsclosedwallfeaturePageInput.Generated.cs">
+      <DependentUpon>GetWsclosedwallfeaturePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsclosedwallfeature\Dtos\WsclosedwallfeatureDto.cs" />
+    <Compile Include="Application\Wsclosedwallfeature\Dtos\WsclosedwallfeatureDto.Generated.cs">
+      <DependentUpon>WsclosedwallfeatureDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsclosedwallfeature\IWsclosedwallfeatureAppService.cs" />
+    <Compile Include="Application\Wsclosedwallfeature\IWsclosedwallfeatureAppService.Generated.cs">
+      <DependentUpon>IWsclosedwallfeatureAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsclosedwallfeature\WsclosedwallfeatureAppService.cs" />
+    <Compile Include="Application\Wsclosedwallfeature\WsclosedwallfeatureAppService.Generated.cs">
+      <DependentUpon>WsclosedwallfeatureAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsgas\Dtos\GetWsgasPageInput.cs" />
+    <Compile Include="Application\Wsgas\Dtos\GetWsgasPageInput.Generated.cs">
+      <DependentUpon>GetWsgasPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsgas\Dtos\WsgasDto.cs" />
+    <Compile Include="Application\Wsgas\Dtos\WsgasDto.Generated.cs">
+      <DependentUpon>WsgasDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsgas\IWsgasAppService.cs" />
+    <Compile Include="Application\Wsgas\IWsgasAppService.Generated.cs">
+      <DependentUpon>IWsgasAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsgas\WsgasAppService.cs" />
+    <Compile Include="Application\Wsgas\WsgasAppService.Generated.cs">
+      <DependentUpon>WsgasAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsoutburstprevention\Dtos\GetWsoutburstpreventionPageInput.cs" />
+    <Compile Include="Application\Wsoutburstprevention\Dtos\GetWsoutburstpreventionPageInput.Generated.cs">
+      <DependentUpon>GetWsoutburstpreventionPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsoutburstprevention\Dtos\WsoutburstpreventionDto.cs" />
+    <Compile Include="Application\Wsoutburstprevention\Dtos\WsoutburstpreventionDto.Generated.cs">
+      <DependentUpon>WsoutburstpreventionDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsoutburstprevention\IWsoutburstpreventionAppService.cs" />
+    <Compile Include="Application\Wsoutburstprevention\IWsoutburstpreventionAppService.Generated.cs">
+      <DependentUpon>IWsoutburstpreventionAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wsoutburstprevention\WsoutburstpreventionAppService.cs" />
+    <Compile Include="Application\Wsoutburstprevention\WsoutburstpreventionAppService.Generated.cs">
+      <DependentUpon>WsoutburstpreventionAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wswork\Dtos\GetWsworkPageInput.cs" />
+    <Compile Include="Application\Wswork\Dtos\GetWsworkPageInput.Generated.cs">
+      <DependentUpon>GetWsworkPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wswork\Dtos\WsworkDto.cs" />
+    <Compile Include="Application\Wswork\Dtos\WsworkDto.Generated.cs">
+      <DependentUpon>WsworkDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wswork\IWsworkAppService.cs" />
+    <Compile Include="Application\Wswork\IWsworkAppService.Generated.cs">
+      <DependentUpon>IWsworkAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Wswork\WsworkAppService.cs" />
+    <Compile Include="Application\Wswork\WsworkAppService.Generated.cs">
+      <DependentUpon>WsworkAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztconstructionsite\Dtos\GetZtconstructionsitePageInput.cs" />
+    <Compile Include="Application\Ztconstructionsite\Dtos\GetZtconstructionsitePageInput.Generated.cs">
+      <DependentUpon>GetZtconstructionsitePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztconstructionsite\Dtos\ZtconstructionsiteDto.cs" />
+    <Compile Include="Application\Ztconstructionsite\Dtos\ZtconstructionsiteDto.Generated.cs">
+      <DependentUpon>ZtconstructionsiteDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztconstructionsite\IZtconstructionsiteAppService.cs" />
+    <Compile Include="Application\Ztconstructionsite\IZtconstructionsiteAppService.Generated.cs">
+      <DependentUpon>IZtconstructionsiteAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztconstructionsite\ZtconstructionsiteAppService.cs" />
+    <Compile Include="Application\Ztconstructionsite\ZtconstructionsiteAppService.Generated.cs">
+      <DependentUpon>ZtconstructionsiteAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztfieldiinspection\Dtos\GetZtfieldiinspectionPageInput.cs" />
+    <Compile Include="Application\Ztfieldiinspection\Dtos\GetZtfieldiinspectionPageInput.Generated.cs">
+      <DependentUpon>GetZtfieldiinspectionPageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztfieldiinspection\Dtos\ZtfieldiinspectionDto.cs" />
+    <Compile Include="Application\Ztfieldiinspection\Dtos\ZtfieldiinspectionDto.Generated.cs">
+      <DependentUpon>ZtfieldiinspectionDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztfieldiinspection\IZtfieldiinspectionAppService.cs" />
+    <Compile Include="Application\Ztfieldiinspection\IZtfieldiinspectionAppService.Generated.cs">
+      <DependentUpon>IZtfieldiinspectionAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztfieldiinspection\ZtfieldiinspectionAppService.cs" />
+    <Compile Include="Application\Ztfieldiinspection\ZtfieldiinspectionAppService.Generated.cs">
+      <DependentUpon>ZtfieldiinspectionAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Zthole\Dtos\GetZtholePageInput.cs" />
+    <Compile Include="Application\Zthole\Dtos\GetZtholePageInput.Generated.cs">
+      <DependentUpon>GetZtholePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Zthole\Dtos\ZtholeDto.cs" />
+    <Compile Include="Application\Zthole\Dtos\ZtholeDto.Generated.cs">
+      <DependentUpon>ZtholeDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Zthole\IZtholeAppService.cs" />
+    <Compile Include="Application\Zthole\IZtholeAppService.Generated.cs">
+      <DependentUpon>IZtholeAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Zthole\ZtholeAppService.cs" />
+    <Compile Include="Application\Zthole\ZtholeAppService.Generated.cs">
+      <DependentUpon>ZtholeAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztporeplate\Dtos\GetZtporeplatePageInput.cs" />
+    <Compile Include="Application\Ztporeplate\Dtos\GetZtporeplatePageInput.Generated.cs">
+      <DependentUpon>GetZtporeplatePageInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztporeplate\Dtos\ZtporeplateDto.cs" />
+    <Compile Include="Application\Ztporeplate\Dtos\ZtporeplateDto.Generated.cs">
+      <DependentUpon>ZtporeplateDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztporeplate\IZtporeplateAppService.cs" />
+    <Compile Include="Application\Ztporeplate\IZtporeplateAppService.Generated.cs">
+      <DependentUpon>IZtporeplateAppService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Ztporeplate\ZtporeplateAppService.cs" />
+    <Compile Include="Application\Ztporeplate\ZtporeplateAppService.Generated.cs">
+      <DependentUpon>ZtporeplateAppService.cs</DependentUpon>
+    </Compile>
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <Compile Include="Core\Bsbutton\Bsbutton.cs" />
     <Compile Include="Core\Bsbutton\Bsbutton.Generated.cs">
       <DependentUpon>Bsbutton.cs</DependentUpon>
@@ -665,11 +1258,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+<<<<<<< HEAD
+=======
+    <None Include="Application\Generator.csp" />
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <None Include="Core\Generator.csp" />
     <None Include="EntityFramework\Generator.csp" />
     <None Include="packages.config" />
   </ItemGroup>
+<<<<<<< HEAD
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+=======
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

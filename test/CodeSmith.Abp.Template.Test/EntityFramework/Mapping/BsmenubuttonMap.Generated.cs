@@ -34,7 +34,11 @@ namespace CodeSmith.Abp.Template.Test.EntityFramework
                 .IsRequired();
             Property(t => t.ButtonId)
                 .HasColumnName("ButtonId")
+<<<<<<< HEAD
                 .IsRequired();
+=======
+                .IsOptional();
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
             Property(t => t.MenuId)
                 .HasColumnName("MenuId")
                 .IsRequired();
@@ -70,7 +74,11 @@ namespace CodeSmith.Abp.Template.Test.EntityFramework
                 .IsRequired();
 
             // Relationships
+<<<<<<< HEAD
             HasRequired(t => t.ButtonBsbutton)
+=======
+            HasOptional(t => t.ButtonBsbutton)
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
                 .WithMany(t => t.ButtonBsmenubuttons)
                 .HasForeignKey(d => d.ButtonId)
                 .WillCascadeOnDelete(false);

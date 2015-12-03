@@ -32,7 +32,11 @@ namespace CodeSmith.Abp.Template.Test.Core
         /// <summary>
         /// 
         /// </summary>    
+<<<<<<< HEAD
         public int ButtonId { get; set; }
+=======
+        public int? ButtonId { get; set; }
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
         /// <summary>
         /// 
         /// </summary>    

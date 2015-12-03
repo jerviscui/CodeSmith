@@ -30,6 +30,7 @@ namespace CodeSmith.Abp.Template.Test.Core
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// 编号
         /// </summary>    
         public int Id { get; set; }
@@ -39,6 +40,17 @@ namespace CodeSmith.Abp.Template.Test.Core
         public string MenuText { get; set; }
         /// <summary>
         /// 菜单Url
+=======
+        /// 
+        /// </summary>    
+        public int Id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>    
+        public string MenuText { get; set; }
+        /// <summary>
+        /// 
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
         /// </summary>    
         public string MenuUrl { get; set; }
         /// <summary>
