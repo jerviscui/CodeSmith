@@ -1,27 +1,25 @@
-﻿<%@ Template Language="C#" TargetLanguage="HTML" Debug="True" Encoding="UTF-8" %>
-<%@ Assembly Name="SchemaExplorer" Path="../../../libs" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
-
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.Text.RegularExpressions" %>
-<%@ Import Namespace="CodeSmith.Abp" %>
-<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
-<%@ Import Namespace="CodeSmith.Abp.Model" %>
-<%@ Import Namespace="CodeSmith.Abp.Generator" %>
-
-<%@ Property Name="ApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="Entity"Type="CodeSmith.Abp.Model.Entity" Category="Data" Optional="False" %>
-@model  <%=ApplicationNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>.Dtos.<%= Entity.ClassName %>Dto
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="AbpWebNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="Entity"Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %>
+using <%=AbpApplicationNamespace%>;
+@model <%=AbpApplicationNamespace%>.<%= Entity.ClassName.ToSafeName() %>Dto
 <div class="edit-container">
     <div class="content-container">
         <form id="form" method="POST">
             <input name="Id" type="hidden" value="@(Model.Id==0?"":Model.Id.ToString())" />
             <table>
-<% foreach(Property property in Entity.Properties.Where(t=>t.PropertyName!="Id")){%>
+<% foreach(Property property in Entity.Properties){%>
                 <tr>
-                    <th width="120"><%=property.Describe  %></th>
+                    <th width="120"><%=property.Explain  %></th>
                     <td>                        
                         <input name="<%= property.PropertyName %>" class="easyui-textbox" data-options="required:true" value="@Model.<%= property.PropertyName %>" />
                     </td>
@@ -50,9 +48,9 @@
                 submit: function () {
                     var url, id = $('input[name="Id"]').val();
                     if (id.length > 0) {
-                        url = '/Api/<%= Entity.ClassName %>/Modify';
+                        url = '/Server/<%= Entity.ClassName.ToSafeName() %>/Modify';
                     } else {
-                        url = '/Api/<%= Entity.ClassName %>/Create';
+                        url = '/Server/<%= Entity.ClassName.ToSafeName() %>/Create';
                     }
                     $('#form').form('commit', {
                         url: url,
@@ -66,7 +64,6 @@
                             }
                         }
                     });
-
                 },
                 cancle: function () {
                     parent.$('#w').window('close');

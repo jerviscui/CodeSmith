@@ -65,6 +65,12 @@
     <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.Editable.cst" />
     <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.Generated.cst" />
     <None Include="Abp.EntityFramework\Generator.cst" />
+    <None Include="Abp.Web\Abp.Web.Api.Editable.cst" />
+    <None Include="Abp.Web\Abp.Web.Api.Generated.cst" />
+    <None Include="Abp.Web\Abp.Web.Controller.cst" />
+    <None Include="Abp.Web\Abp.Web.Edit.cst" />
+    <None Include="Abp.Web\Abp.Web.List.cst" />
+    <None Include="Abp.Web\Generator.cst" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
