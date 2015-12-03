@@ -12,5 +12,10 @@ namespace CodeSmith
         /// 主键属性
         /// </summary>
         public AbpEntityProperty PrimaryKey { get; set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string Description { get; set; }
     }
 }

@@ -1,28 +1,22 @@
 ﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
-<%@ Assembly Name="SchemaExplorer" Path="../../../libs" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
-
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.Text.RegularExpressions" %>
-<%@ Import Namespace="CodeSmith.Abp" %>
-<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
-<%@ Import Namespace="CodeSmith.Abp.Model" %>
-<%@ Import Namespace="CodeSmith.Abp.Generator" %>
-
-<%@ Property Name="AbpCoreNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="MappingNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="Entity"Type="CodeSmith.Abp.Model.Entity" Category="Data" Optional="False" %>
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="Entity" Type="CodeSmith.AbpEntity"  %>
+<%@ Property Name="AbpEntityFrameworkNamespace" Type="System.String"  %>
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-<% if(MappingNamespace != AbpCoreNamespace) { %>
-using <%= AbpCoreNamespace %>.<%= Entity.TableName.ToPluralPascalCase() %>;
-<% }  %>
+using System.Data.Entity;
+using Abp.EntityFramework;
 
-namespace <%= MappingNamespace %>
+// ReSharper disable once CheckNamespace
+namespace <%= AbpEntityFrameworkNamespace %>
 {
     public partial class <%= Entity.MappingName.ToSafeName() %>
     {

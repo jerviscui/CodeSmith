@@ -24,7 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 
+// ReSharper disable once CheckNamespace
 namespace <%= AbpCoreNamespace %>
 {
     public partial class <%= Entity.ClassName.ToSafeName() %><%= Entity.Inherited  %>
@@ -54,12 +57,23 @@ namespace <%= AbpCoreNamespace %>
             <%= r.ThisPropertyName.ToSafeName() %> = new List<<%= r.OtherEntity.ToSafeName() %>>();
 <% } // foreach %>
         }
+        
+        public bool IsTransient()
+        {
+            return EqualityComparer<<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.SystemType.ToType():"int" %>>.Default.Equals(this.<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.PropertyName:"Id" %>, default(<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.SystemType.ToType():"int" %>));
+        }
 
 <% foreach(var p in Entity.Properties) { %>
         <%if(p.IsEnum){%>
-             public <%= p.EnumType.ToNullableType(p.IsNullable == true) %> <%= p.PropertyName.ToSafeName() %> { get; set; }
+        /// <summary>
+        /// <%= p.Explain %>
+        /// </summary>    
+        public <%= p.EnumType.ToNullableType(p.IsNullable == true) %> <%= p.PropertyName.ToSafeName() %> { get; set; }
         <% }else{%> 
-            public <%= p.SystemType.ToNullableType(p.IsNullable == true) %> <%= p.PropertyName.ToSafeName() %> { get; set; }
+        /// <summary>
+        /// <%= p.Explain %>
+        /// </summary>    
+        public <%= p.SystemType.ToNullableType(p.IsNullable == true) %> <%= p.PropertyName.ToSafeName() %> { get; set; }
         <%}%>                      
 <% } // foreach %>
 

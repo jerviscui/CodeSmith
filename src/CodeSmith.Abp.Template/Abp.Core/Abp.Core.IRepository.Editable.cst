@@ -10,12 +10,17 @@
 <%-- 模板参数 --%>
 <%@ Property Name="Entity" Type="CodeSmith.AbpEntity"  %>
 <%@ Property Name="AbpCoreNamespace" Type="System.String"  %>
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+// ReSharper disable once CheckNamespace
 namespace <%= AbpCoreNamespace %>
 {
     /// <summary>
-    /// 
+    /// <%= Entity.Description %>
     /// </summary>
-    public partial interface I<%= Entity.ClassName %>Repository 
+    public partial interface I<%= Entity.ClassName.ToSafeName() %>Repository 
     {
 
     }

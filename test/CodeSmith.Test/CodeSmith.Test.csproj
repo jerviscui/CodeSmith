@@ -39,8 +39,14 @@
       <HintPath>..\..\packages\NUnit.3.0.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SchemaExplorer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
-    <Reference Include="SchemaExplorer.MySQLSchemaProvider, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL" />
+    <Reference Include="SchemaExplorer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\SchemaExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="SchemaExplorer.MySQLSchemaProvider, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\SchemaExplorer.MySQLSchemaProvider.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

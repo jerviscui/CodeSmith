@@ -1,75 +1,114 @@
-﻿<%@ Template Language="C#" TargetLanguage="Text" Debug="True" Encoding="UTF-8" OutputType="None"  %>
-<%@ Assembly Name="SchemaExplorer" Path="../../../libs" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
-
+﻿<%@ Template Language="C#" TargetLanguage="Text" Debug="True" OutputType="None" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%-- 导入命名空间 --%>
 <%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.Text.RegularExpressions" %>
-<%@ Import Namespace="CodeSmith.Abp" %>
-<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
-<%@ Import Namespace="CodeSmith.Abp.Model" %>
-<%@ Import Namespace="CodeSmith.Abp.Generator" %>
-
-<%@ Property Name="AbpCoreNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="ApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-
-<%@ Property Name="BaseApplicationClassName" Type="System.String"  Category="ClassName" Optional="False" %>
-<%@ Property Name="IBaseApplicationClassName" Type="System.String"  Category="ClassName" Optional="False" %>
-<%@ Property Name="PagedResultRequestClassName" Type="System.String"  Category="ClassName" Optional="False" Default="DefaultPagedResultRequest" %>
-
-<%@ Property Name="EnumItems"Type="System.Collections.Generic.List<EnumItem>" Category="Data" Optional="True" %>
-<%@ Property Name="SoureDatabase" Type="SchemaExplorer.DatabaseSchema"  Category="Data" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="SourceDatabase" Type="SchemaExplorer.SchemaSelector" Category="1.Database"  Description="源数据库。" %>
+<%-- 模板参数 类名--%>
+<%@ Property Name="AbpCoreNamespace" Type="System.String"  Category="2.Class"%>
+<%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="2.Class" Optional="False" %>
+<%-- 模板参数 路径--%>
+<%@ Property Name="AbpApplicationDirectory" Category="3.Output" Type="System.String" Default=".\" Optional="True "Description="保存文件路径。" Editor="System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
+<%-- 模板参数 命名规则--%>
+<%@ Property Name="TableNaming" Type="CodeSmith.TableNaming" Category="4.Hints" Default="Singular" Description="表类名的命名方式。" %>
+<%@ Property Name="EntityNaming" Type="CodeSmith.EntityNaming" Category="4.Hints" Default="Singular" Description="实体类名的命名方式。" %>
+<%@ Property Name="RelationshipNaming" Type="CodeSmith.RelationshipNaming" Category="4.Hints" Default="Plural" Description="映射类名的命名方式。" %>
+<%@ Property Name="ContextNaming" Type="CodeSmith.ContextNaming" Category="4.Hints" Default="Plural" Description="数据上下文类名方式。" %>
+<%@ Property Name="CleanExpressions" Type="CodeSmith.CustomProperties.StringCollection" Category="5.Customization" Default="^(sp|tbl|udf|vw)_" Optional="True" Description="正则表达式列表清理表，视图和列名。" %>
+<%@ Property Name="IncludeViews" Type="Boolean" Category="5.Customization" Default="False" Optional="True" Description="是否过滤视图。" %>
+<%@ Property Name="RenameMapping" Type="CodeSmith.CustomProperties.NameValueCollection" Category="5.Customization" Default="" Optional="True" Description="名称值对自定义重命名。名称是原来的名字，值是新的名称。" %>
 
 <%@ Register Name="DtoEditableClass" Template="Abp.Application.Dto.Editable.cst" %>
 <%@ Register Name="DtotGeneratedClass" Template="Abp.Application.Dto.Generated.cst" %>
-<%@ Register Name="GetDtosPageEditableClass" Template="Abp.Application.GetDtosPage.Editable.cst" %>
-<%@ Register Name="GetDtosPageGeneratedClass" Template="Abp.Application.GetDtosPage.Generated.cst" %>
+<%@ Register Name="GetDtosPageEditableClass" Template="Abp.Application.PageDto.Editable.cst" %>
+<%@ Register Name="GetDtosPageGeneratedClass" Template="Abp.Application.PageDto.Generated.cst" %>
 <%@ Register Name="IServiceEditableClass" Template="Abp.Application.IService.Editable.cst" %>
 <%@ Register Name="IServiceGeneratedClass" Template="Abp.Application.IService.Generated.cst" %>
 <%@ Register Name="MappingEditableClass" Template="Abp.Application.Mapping.Editable.cst" %>
 <%@ Register Name="MappingGeneratedClass" Template="Abp.Application.Mapping.Generated.cst" %>
 <%@ Register Name="ServiceEditableClass" Template="Abp.Application.Service.Editable.cst" %>
 <%@ Register Name="ServiceGeneratedClass" Template="Abp.Application.Service.Generated.cst" %>
-<% Generator();%>
+<% GeneratorCode();%>
  
 <script runat="template">
 
-public void Generator()
+public void GeneratorCode()
 {
-    string rootPath = System.IO.Directory.GetCurrentDirectory();
-    this.Response.WriteLine(rootPath);
-    CodeSmith.Abp.Generator.Generator generator = new CodeSmith.Abp.Generator.Generator();    
-    CodeSmith.Abp.Model.EntityContext context = generator.Generate(SoureDatabase);
+    Stopwatch watch = Stopwatch.StartNew();
+    string outputDirectory = Path.GetFullPath(AbpApplicationDirectory);
+
+    if (!Directory.Exists(outputDirectory))
+        Directory.CreateDirectory(outputDirectory);
+
+    if (SourceDatabase != null)
+    {
+        this.Progress.MaximumValue = (SourceDatabase.Tables.Count * 3) + 1;
+        this.Progress.Step = 1;
+    }
     
-    AbpGenerator.CreateMultipleEntityClass<DtotGeneratedClass,DtoEditableClass>(context,
+    GeneratorSettings generatorSettings = new GeneratorSettings();
+    generatorSettings.TableNaming = TableNaming;
+    generatorSettings.EntityNaming = EntityNaming;
+    generatorSettings.RelationshipNaming = RelationshipNaming;
+    generatorSettings.ContextNaming = ContextNaming;
+    
+    generatorSettings.IncludeViews = IncludeViews;
+    
+    if (CleanExpressions != null)
+        foreach(string s in CleanExpressions)
+          if (!string.IsNullOrEmpty(s))
+            generatorSettings.CleanExpressions.Add(s);
+
+    if (RenameMapping != null)
+        foreach(NameValueEntry pair in RenameMapping)
+            generatorSettings.RenameRules[pair.Key] = pair.Value;
+        
+    UniqueNamer uniqueNamer = new UniqueNamer();
+    TemplateContent templateContent = new TemplateContent(generatorSettings, uniqueNamer);
+    AbpDbContentTemplate abpDbContentTemplate = new AbpDbContentTemplate(templateContent);  
+        
+    EntityContext<AbpEntity, AbpEntityProperty> context = abpDbContentTemplate.GetAndCreate(SourceDatabase);
+    
+    Generator.CreateMultipleEntityClass<DtotGeneratedClass,DtoEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToPluralPascalCase()+" /Dtos/"+ entity.ClassName + "Dto.Generated.cs",
-        entity => entity.ClassName.ToPluralPascalCase()+" /Dtos/"+ entity.ClassName + "Dto.cs",
-        rootPath);
+        entity => entity.ClassName.ToSafeName()+" /Dtos/"+ entity.ClassName.ToSafeName() + "Dto.Generated.cs",
+        entity => entity.ClassName.ToSafeName()+" /Dtos/"+ entity.ClassName.ToSafeName() + "Dto.cs",
+        outputDirectory);
     
-    AbpGenerator.CreateMultipleContextClass<MappingGeneratedClass,MappingEditableClass>(context,
+    Generator.CreateMultipleContextClass<MappingGeneratedClass,MappingEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
         dbContext => "DtoMappings.Generated.cs",
         dbContext => "DtoMappings.cs",
-        rootPath);
+        outputDirectory);
     
-    AbpGenerator.CreateMultipleEntityClass<GetDtosPageGeneratedClass,GetDtosPageEditableClass>(context,
+    Generator.CreateMultipleEntityClass<GetDtosPageGeneratedClass,GetDtosPageEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToPluralPascalCase()+" /Dtos/Get"+ entity.ClassName.ToPluralPascalCase() + "PageInput.Generated.cs",
-        entity => entity.ClassName.ToPluralPascalCase()+" /Dtos/Get"+ entity.ClassName.ToPluralPascalCase() + "PageInput.cs",
-        rootPath);
+        entity => entity.ClassName.ToSafeName()+" /Dtos/Get"+ entity.ClassName.ToSafeName() + "PageInput.Generated.cs",
+        entity => entity.ClassName.ToSafeName()+" /Dtos/Get"+ entity.ClassName.ToSafeName() + "PageInput.cs",
+        outputDirectory);
     
-    AbpGenerator.CreateMultipleEntityClass<IServiceGeneratedClass,IServiceEditableClass>(context,
+    Generator.CreateMultipleEntityClass<IServiceGeneratedClass,IServiceEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToPluralPascalCase()+" /I"+ entity.ClassName + "AppService.Generated.cs",
-        entity => entity.ClassName.ToPluralPascalCase()+" /I"+ entity.ClassName + "AppService.cs",
-        rootPath);
+        entity => entity.ClassName.ToSafeName()+" /I"+ entity.ClassName.ToSafeName() + "AppService.Generated.cs",
+        entity => entity.ClassName.ToSafeName()+" /I"+ entity.ClassName.ToSafeName() + "AppService.cs",
+        outputDirectory);
     
-    AbpGenerator.CreateMultipleEntityClass<ServiceGeneratedClass,ServiceEditableClass>(context,
+    Generator.CreateMultipleEntityClass<ServiceGeneratedClass,ServiceEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToPluralPascalCase()+" /"+ entity.ClassName + "AppService.Generated.cs",
-        entity => entity.ClassName.ToPluralPascalCase()+" /"+ entity.ClassName + "AppService.cs",
-        rootPath);
+        entity => entity.ClassName.ToSafeName()+" /"+ entity.ClassName.ToSafeName() + "AppService.Generated.cs",
+        entity => entity.ClassName.ToSafeName()+" /"+ entity.ClassName.ToSafeName() + "AppService.cs",
+        outputDirectory);
+        
+    watch.Stop();
+    Response.WriteLine("Generate Time: " + watch.ElapsedMilliseconds + " ms");
 }
 </script>

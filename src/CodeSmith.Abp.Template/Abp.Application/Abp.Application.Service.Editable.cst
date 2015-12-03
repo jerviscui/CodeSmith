@@ -1,43 +1,75 @@
 ﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
-<%@ Assembly Name="SchemaExplorer" Path="../../../libs" %>
-<%@ Assembly Name="CodeSmith.Abp"  Path="../../../libs" %>
-
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.Text.RegularExpressions" %>
-<%@ Import Namespace="CodeSmith.Abp" %>
-<%@ Import Namespace="CodeSmith.Abp.Extensions" %>
-<%@ Import Namespace="CodeSmith.Abp.Model" %>
-<%@ Import Namespace="CodeSmith.Abp.Generator" %>
-
-<%@ Property Name="AbpCoreNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="ApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="BaseApplicationClassName" Type="System.String"  Category="ClassName" Optional="False" %>
-<%@ Property Name="Entity"Type="CodeSmith.Abp.Model.Entity" Category="Data" Optional="False" %>
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="Entity" Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %> 
+<%@ Property Name="AbpCoreNamespace" Type="System.String"  %>
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using <%=ApplicationNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>.Dtos;
-using <%=AbpCoreNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>;
+using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
+using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
+using <%=AbpCoreNamespace%>;
 
-namespace <%=ApplicationNamespace%>.<%= Entity.TableName.ToPluralPascalCase() %>
+// ReSharper disable once CheckNamespace
+namespace <%= AbpApplicationNamespace %>
 {
-    public partial class <%= Entity.ClassName %>AppService 
+    public partial class <%= Entity.ClassName.ToSafeName() %>AppService 
     {
-        public <%= Entity.ClassName %>AppService(I<%= Entity.ClassName %>Repository repository)
+        public <%= Entity.ClassName.ToSafeName() %>AppService(I<%= Entity.ClassName.ToSafeName() %>Repository repository)
             : base(repository)
         {
 
         }
+        
+        #region public
+        
+        public override <%= Entity.PrimaryKey!=null?Entity.PrimaryKey.SystemType.ToType():"int" %> Create(<%= Entity.ClassName.ToSafeName() %>Dto input)
+        {
+            return base.Create(input);
+        }
+        
+        public override void Update(<%= Entity.ClassName.ToSafeName() %>Dto input)
+        {
+             base.Update(input);
+        }
+        
+        public override void Delete(IdInput<<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.SystemType.ToType():"int" %>> input)
+        {
+            base.Delete(input);
+        }
+        
+        #endregion
+        
+        #region protected
         
         /// <summary>
         /// 数据检索
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        protected override IQueryable<<%=AbpCoreNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>.<%= Entity.ClassName %>> CreateQueryable(Get<%= Entity.ClassName.ToPluralPascalCase() %>PageInput input)
+        protected override IQueryable<<%= Entity.ClassName.ToSafeName() %>> CreateQueryable(Get<%= Entity.ClassName.ToSafeName() %>PageInput input)
         {
-            IQueryable<<%=AbpCoreNamespace%>.<%= Entity.ClassName.ToPluralPascalCase() %>.<%= Entity.ClassName %>> queryable = base.CreateQueryable(input);
+            IQueryable<<%= Entity.ClassName.ToSafeName() %>> queryable = base.CreateQueryable(input);
+            <% foreach(var p in Entity.Properties) { %>
+            <% if(p.SystemType.ToType().IsValueType()) {%>
+            queryable = queryable.WhereIf(input.<%= p.PropertyName.ToSafeName() %>.HasValue, t => t.<%= p.PropertyName.ToSafeName() %> == input.<%= p.PropertyName.ToSafeName() %>.Value).AsQueryable();
+            <%}else{%>            
+            queryable = queryable.WhereIf(input.<%= p.PropertyName.ToSafeName() %> !=null, t => t.<%= p.PropertyName.ToSafeName() %> == input.<%= p.PropertyName.ToSafeName() %>).AsQueryable();
+            <%}%>         
+            <% } // foreach %>
             return queryable;
         }
+        
+        #endregion
     }
 }
