@@ -21,6 +21,12 @@
         <providerType>SchemaExplorer.MySQLSchemaProvider,SchemaExplorer.MySQLSchemaProvider</providerType>
         <mode>Exclude</mode>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <tables>
+      <table>__migrationhistory</table>
+    </tables>
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
         <tables>
       <table>__migrationhistory</table>

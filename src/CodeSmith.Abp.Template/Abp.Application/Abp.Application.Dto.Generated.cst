@@ -10,7 +10,11 @@
 <%-- 模板参数 --%>
 <%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@ Property Name="Entity"Type="CodeSmith.Abp.Model.Entity" Category="Data" Optional="False" %> 
+=======
+<%@ Property Name="Entity" Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %> 
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
 <%@ Property Name="Entity" Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %> 
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
@@ -29,6 +33,10 @@ using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+// ReSharper disable once CheckNamespace
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
 // ReSharper disable once CheckNamespace
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50

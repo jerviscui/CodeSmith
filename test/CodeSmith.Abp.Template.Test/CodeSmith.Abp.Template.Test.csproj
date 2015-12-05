@@ -34,15 +34,21 @@
   </PropertyGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Reference Include="Abp, Version=0.7.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Abp.0.7.4.1\lib\net451\Abp.dll</HintPath>
 =======
+=======
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <Reference Include="Abp, Version=0.7.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Abp.0.7.5.0\lib\net452\Abp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Abp.AutoMapper, Version=0.7.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Abp.AutoMapper.0.7.5.0\lib\net452\Abp.AutoMapper.dll</HintPath>
+<<<<<<< HEAD
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
+=======
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
       <Private>True</Private>
     </Reference>
@@ -51,9 +57,12 @@
       <Private>True</Private>
     </Reference>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
 =======
+=======
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -64,6 +73,9 @@
     </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+<<<<<<< HEAD
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
+=======
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
       <Private>True</Private>
     </Reference>
@@ -118,8 +130,11 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Application\Dto.cs" />
 =======
+=======
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <Compile Include="Application\Bsbutton\BsbuttonAppService.cs" />
     <Compile Include="Application\Bsbutton\BsbuttonAppService.Generated.cs">
       <DependentUpon>BsbuttonAppService.cs</DependentUpon>
@@ -688,6 +703,9 @@
     <Compile Include="Application\Ztporeplate\ZtporeplateAppService.Generated.cs">
       <DependentUpon>ZtporeplateAppService.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
+=======
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <Compile Include="Core\Bsbutton\Bsbutton.cs" />
     <Compile Include="Core\Bsbutton\Bsbutton.Generated.cs">
@@ -1259,6 +1277,10 @@
   <ItemGroup>
     <None Include="App.config" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <None Include="Application\Generator.csp" />
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
     <None Include="Application\Generator.csp" />
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
@@ -1267,7 +1289,13 @@
     <None Include="packages.config" />
   </ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+=======
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -35,7 +35,11 @@ namespace CodeSmith.Abp.Template.Test.EntityFramework
             Property(t => t.ButtonId)
                 .HasColumnName("ButtonId")
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .IsRequired();
+=======
+                .IsOptional();
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
                 .IsOptional();
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
@@ -75,7 +79,11 @@ namespace CodeSmith.Abp.Template.Test.EntityFramework
 
             // Relationships
 <<<<<<< HEAD
+<<<<<<< HEAD
             HasRequired(t => t.ButtonBsbutton)
+=======
+            HasOptional(t => t.ButtonBsbutton)
+>>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 =======
             HasOptional(t => t.ButtonBsbutton)
 >>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
