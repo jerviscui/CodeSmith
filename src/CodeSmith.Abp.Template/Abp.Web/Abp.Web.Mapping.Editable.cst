@@ -35,6 +35,10 @@ namespace <%=AbpWebNamespace.Replace(".Controllers","")%>
                 .ForMember(ipt => ipt.Text, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>))
                 .ForMember(ipt => ipt.Value, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>));
                 
+            Mapper.CreateMap<<%= entity.ClassName.ToSafeName()  %>Dto, TreeOutputEntity<<%= entity.PrimaryKey!=null?entity.PrimaryKey.SystemType.ToType():"int" %>>>()
+              .ForMember(ipt => ipt.Text, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>))
+              .ForMember(ipt => ipt.ID, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>));
+                
             #endregion
 <%}%>         
         }    

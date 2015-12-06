@@ -48,10 +48,6 @@
     <None Include="Abp.Application\Abp.Application.IService.Generated.cst" />
     <None Include="Abp.Application\Abp.Application.Mapping.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.Mapping.Generated.cst" />
-    <None Include="Abp.Application\Abp.Application.IService.Editable.cst" />
-    <None Include="Abp.Application\Abp.Application.IService.Generated.cst" />
-    <None Include="Abp.Application\Abp.Application.Mapping.Editable.cst" />
-    <None Include="Abp.Application\Abp.Application.Mapping.Generated.cst" />
     <None Include="Abp.Application\Abp.Application.PageDto.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.PageDto.Generated.cst" />
     <None Include="Abp.Application\Abp.Application.Service.Editable.cst" />

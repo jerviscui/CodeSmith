@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using CodeSmith.Core.Extensions;
 using SchemaExplorer;
 
@@ -16,18 +17,17 @@ namespace CodeSmith
         public override AbpEntityProperty GetAndCreate(DataObjectBase dataObjectBase)
         {
             AbpEntityProperty property = base.GetAndCreate(dataObjectBase);
-            string key = "{0}{1}".FormatWith(Entity.TableName, dataObjectBase.Name);
-            if (Content.Settings.EnumTyps.ContainsKey(key))
+            if (Content.Settings.EnumTyps.Any(t => t.FullName == dataObjectBase.FullName))
             {
                 property.IsEnum = true;
-                property.EnumType = Content.Settings.EnumTyps[key];
+                property.EnumType = Content.Settings.EnumTyps.First(t => t.FullName == dataObjectBase.FullName).EnumType;
 
             }
             else
             {
                 property.IsEnum = false;
             }
-            Console.WriteLine(dataObjectBase.FullName+"test");
+            Console.WriteLine(dataObjectBase.FullName + "test");
             return property;
         }
     }

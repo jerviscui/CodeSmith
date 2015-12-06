@@ -99,12 +99,12 @@ public void GeneratorCode()
         this,
         entity => @"Views\"+entity.ClassName.ToSafeName() + @"\Edit.cshtml",
         outputDirectory,
-        true);
+        false);
     
     Generator.CreateEntityClass<WebListClass,AbpEntity, AbpEntityProperty>(context,
         this,
         entity => @"Views\"+entity.ClassName + @"\List.cshtml",
         outputDirectory,
-        true);
+        false);
 }
 </script>

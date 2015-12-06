@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abp\AbpDbContentTemplate.cs" />
+    <Compile Include="EnumSettings.cs" />
+    <Compile Include="EnumSettingsCollection.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Abp\AbpEntity.cs" />
     <Compile Include="Abp\AbpEntityProperty.cs">

@@ -10,12 +10,14 @@
 <%-- 模板参数 --%>
 <%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="2.Class" Optional="False" %>
 <%@ Property Name="Entity"Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %>
+<%@ Property Name="AbpCoreNamespace" Type="System.String"  %>
 
 using System;
 using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using <%=AbpCoreNamespace%>;
 
 // ReSharper disable once CheckNamespace
 namespace <%= AbpApplicationNamespace %>

@@ -11,11 +11,18 @@
 <%@ Property Name="AbpWebNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
 <%@ Property Name="Entity"Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %>
 <div id="layout" class="easyui-layout" fit="true">
-    <div data-options="region:'north'" border="false" class="button_area">
-        <a href="javascript:;" onclick="javascript: window.page.onCreate();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
-        <a href="javascript:;" onclick="javascript: window.page.onModify();" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
-        <a href="javascript:;" onclick="javascript: window.page.onRemove();" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">移除</a>
-    </div>
+    @{
+        var html = Tb();
+        if (html != "")
+        {
+            <div data-options="region:'north'" border="false" class="button_area">@Html.Raw(html)</div>
+            @*  <div data-options="region:'north'" border="false" class="button_area">
+                    <a href="javascript:;" onclick="javascript: window.page.onCreate();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+                    <a href="javascript:;" onclick="javascript: window.page.onModify();" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+                    <a href="javascript:;" onclick="javascript: window.page.onRemove();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">移除</a>
+                </div>*@
+        }
+    }
     <div data-options="region:'center'" border="false">
         <table id="datagrid"></table>
     </div>
@@ -45,33 +52,14 @@
                     $('#datagrid').datagrid({
                         url: '/Service/<%= Entity.ClassName.ToSafeName() %>/PageQuery',                   
                         idField: '<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>',
-                        selectOnCheck: false,
+                        singleSelect: true,
                         border: false,
                         pagination: true,
                         fit: true,
                         nowrap: false,
                         columns: [[
-                         { field: '<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>', hidden: true },
-<% foreach(Property property in Entity.Properties){%>
-<%if(property.PropertyName.ToSafeName()=="CreatorUserId"||
-        property.PropertyName.ToSafeName()=="CreationTime"||
-        property.PropertyName.ToSafeName()=="LastModificationTime"||
-        property.PropertyName.ToSafeName()=="LastModifierUserId"||
-        property.PropertyName.ToSafeName()=="DeleterUserId"||
-        property.PropertyName.ToSafeName()=="DeletionTime"||
-        property.PropertyName.ToSafeName()=="TenantId"||
-        property.PropertyName.ToSafeName()=="IsDeleted"||
-       property.PropertyName.ToSafeName()=="Sort"||
-      property.PropertyName.ToSafeName()=="Id")
-    {
-        continue;        
-    }
-    else{%>
-                                    { field: '<%= property.PropertyName.ToSafeName() %>', title: "<%=property.Explain  %>", width: '<%=  Convert.ToInt32(100/Entity.Properties.Count())%>%', align: 'center', sortable: true },
-    <%}%>               
-<%}%>    
-                                                                                                  
-                            ]]
+                            <%=GetGridAllColumn(Entity)%>
+                        ]]
                     });
                 },            
                 onCreate: function () {
@@ -116,3 +104,60 @@
 
     </script>
 }
+<script runat="template">
+public string GetGridAllColumn(AbpEntity entity)
+{
+    string html = "";
+    List<AbpEntityProperty> properties = entity.Properties.ToList();
+    string pkProperty = entity.PrimaryKey == null
+        ? "Id"
+        : entity.PrimaryKey.PropertyName.ToSafeName();
+    properties.RemoveAll(
+        property => property.PropertyName == pkProperty ||
+                    property.PropertyName.ToSafeName() == "CreatorUserId" ||
+                    property.PropertyName.ToSafeName() == "CreationTime" ||
+                    property.PropertyName.ToSafeName() == "LastModificationTime" ||
+                    property.PropertyName.ToSafeName() == "LastModifierUserId" ||
+                    property.PropertyName.ToSafeName() == "DeleterUserId" ||
+                    property.PropertyName.ToSafeName() == "DeletionTime" ||
+                    property.PropertyName.ToSafeName() == "TenantId" ||
+                    property.PropertyName.ToSafeName() == "IsDeleted" ||
+                    property.PropertyName.ToSafeName() == "Sort" ||
+                    property.IsForeignKey.HasValue && property.IsForeignKey.Value);
+    for (int i = 0; i < properties.Count(); i++)
+    {
+        AbpEntityProperty property = properties[i];
+        switch (property.SystemType.ToNullableType())
+        {
+            case "System.DateTime":
+                html += "{" +
+                  string.Format(
+                      " field: '{0}', title: '{1}', width: '{2}%', align: 'center', sortable: true , formatter: $.girdFormatter.date ",
+                      property.PropertyName.ToSafeName(),
+                      property.Explain,
+                      (properties.Any() ? 95 / properties.Count() : 99)) +
+                  "}" + (i == properties.Count()-1 ? "" : ",") + "\r\t\t\t\t\t\t\t\t";
+                break;
+            case "bool":
+                html += "{" +
+                      string.Format(
+                          " field: '{0}', title: '{1}', width: '{2}%', align: 'center', sortable: true , formatter: $.girdFormatter.bool ",
+                          property.PropertyName.ToSafeName(),
+                          property.Explain,
+                          (properties.Any() ? 95 / properties.Count() : 99)) +
+                      "}" + (i == properties.Count()-1 ? "" : ",") + "\r\t\t\t\t\t\t\t";
+                break;
+            default:
+                html += "{" +
+                        string.Format(
+                            " field: '{0}', title: '{1}', width: '{2}%', align: 'center', sortable: true ",
+                            property.PropertyName.ToSafeName(),
+                            property.Explain,
+                            (properties.Any() ? 95 / properties.Count() : 99)) +
+                        "}" + (i == properties.Count()-1 ? "" : ",") + "\r\t\t\t\t\t\t\t\t";
+                break;
+        }
+    }
+    return html;
+}
+</script>

@@ -4,6 +4,7 @@
 <%@ Assembly Name="CodeSmith" Path="../../../libs" %>
 <%@ Assembly Name="CodeSmith.CustomProperties" %>
 <%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="System.Linq" %>
@@ -26,6 +27,7 @@
 <%@ Property Name="CleanExpressions" Type="CodeSmith.CustomProperties.StringCollection" Category="5.Customization" Default="^(sp|tbl|udf|vw)_" Optional="True" Description="正则表达式列表清理表，视图和列名。" %>
 <%@ Property Name="IncludeViews" Type="Boolean" Category="5.Customization" Default="False" Optional="True" Description="是否过滤视图。" %>
 <%@ Property Name="RenameMapping" Type="CodeSmith.CustomProperties.NameValueCollection" Category="5.Customization" Default="" Optional="True" Description="名称值对自定义重命名。名称是原来的名字，值是新的名称。" %>
+<%@ Property Name="PropertyEnum" Type="System.Collections.Generic.List<EnumSettings>" Category="5.Customization" Default="" Optional="True" %>
 <%-- 模板--%>
 <%@ Register Name="EntityEditabledClass" Template="Abp.Core.Entity.Editable.cst" MergeProperties="False" %>
 <%@ Register Name="EntityGeneratedClass" Template="Abp.Core.Entity.Generated.cst" MergeProperties="False" %>
@@ -67,6 +69,10 @@ public void GeneratorCode()
     if (RenameMapping != null)
         foreach(NameValueEntry pair in RenameMapping)
             generatorSettings.RenameRules[pair.Key] = pair.Value;
+        
+    if (PropertyEnum != null)
+        foreach(EnumSettings pair in PropertyEnum)        
+            generatorSettings.EnumTyps.Add(pair);
         
     UniqueNamer uniqueNamer = new UniqueNamer();
     TemplateContent templateContent = new TemplateContent(generatorSettings, uniqueNamer);

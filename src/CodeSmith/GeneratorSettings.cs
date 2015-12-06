@@ -17,7 +17,7 @@ namespace CodeSmith
             TableNaming = TableNaming.Singular;
             CleanExpressions = new List<string> { @"^\d+" };
             RenameRules = new Dictionary<string, string>();
-            EnumTyps = new Dictionary<string, string>();
+            EnumTyps = new EnumSettingsCollection();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CodeSmith
         /// <summary>
         /// 枚举类型
         /// </summary>
-        public Dictionary<string, string> EnumTyps { get; set; }
+        public EnumSettingsCollection EnumTyps { get; set; }
 
         /// <summary>
         /// 需要重新命名的表名规则
