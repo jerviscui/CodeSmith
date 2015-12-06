@@ -17,20 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith", "src\CodeSmith\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Test", "test\CodeSmith.Test\CodeSmith.Test.csproj", "{C11ABAA4-22EB-4639-970B-DD2E13CFF9AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaExplorer.MySQLSchemaProvider", "src\SchemaExplorer.MySQLSchemaProvider\SchemaExplorer.MySQLSchemaProvider.csproj", "{801C5FAE-7200-4470-B00C-9589585500B6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp.Template", "src\CodeSmith.Abp.Template\CodeSmith.Abp.Template.csproj", "{F2AE4FE6-E90E-49A3-9229-974DB735641B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSmith.Abp.Template.Test", "test\CodeSmith.Abp.Template.Test\CodeSmith.Abp.Template.Test.csproj", "{2EC0D40A-68A1-4985-BE76-16C5759B640A}"
-EndProject
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaExplorer.MySQLSchemaProvider", "src\SchemaExplorer.MySQLSchemaProvider\SchemaExplorer.MySQLSchemaProvider.csproj", "{801C5FAE-7200-4470-B00C-9589585500B6}"
-EndProject
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaExplorer.MySQLSchemaProvider", "src\SchemaExplorer.MySQLSchemaProvider\SchemaExplorer.MySQLSchemaProvider.csproj", "{801C5FAE-7200-4470-B00C-9589585500B6}"
-EndProject
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,27 +51,14 @@ Global
 		{C11ABAA4-22EB-4639-970B-DD2E13CFF9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C11ABAA4-22EB-4639-970B-DD2E13CFF9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C11ABAA4-22EB-4639-970B-DD2E13CFF9AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EC0D40A-68A1-4985-BE76-16C5759B640A}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
 		{801C5FAE-7200-4470-B00C-9589585500B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{801C5FAE-7200-4470-B00C-9589585500B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{801C5FAE-7200-4470-B00C-9589585500B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{801C5FAE-7200-4470-B00C-9589585500B6}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
+		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AE4FE6-E90E-49A3-9229-974DB735641B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +67,5 @@ Global
 		{C14FDD37-2D81-4978-B0E7-7B815D39EDCB} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
 		{8499BA03-A642-4062-8051-151FE67195B1} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
 		{C11ABAA4-22EB-4639-970B-DD2E13CFF9AB} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
-		{2EC0D40A-68A1-4985-BE76-16C5759B640A} = {F5F84E4D-7BFC-46BE-A133-8E85FB197265}
 	EndGlobalSection
 EndGlobal

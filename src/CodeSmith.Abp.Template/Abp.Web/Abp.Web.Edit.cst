@@ -10,20 +10,39 @@
 <%-- 模板参数 --%>
 <%@ Property Name="AbpWebNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
 <%@ Property Name="Entity"Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %>
-using <%=AbpApplicationNamespace%>;
-@model <%=AbpApplicationNamespace%>.<%= Entity.ClassName.ToSafeName() %>Dto
+<%@ Property Name="AbpApplicationNamespace" Type="System.String" Category="2.Class" Optional="False" %>
+<%
+   string  primaryKeyNmae = Entity.PrimaryKey!=null?Entity.PrimaryKey.PropertyName.ToSafeName():"Id";
+%>
+@using <%=AbpApplicationNamespace%>;
+@model <%= Entity.ClassName.ToSafeName() %>Dto
 <div class="edit-container">
     <div class="content-container">
         <form id="form" method="POST">
-            <input name="Id" type="hidden" value="@(Model.Id==0?"":Model.Id.ToString())" />
+            <input name="<%= primaryKeyNmae %>" type="hidden" value="@(Model.<%= primaryKeyNmae %>==0?"":Model.<%= primaryKeyNmae %>.ToString())" />
             <table>
 <% foreach(Property property in Entity.Properties){%>
+<%if(property.PropertyName.ToSafeName()==primaryKeyNmae||
+        property.PropertyName.ToSafeName()=="CreatorUserId"||
+        property.PropertyName.ToSafeName()=="CreationTime"||
+        property.PropertyName.ToSafeName()=="LastModificationTime"||
+        property.PropertyName.ToSafeName()=="LastModifierUserId"||
+        property.PropertyName.ToSafeName()=="DeleterUserId"||
+        property.PropertyName.ToSafeName()=="DeletionTime"||
+        property.PropertyName.ToSafeName()=="TenantId"||
+        property.PropertyName.ToSafeName()=="IsDeleted"||
+       property.PropertyName.ToSafeName()=="Sort")
+    {
+        continue;        
+    }
+    else{%>
                 <tr>
-                    <th width="120"><%=property.Explain  %></th>
+                    <th width="120"><%=property.Explain%></th>
                     <td>                        
-                        <input name="<%= property.PropertyName %>" class="easyui-textbox" data-options="required:true" value="@Model.<%= property.PropertyName %>" />
+                      <%=GetInputHtml(property)%>
                     </td>
                 </tr> 
+    <%}%>               
 <%}%>                                          
             </table>
         </form>
@@ -48,25 +67,25 @@ using <%=AbpApplicationNamespace%>;
                 submit: function () {
                     var url, id = $('input[name="Id"]').val();
                     if (id.length > 0) {
-                        url = '/Server/<%= Entity.ClassName.ToSafeName() %>/Modify';
+                        url = '/Service/<%= Entity.ClassName.ToSafeName() %>/Modify';
                     } else {
-                        url = '/Server/<%= Entity.ClassName.ToSafeName() %>/Create';
+                        url = '/Service/<%= Entity.ClassName.ToSafeName() %>/Create';
                     }
                     $('#form').form('commit', {
                         url: url,
                         onSuccess: function (result) {
                             if (result.Success) {
                                 $.show(result.Message, function () {
-                                    parent.$('#w').window('close');
+                                  $.closeParentWindow();
                                 });
                             } else {
-                                $.alert(result.Message);
+                                $.show(result.Message);
                             }
                         }
                     });
                 },
                 cancle: function () {
-                    parent.$('#w').window('close');
+                  $.closeParentWindow();
                 }
             };
             $(page.load);
@@ -75,3 +94,78 @@ using <%=AbpApplicationNamespace%>;
     </script>
 }
 
+<script runat="template">
+public string GetInputHtml(Property property)
+{
+    string html = "";
+    switch (property.SystemType.ToNullableType())
+    {
+        case "System.DateTime":
+            if (property.IsNullable.HasValue && property.IsNullable.Value)
+            {
+                html =
+                    string.Format(
+                        "<input name=\"{0}\" class=\"easyui-datebox\" data-options=\"required:{1},width:350,editable:false\" value=\"@(Model.{0}.HasValue?Model.{0}.Value.ToString(\"yyyy-MM-dd\"):DateTime.Now.ToString(\"yyyy-MM-dd\"))\"/>",
+                        property.PropertyName.ToSafeName(),
+                        "true");
+            }
+            else
+            {
+                html =
+                    string.Format(
+                        "<input name=\"{0}\" class=\"easyui-datebox\" data-options=\"required:{1},width:350,editable:false\" value=\"@(Model.{2})\"/>",
+                        property.PropertyName.ToSafeName(),
+                        "false",
+                        property.PropertyName.ToSafeName() + ".ToString(\"yyyy-MM-dd\")");
+            }
+            break;
+        case "bool":
+            html =
+                string.Format(
+                    "<select name=\"{0}\" class=\"easyui-combobox\" data-options=\"required:{1},panelHeight:50,width:80,editable:false\" >" +
+                    "\r\t\t\t\t\t\t\t<option value=\"true\" @(Model.{0} ? \"selected\" : \"\")>是</option>" +
+                    "\r\t\t\t\t\t\t\t<option value=\"false\" @(!Model.{0} ? \"selected\" : \"\")>否</option>" +
+                    "\r</select>",
+                    property.PropertyName.ToSafeName(),
+                    (property.IsNullable.HasValue && property.IsNullable.Value ? "false" : "true"));
+            break;
+        case "int":
+            if (property.IsForeignKey.HasValue && property.IsForeignKey.Value)
+            {
+                Relationship relationship =
+                    Entity.Relationships.First(t => t.ThisProperties.Any(o => o.Contains(property.PropertyName.ToSafeName())));
+                string fkClassName = relationship.OtherEntity;
+                html =
+               string.Format(
+                   "<select name=\"{0}\" class=\"easyui-combobox\" data-options=\"url:'{2}',required:{1},width:350,editable:false\"  value=\"{3}\"></select>",
+                   property.PropertyName.ToSafeName(),
+                   (property.IsNullable.HasValue && property.IsNullable.Value ? "false" : "true"),
+                   "/Service/" + fkClassName + "/GetCombo",
+                   (property.IsNullable.HasValue && property.IsNullable.Value
+                        ? "@(Model." + property.PropertyName + ".HasValue?Model." + property.PropertyName + ".Value.ToString():\"\")"
+                        : "@(Model." + property.PropertyName + "==0?\"\":\"@Model." + property.PropertyName + "\")"));
+            }
+            else
+            {
+                html =
+                string.Format(
+                    "<input name=\"{0}\" class=\"easyui-numberbox\" data-options=\"required:{1},width:350\" value=\"{2}\"/>",
+                    property.PropertyName.ToSafeName(),
+                    (property.IsNullable.HasValue && property.IsNullable.Value ? "false" : "true"),
+                    (property.IsNullable.HasValue && property.IsNullable.Value
+                        ? "@(Model." + property.PropertyName + ".HasValue?Model." + property.PropertyName + ".Value:\"\")"
+                        : "@(Model." + property.PropertyName + "==0?\"\":\"@Model." + property.PropertyName + "\")"));
+            }
+            break;
+        default:
+            html =
+                string.Format(
+                    "<input name=\"{0}\" class=\"{1}\" data-options=\"required:{2},width:350\" value=\"@Model.{0}\"/>",
+                    property.PropertyName.ToSafeName(),
+                    "easyui-textbox",
+                    (property.IsNullable.HasValue && property.IsNullable.Value ? "false" : "true"));
+            break;
+    }
+    return html;
+}
+</script>

@@ -8,8 +8,7 @@
 <%@ Import Namespace="System.Text.RegularExpressions" %>
 <%@ Import Namespace="CodeSmith" %>
 <%-- 模板参数 --%>
-<%@ Property Name="AbpWebApiNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
-<%@ Property Name="AbpWebNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="2.Class" Optional="False" %>
 <%@ Property Name="Entity"Type="CodeSmith.AbpEntity" Category="Data" Optional="False" %>
 
 using System;

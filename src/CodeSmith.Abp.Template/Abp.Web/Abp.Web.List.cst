@@ -14,7 +14,7 @@
     <div data-options="region:'north'" border="false" class="button_area">
         <a href="javascript:;" onclick="javascript: window.page.onCreate();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
         <a href="javascript:;" onclick="javascript: window.page.onModify();" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
-        <a href="javascript:;" onclick="javascript: window.page.onRemove();" class="easyui-linkbutton" data-options="iconCls:'icon-add'">移除</a>
+        <a href="javascript:;" onclick="javascript: window.page.onRemove();" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">移除</a>
     </div>
     <div data-options="region:'center'" border="false">
         <table id="datagrid"></table>
@@ -43,17 +43,34 @@
             var page = {
                 load: function () {
                     $('#datagrid').datagrid({
-                        url: '/Server/<%= Entity.ClassName.ToSafeName() %>/PageQuery',                   
-                        idField: 'Id',
+                        url: '/Service/<%= Entity.ClassName.ToSafeName() %>/PageQuery',                   
+                        idField: '<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>',
                         selectOnCheck: false,
                         border: false,
                         pagination: true,
                         fit: true,
                         nowrap: false,
                         columns: [[
+                         { field: '<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>', hidden: true },
 <% foreach(Property property in Entity.Properties){%>
-                                { field: '<%= property.PropertyName.ToSafeName() %>', title: "<%=property.Explain  %>", width: '<%=  Convert.ToInt32(90/Entity.Properties.Count())%>%', align: 'center', sortable: true },
-<%}%>                                                                                                         
+<%if(property.PropertyName.ToSafeName()=="CreatorUserId"||
+        property.PropertyName.ToSafeName()=="CreationTime"||
+        property.PropertyName.ToSafeName()=="LastModificationTime"||
+        property.PropertyName.ToSafeName()=="LastModifierUserId"||
+        property.PropertyName.ToSafeName()=="DeleterUserId"||
+        property.PropertyName.ToSafeName()=="DeletionTime"||
+        property.PropertyName.ToSafeName()=="TenantId"||
+        property.PropertyName.ToSafeName()=="IsDeleted"||
+       property.PropertyName.ToSafeName()=="Sort"||
+      property.PropertyName.ToSafeName()=="Id")
+    {
+        continue;        
+    }
+    else{%>
+                                    { field: '<%= property.PropertyName.ToSafeName() %>', title: "<%=property.Explain  %>", width: '<%=  Convert.ToInt32(100/Entity.Properties.Count())%>%', align: 'center', sortable: true },
+    <%}%>               
+<%}%>    
+                                                                                                  
                             ]]
                     });
                 },            
@@ -85,7 +102,7 @@
                     $('#datagrid').datagrid('getSelectedOf', function (row) {
                         $.confirm('确认是否删除?', function (r) {
                             if (r) {
-                                $.useajax('/Server/<%= Entity.ClassName.ToSafeName() %>/Delete', { Id: row.Id }, function () {
+                                $.useajax('/Service/<%= Entity.ClassName.ToSafeName() %>/Delete', { Id: row.Id }, function () {
                                     $('#datagrid').datagrid('reload');
                                 });
                             }

@@ -47,7 +47,7 @@ namespace CodeSmith
 
             property.Default = Content.GetDefaultValue(dataObjectBase);
 
-            property.Explain = dataObjectBase.Description ?? dataObjectBase.FullName;
+            property.Explain = string.IsNullOrWhiteSpace(dataObjectBase.Description) ? propertyName : dataObjectBase.Description;
 
             if (property.SystemType == typeof(string)
               || property.SystemType == typeof(byte[]))

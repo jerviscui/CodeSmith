@@ -31,6 +31,8 @@
  <%-- 模板参数 模板 --%>
 <%@ Register Name="WebApiGeneratedClass" Template="Abp.Web.Api.Generated.cst" %>
 <%@ Register Name="WebApiEditableClass" Template="Abp.Web.Api.Editable.cst" %>
+<%@ Register Name="MappingEditableClass" Template="Abp.Web.Mapping.Editable.cst" %>
+<%@ Register Name="MappingGeneratedClass" Template="Abp.Web.Mapping.Generated.cst" %>
 <%@ Register Name="WebControllerClass" Template="Abp.Web.Controller.cst" %>
 <%@ Register Name="WebEditClass" Template="Abp.Web.Edit.cst" %>
 <%@ Register Name="WebListClass" Template="Abp.Web.List.cst" %>
@@ -86,17 +88,23 @@ public void GeneratorCode()
         entity => @"Controllers\"+entity.ClassName.ToSafeName() + @"Controller.cs",
         outputDirectory,
         false);
+        
+    Generator.CreateMultipleContextClass<MappingGeneratedClass,MappingEditableClass,AbpEntity, AbpEntityProperty>(context,
+        this,
+        dbContext => @"App_Start\DtoMappings.Generated.cs",
+        dbContext => @"App_Start\DtoMappings.cs",
+        outputDirectory);
 
     Generator.CreateEntityClass<WebEditClass,AbpEntity, AbpEntityProperty>(context,
         this,
         entity => @"Views\"+entity.ClassName.ToSafeName() + @"\Edit.cshtml",
         outputDirectory,
-        false);
+        true);
     
     Generator.CreateEntityClass<WebListClass,AbpEntity, AbpEntityProperty>(context,
         this,
         entity => @"Views\"+entity.ClassName + @"\List.cshtml",
         outputDirectory,
-        false);
+        true);
 }
 </script>

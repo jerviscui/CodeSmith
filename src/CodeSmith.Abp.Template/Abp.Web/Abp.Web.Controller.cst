@@ -49,11 +49,11 @@ namespace <%=AbpWebNamespace%>
         /// /<%= Entity.ClassName.ToSafeName()  %>/Edit
         /// </summary>
         /// <returns></returns>
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.SystemType.ToType():"int" %>? id)
         {
             <%= Entity.ClassName.ToSafeName()  %>Dto output = new <%= Entity.ClassName.ToSafeName()  %>Dto();
             if (id.HasValue)
-                output = <%= Entity.ClassName.ToSafeName() %>AppService.Get(new IdInput<int> { Id = id.Value });
+                output = _<%= Entity.ClassName.ToSafeName().ToCamelCase() %>AppService.Get(new IdInput<<%= Entity.PrimaryKey!=null?Entity.PrimaryKey.SystemType.ToType():"int" %>> { Id = id.Value });
             return View(output);
         }
     }

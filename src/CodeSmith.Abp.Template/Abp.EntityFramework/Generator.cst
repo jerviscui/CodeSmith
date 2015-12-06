@@ -76,12 +76,10 @@ public void GeneratorCode()
         
     EntityContext<AbpEntity, AbpEntityProperty> context = abpDbContentTemplate.GetAndCreate(SourceDatabase);
     
-    ContextEntityClassName = context.ClassName.ToSafeName();
-        
     Generator.CreateMultipleContextClass<DbContextGeneratedClass,DbContextEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        dbContext => context.ClassName.ToSafeName() + ".Generated.cs",
-        dbContext => context.ClassName.ToSafeName()  + ".cs",
+        dbContext => ContextEntityClassName + ".Generated.cs",
+        dbContext => ContextEntityClassName  + ".cs",
         outputDirectory);
     Generator.CreateMultipleEntityClass<MappingGeneratedClass,MappingEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,

@@ -44,31 +44,16 @@
   <ItemGroup>
     <None Include="Abp.Application\Abp.Application.Dto.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.Dto.Generated.cst" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <None Include="Abp.Application\Abp.Application.Generator.cst" />
-    <None Include="Abp.Application\Abp.Application.GetDtosPage.Editable.cst" />
-    <None Include="Abp.Application\Abp.Application.GetDtosPage.Generated.cst" />
-    <None Include="Abp.Application\Abp.Application.IService.cst" />
     <None Include="Abp.Application\Abp.Application.IService.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.IService.Generated.cst" />
-    <None Include="Abp.Application\Abp.Application.Mapping.cst" />
     <None Include="Abp.Application\Abp.Application.Mapping.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.Mapping.Generated.cst" />
-    <None Include="Abp.Application\Abp.Application.Service.cst" />
-=======
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <None Include="Abp.Application\Abp.Application.IService.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.IService.Generated.cst" />
     <None Include="Abp.Application\Abp.Application.Mapping.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.Mapping.Generated.cst" />
     <None Include="Abp.Application\Abp.Application.PageDto.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.PageDto.Generated.cst" />
-<<<<<<< HEAD
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <None Include="Abp.Application\Abp.Application.Service.Editable.cst" />
     <None Include="Abp.Application\Abp.Application.Service.Generated.cst" />
     <None Include="Abp.Application\Generator.cst" />
@@ -84,24 +69,12 @@
     <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.Editable.cst" />
     <None Include="Abp.EntityFramework\Abp.EntityFramework.Repository.Generated.cst" />
     <None Include="Abp.EntityFramework\Generator.cst" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <None Include="Abp.Web\Abp.Web.Api.cst" />
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
+    <None Include="Abp.Web\Abp.Web.Mapping.Editable.cst" />
+    <None Include="Abp.Web\Abp.Web.Mapping.Generated.cst" />
     <None Include="Abp.Web\Abp.Web.Api.Editable.cst" />
     <None Include="Abp.Web\Abp.Web.Api.Generated.cst" />
     <None Include="Abp.Web\Abp.Web.Controller.cst" />
     <None Include="Abp.Web\Abp.Web.Edit.cst" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <None Include="Abp.Web\Abp.Web.Generator.cst" />
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
-=======
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
     <None Include="Abp.Web\Abp.Web.List.cst" />
     <None Include="Abp.Web\Generator.cst" />
   </ItemGroup>

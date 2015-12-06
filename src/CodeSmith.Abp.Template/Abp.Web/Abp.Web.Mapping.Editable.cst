@@ -1,0 +1,42 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+<%-- 解析dll类库 --%>
+<%@ Assembly Name="CodeSmith" Path="../../../libs" %>
+<%-- 导入命名空间 --%>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="CodeSmith" %>
+<%-- 模板参数 --%>
+<%@ Property Name="AbpApplicationNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="AbpWebNamespace" Type="System.String"  Category="Namespace" Optional="False" %>
+<%@ Property Name="ContextEntity" Type="CodeSmith.EntityContext<AbpEntity,AbpEntityProperty>"  %>
+using System;
+using System.Collections.Generic;
+using <%= AbpApplicationNamespace %>;
+using AutoMapper;
+using OneWork.Web.MVC.ActionResults.Model;
+
+namespace <%=AbpWebNamespace.Replace(".Controllers","")%>
+{
+    internal static partial class DtoMappings
+    {
+        private static void InitializeMapping()
+        {
+<% foreach(var entity in ContextEntity.Entities){%>
+
+            #region <%= entity.Description %>
+          
+            Mapper.CreateMap<<%= entity.ClassName.ToSafeName()  %>Dto, TreeGridOutputEntity<<%= entity.PrimaryKey!=null?entity.PrimaryKey.SystemType.ToType():"int" %>>>()
+               .ForMember(ipt => ipt.Text, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>))
+               .ForMember(ipt => ipt.ID, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>));
+               
+            Mapper.CreateMap<<%= entity.ClassName.ToSafeName()  %>Dto, ComboOutputEntity>()
+                .ForMember(ipt => ipt.Text, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>))
+                .ForMember(ipt => ipt.Value, opt => opt.MapFrom(t => t.<%= entity.PrimaryKey!=null?entity.PrimaryKey.PropertyName.ToSafeName():"Id" %>));
+                
+            #endregion
+<%}%>         
+        }    
+    }
+}
