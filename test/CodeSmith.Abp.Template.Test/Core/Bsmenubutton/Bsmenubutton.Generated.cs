@@ -31,16 +31,9 @@ namespace CodeSmith.Abp.Template.Test.Core
         public int Id { get; set; }
         /// <summary>
         /// 
-        /// </summary>    
-<<<<<<< HEAD
-<<<<<<< HEAD
+        /// </summary>
         public int ButtonId { get; set; }
-=======
-        public int? ButtonId { get; set; }
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
-=======
-        public int? ButtonId { get; set; }
->>>>>>> 3200a17c688e0da9fa0413a47e2920c458aa7c50
+
         /// <summary>
         /// 
         /// </summary>    

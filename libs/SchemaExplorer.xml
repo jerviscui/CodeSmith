@@ -325,6 +325,23 @@
             </summary>
             <param name="collection">The collection from which the elements are copied.</param>
         </member>
+        <member name="F:SchemaExplorer.Design.SchemaSelectorEditorUI.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SchemaExplorer.Design.SchemaSelectorEditorUI.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SchemaExplorer.Design.SchemaSelectorEditorUI.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SchemaExplorer.SchemaObjectWithOwnerBase">
             <summary>
             Provides a base for all schema objects to derive from.
@@ -1360,6 +1377,330 @@
             </summary>
             <param name="collection">The collection from which the elements are copied.</param>
         </member>
+        <member name="T:SchemaExplorer.SchemaSelector">
+            <summary>
+            A <see cref="T:DatabaseSchema"/> extension allowing for flexible schema object selection.
+            </summary>
+        </member>
+        <member name="T:SchemaExplorer.DatabaseSchema">
+            <summary>
+            This class allows programmatic discovery of a database schema.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.IDatabaseSchema.Provider">
+            <summary>
+            Gets or sets the current provider for this instance.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.IDatabaseSchema.ConnectionString">
+            <summary>
+            Gets or sets the current connection string for this instance.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.IDatabaseSchema.Tables">
+            <summary>
+            Provides access to the tables contained in the database.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.IDatabaseSchema.Views">
+            <summary>
+            Provides access to the views contained in the database.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.IDatabaseSchema.Commands">
+            <summary>
+            Provides access to the commands contained in the database.
+            </summary>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.#ctor">
+            <summary>
+            This is the default constructor.
+            </summary>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.#ctor(SchemaExplorer.IDbSchemaProvider,System.String)">
+            <summary>
+            This constructor allows you to specify your own schema provider and set the connection string.
+            </summary>
+            <param name="provider">The provider to use for this instance.</param>
+            <param name="connectionString">The connection string to use for this instance.</param>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.GetProviders">
+            <summary>
+            Returns a collection of available providers.
+            </summary>
+            <returns>IDbSchemaProviderCollection</returns>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.ToString">
+            <summary>
+            Returns the name of the database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.GetProvider(System.String)">
+            <summary>
+            Gets a provider by name.
+            </summary>
+            <param name="name">The name of the provider.</param>
+            <returns>IDbSchemaProvider</returns>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.Refresh">
+            <summary>
+            Allows for programmatic refreshing of the database schema.
+            </summary>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.Equals(System.Object)">
+            <summary>
+            Determines if another database is the same as this database.
+            </summary>
+            <param name="obj">The database to check against.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:SchemaExplorer.DatabaseSchema.GetHashCode">
+            <summary>
+            Returns a hashcode based on the database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.Provider">
+            <summary>
+            Gets or sets the current provider for this instance.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.CachedProvider">
+            <summary>
+            Gets or sets the current cached provider for this instance.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.ConnectionString">
+            <summary>
+            Gets or sets the current connection string for this instance.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.Name">
+            <summary>
+            The name of the database.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.Tables">
+            <summary>
+            Provides access to the tables contained in the database.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.Views">
+            <summary>
+            Provides access to the views contained in the database.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.DatabaseSchema.Commands">
+            <summary>
+            Provides access to the commands contained in the database.
+            </summary>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SchemaExplorer.SchemaSelector"/> class.
+            </summary>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelector.#ctor(SchemaExplorer.IDbSchemaProvider,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SchemaExplorer.SchemaSelector"/> class.
+            </summary>
+            <param name="provider">The provider to use for this instance.</param>
+            <param name="connectionString">The connection string to use for this instance.</param>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelector.Clear">
+            <summary>
+            Clears all selected items.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.SchemaSelector.SelectMode">
+            <summary>
+            Gets or sets the select mode. When SelectMode.Exclude, selected items will be treated as items to be excluded.
+            When SelectMode.Include, the selected items will be treated as items to include.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.SchemaSelector.SelectedTables">
+            <summary>
+            Gets or sets the selected tables and views. Values should be <see cref="P:ITabularObject.FullName"/> of the table selected.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.SchemaSelector.SelectedColumns">
+            <summary>
+            Gets or sets the selected columns. Values should be <see cref="P:IDataObject.FullName"/> of the column selected.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.SchemaSelector.SelectedCommands">
+            <summary>
+            Gets or sets the selected commands. Values should be <see cref="P:ICommandSchema.FullName"/> of the command selected.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.SchemaSelector.SchemaExpressions">
+            <summary>
+            Gets or sets the regular expressions for selecting schema objects. The expressions are used to match tables, views and commands.  
+            The expression is compared against <see cref="P:ISchemaObject.FullName"/>.
+            </summary>
+        </member>
+        <member name="P:SchemaExplorer.SchemaSelector.ColumnExpressions">
+            <summary>
+            Gets or sets the regular expressions for selecting column objects. The expressions are used to match table and view columns.  
+            The expression is compared against <see cref="P:IDataObject.FullName"/>.
+            </summary>
+        </member>
+        <member name="T:SchemaExplorer.SchemaSelectorExtensions">
+            <summary>
+            Extension methods to filter schema to selected items.
+            </summary>
+            <seealso cref="T:SchemaSelector"/>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Filters the specified tables to those that are selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <typeparam name="TTabular">The type of the tabular item.</typeparam>
+            <param name="items">The items to be filtered.</param>
+            <returns>An <see cref="T:IEnumerable`1"/> of the selected items.</returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(System.Collections.Generic.IEnumerable{SchemaExplorer.CommandSchema})">
+            <summary>
+            Filters the specified commands to those that are selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="items">The items to be filtered.</param>
+            <returns>An <see cref="T:IEnumerable`1"/> of the selected items.</returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(System.Collections.Generic.IEnumerable{SchemaExplorer.ColumnSchema})">
+            <summary>
+            Filters the specified columns to those that are selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="items">The items to be filtered.</param>
+            <returns>An <see cref="T:IEnumerable`1"/> of the selected items.</returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(System.Collections.Generic.IEnumerable{SchemaExplorer.ViewColumnSchema})">
+            <summary>
+            Filters the specified columns to those that are selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="items">The items to be filtered.</param>
+            <returns>An <see cref="T:IEnumerable`1"/> of the selected items.</returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(System.Collections.Generic.IEnumerable{SchemaExplorer.TableKeySchema})">
+            <summary>
+            Filters the specified table keys to those that are selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            All tables and columns that are part of the key need to be selected for the key to be considered selected.
+            </summary>
+            <param name="items">The items to be filtered.</param>
+            <returns>An <see cref="T:IEnumerable`1"/> of the selected items.</returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.ToTables(System.Collections.Generic.IEnumerable{SchemaExplorer.TableSchema})">
+            <summary>
+            Converts the <see cref="T:IEnumerable`1"/> of type <see cref="T:TableSchema"/> to a <see cref="T:TableSchemaCollection"/>.
+            </summary>
+            <param name="items">The items to be converted.</param>
+            <returns>
+            An instance of <see cref="T:TableSchemaCollection"/> containing the specified <paramref name="items"/>.
+            </returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.ToViews(System.Collections.Generic.IEnumerable{SchemaExplorer.ViewSchema})">
+            <summary>
+            Converts the <see cref="T:IEnumerable`1"/> of type <see cref="T:ViewSchema"/> to a <see cref="T:ViewSchemaCollection"/>.
+            </summary>
+            <param name="items">The items to be converted.</param>
+            <returns>
+            An instance of <see cref="T:ViewSchemaCollection"/> containing the specified <paramref name="items"/>.
+            </returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.ToCommands(System.Collections.Generic.IEnumerable{SchemaExplorer.CommandSchema})">
+            <summary>
+            Converts the <see cref="T:IEnumerable`1"/> of type <see cref="T:CommandSchema"/> to a <see cref="T:CommandSchemaCollection"/>.
+            </summary>
+            <param name="items">The items to be converted.</param>
+            <returns>
+            An instance of <see cref="T:CommandSchemaCollection"/> containing the specified <paramref name="items"/>.
+            </returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.ToColumns(System.Collections.Generic.IEnumerable{SchemaExplorer.ColumnSchema})">
+            <summary>
+            Converts the <see cref="T:IEnumerable`1"/> of type <see cref="T:ColumnSchema"/> to a <see cref="T:ColumnSchemaCollection"/>.
+            </summary>
+            <param name="items">The items to be converted.</param>
+            <returns>
+            An instance of <see cref="T:ColumnSchemaCollection"/> containing the specified <paramref name="items"/>.
+            </returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.ToColumns(System.Collections.Generic.IEnumerable{SchemaExplorer.ViewColumnSchema})">
+            <summary>
+            Converts the <see cref="T:IEnumerable`1"/> of type <see cref="T:ViewColumnSchema"/> to a <see cref="T:ViewColumnSchemaCollection"/>.
+            </summary>
+            <param name="items">The items to be converted.</param>
+            <returns>
+            An instance of <see cref="T:ViewColumnSchemaCollection"/> containing the specified <paramref name="items"/>.
+            </returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.ToKeys(System.Collections.Generic.IEnumerable{SchemaExplorer.TableKeySchema})">
+            <summary>
+            Converts the <see cref="T:IEnumerable`1"/> of type <see cref="T:TableKeySchema"/> to a <see cref="T:TableKeySchemaCollection"/>.
+            </summary>
+            <param name="items">The items to be converted.</param>
+            <returns>
+            An instance of <see cref="T:TableKeySchemaCollection"/> containing the specified <paramref name="items"/>.
+            </returns>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(SchemaExplorer.ITabularObject)">
+            <summary>
+            Determines if the specified <paramref name="item"/> is selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="item">The item to determine selection.</param>
+            <returns><c>true</c> if the speciefied item is selected; otherwise <c>false</c>.</returns>
+            <seealso cref="T:SchemaSelector"/>
+            <seealso cref="P:SchemaSelector.SelectedTables"/>
+            <seealso cref="P:SchemaSelector.SchemaExpressions"/>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(SchemaExplorer.IColumnSchema)">
+            <summary>
+            Determines if the specified <paramref name="item"/> is selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="item">The item to determine selection.</param>
+            <returns><c>true</c> if the speciefied item is selected; otherwise <c>false</c>.</returns>
+            <seealso cref="T:SchemaSelector"/>
+            <seealso cref="P:SchemaSelector.SelectedColumns"/>
+            <seealso cref="P:SchemaSelector.ColumnExpressions"/>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(SchemaExplorer.IViewColumnSchema)">
+            <summary>
+            Determines if the specified <paramref name="item"/> is selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="item">The item to determine selection.</param>
+            <returns><c>true</c> if the speciefied item is selected; otherwise <c>false</c>.</returns>
+            <seealso cref="T:SchemaSelector"/>
+            <seealso cref="P:SchemaSelector.SelectedColumns"/>
+            <seealso cref="P:SchemaSelector.ColumnExpressions"/>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(SchemaExplorer.ICommandSchema)">
+            <summary>
+            Determines if the specified <paramref name="item"/> is selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            </summary>
+            <param name="item">The item to determine selection.</param>
+            <returns><c>true</c> if the speciefied item is selected; otherwise <c>false</c>.</returns>
+            <seealso cref="T:SchemaSelector"/>
+            <seealso cref="P:SchemaSelector.SelectedCommands"/>
+            <seealso cref="P:SchemaSelector.SchemaExpressions"/>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(SchemaExplorer.ITableKeySchema)">
+            <summary>
+            Determines if the specified <paramref name="item"/> is selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            All tables and columns that are part of the key need to be selected for the key to be considered selected.
+            </summary>
+            <param name="item">The item to determine selection.</param>
+            <returns><c>true</c> if the speciefied item is selected; otherwise <c>false</c>.</returns>
+            <seealso cref="T:SchemaSelector"/>
+        </member>
+        <member name="M:SchemaExplorer.SchemaSelectorExtensions.Selected(SchemaExplorer.IPrimaryKeySchema)">
+            <summary>
+            Determines if the specified <paramref name="item"/> is selected using the rules defined in <see cref="T:SchemaSelector"/>.
+            All tables and columns that are part of the key need to be selected for the key to be considered selected.
+            </summary>
+            <param name="item">The item to determine selection.</param>
+            <returns><c>true</c> if the speciefied item is selected; otherwise <c>false</c>.</returns>
+            <seealso cref="T:SchemaSelector"/>
+        </member>
         <member name="T:SchemaExplorer.TabularObjectBase">
             <summary>
             Provides a common base for all tabular schema objects.
@@ -2335,120 +2676,6 @@
         <member name="P:Microsoft.Data.ConnectionUI.Strings.SqlFileConnectionUIControl_InvalidConnectionProperties">
             <summary>
               Looks up a localized string similar to The connection properties object must be of type SqlFileConnectionProperties..
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.IDatabaseSchema.Provider">
-            <summary>
-            Gets or sets the current provider for this instance.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.IDatabaseSchema.ConnectionString">
-            <summary>
-            Gets or sets the current connection string for this instance.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.IDatabaseSchema.Tables">
-            <summary>
-            Provides access to the tables contained in the database.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.IDatabaseSchema.Views">
-            <summary>
-            Provides access to the views contained in the database.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.IDatabaseSchema.Commands">
-            <summary>
-            Provides access to the commands contained in the database.
-            </summary>
-        </member>
-        <member name="T:SchemaExplorer.DatabaseSchema">
-            <summary>
-            This class allows programmatic discovery of a database schema.
-            </summary>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.#ctor">
-            <summary>
-            This is the default constructor.
-            </summary>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.#ctor(SchemaExplorer.IDbSchemaProvider,System.String)">
-            <summary>
-            This constructor allows you to specify your own schema provider and set the connection string.
-            </summary>
-            <param name="provider">The provider to use for this instance.</param>
-            <param name="connectionString">The connection string to use for this instance.</param>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.GetProviders">
-            <summary>
-            Returns a collection of available providers.
-            </summary>
-            <returns>IDbSchemaProviderCollection</returns>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.ToString">
-            <summary>
-            Returns the name of the database.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.GetProvider(System.String)">
-            <summary>
-            Gets a provider by name.
-            </summary>
-            <param name="name">The name of the provider.</param>
-            <returns>IDbSchemaProvider</returns>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.Refresh">
-            <summary>
-            Allows for programmatic refreshing of the database schema.
-            </summary>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.Equals(System.Object)">
-            <summary>
-            Determines if another database is the same as this database.
-            </summary>
-            <param name="obj">The database to check against.</param>
-            <returns>true/false</returns>
-        </member>
-        <member name="M:SchemaExplorer.DatabaseSchema.GetHashCode">
-            <summary>
-            Returns a hashcode based on the database.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.Provider">
-            <summary>
-            Gets or sets the current provider for this instance.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.CachedProvider">
-            <summary>
-            Gets or sets the current cached provider for this instance.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.ConnectionString">
-            <summary>
-            Gets or sets the current connection string for this instance.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.Name">
-            <summary>
-            The name of the database.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.Tables">
-            <summary>
-            Provides access to the tables contained in the database.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.Views">
-            <summary>
-            Provides access to the views contained in the database.
-            </summary>
-        </member>
-        <member name="P:SchemaExplorer.DatabaseSchema.Commands">
-            <summary>
-            Provides access to the commands contained in the database.
             </summary>
         </member>
         <member name="T:SchemaExplorer.DataObjectBaseCollection">
