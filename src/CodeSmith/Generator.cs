@@ -64,9 +64,13 @@ namespace CodeSmith
         /// <param name="getGeneratedNamegFun"></param>
         /// <param name="getEditableNameFun"></param>
         /// <param name="rootDirectory"></param>
-        public static void CreateMultipleEntityClass<TGenerate, TEditable, TEntity, TProperty>(EntityContext<TEntity, TProperty> entityContext, CodeTemplate codeTemplate, Func<TEntity, string> getGeneratedNamegFun, Func<TEntity, string> getEditableNameFun, string rootDirectory)
+        public static void CreateMultipleEntityClass<TGenerate, TEditable, TEntity, TProperty>(EntityContext<TEntity, 
+            TProperty> entityContext, CodeTemplate codeTemplate, 
+            Func<TEntity, string> getGeneratedNamegFun, Func<TEntity, string> getEditableNameFun, string rootDirectory)
             where TGenerate : CodeTemplate, new()
-            where TEditable : CodeTemplate, new() where TProperty : Property where TEntity : Entity<TProperty>
+            where TEditable : CodeTemplate, new() 
+            where TProperty : Property 
+            where TEntity : Entity<TProperty>
         {
 
             TGenerate generatedClass = codeTemplate.Create<TGenerate>();

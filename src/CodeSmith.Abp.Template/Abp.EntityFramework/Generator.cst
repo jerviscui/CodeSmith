@@ -76,20 +76,22 @@ public void GeneratorCode()
         
     EntityContext<AbpEntity, AbpEntityProperty> context = abpDbContentTemplate.GetAndCreate(SourceDatabase);
     
-    Generator.CreateMultipleContextClass<DbContextGeneratedClass,DbContextEditableClass,AbpEntity, AbpEntityProperty>(context,
-        this,
-        dbContext => ContextEntityClassName + ".Generated.cs",
-        dbContext => ContextEntityClassName  + ".cs",
-        outputDirectory);
+//    Generator.CreateMultipleContextClass<DbContextGeneratedClass,DbContextEditableClass,AbpEntity, AbpEntityProperty>(context,
+//        this,
+//        dbContext => ContextEntityClassName + ".Generated.cs",
+//        dbContext => ContextEntityClassName  + ".cs",
+//        outputDirectory);
+        
     Generator.CreateMultipleEntityClass<MappingGeneratedClass,MappingEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => @"Mapping\" + entity.ClassName.ToSafeName() + "Map.Generated.cs",
-        entity => @"Mapping\" + entity.ClassName.ToSafeName() + "Map.cs",
+        entity => @"Mapping\" + entity.ClassName.ToPluralName() + @"\" + entity.ClassName.ToSafeName() + "Map.cs",
+        entity => @"Mapping\" + entity.ClassName.ToPluralName() + @"\" + entity.ClassName.ToSafeName() + "Map.cs",
         outputDirectory);
-    Generator.CreateMultipleEntityClass<RepositoryGeneratedClass,RepositoryEditableClass,AbpEntity, AbpEntityProperty>(context,
-        this,
-        entity => @"Repositories\" + entity.ClassName.ToSafeName() + "Repository.Generated.cs",
-        entity => @"Repositories\" + entity.ClassName.ToSafeName() + "Repository.cs",
-        outputDirectory);
+        
+//    Generator.CreateMultipleEntityClass<RepositoryGeneratedClass,RepositoryEditableClass,AbpEntity, AbpEntityProperty>(context,
+//        this,
+//        entity => @"Repositories\" + entity.ClassName.ToSafeName() + "Repository.Generated.cs",
+//        entity => @"Repositories\" + entity.ClassName.ToSafeName() + "Repository.cs",
+//        outputDirectory);
 }
 </script>

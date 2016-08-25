@@ -85,32 +85,32 @@ public void GeneratorCode()
     
     Generator.CreateMultipleEntityClass<DtotGeneratedClass,DtoEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToSafeName()+" /Dtos/"+ entity.ClassName.ToSafeName() + "Dto.Generated.cs",
-        entity => entity.ClassName.ToSafeName()+" /Dtos/"+ entity.ClassName.ToSafeName() + "Dto.cs",
+        entity => entity.ClassName.ToPluralName()+" /Dto/"+ entity.ClassName.ToSafeName() + "Dto.cs",
+        entity => entity.ClassName.ToPluralName()+" /Dto/"+ entity.ClassName.ToSafeName() + "Dto.cs",
         outputDirectory);
     
-    Generator.CreateMultipleContextClass<MappingGeneratedClass,MappingEditableClass,AbpEntity, AbpEntityProperty>(context,
-        this,
-        dbContext => "DtoMappings.Generated.cs",
-        dbContext => "DtoMappings.cs",
-        outputDirectory);
+//    Generator.CreateMultipleContextClass<MappingGeneratedClass,MappingEditableClass,AbpEntity, AbpEntityProperty>(context,
+//        this,
+//        dbContext => "DtoMappings.Generated.cs",
+//        dbContext => "DtoMappings.cs",
+//        outputDirectory);
     
     Generator.CreateMultipleEntityClass<GetDtosPageGeneratedClass,GetDtosPageEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToSafeName()+" /Dtos/Get"+ entity.ClassName.ToSafeName() + "PageInput.Generated.cs",
-        entity => entity.ClassName.ToSafeName()+" /Dtos/Get"+ entity.ClassName.ToSafeName() + "PageInput.cs",
+        entity => entity.ClassName.ToPluralName()+" /Dto/Get"+ entity.ClassName.ToSafeName() + "PageInput.cs",
+        entity => entity.ClassName.ToPluralName()+" /Dto/Get"+ entity.ClassName.ToSafeName() + "PageInput.cs",
         outputDirectory);
     
     Generator.CreateMultipleEntityClass<IServiceGeneratedClass,IServiceEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToSafeName()+" /I"+ entity.ClassName.ToSafeName() + "AppService.Generated.cs",
-        entity => entity.ClassName.ToSafeName()+" /I"+ entity.ClassName.ToSafeName() + "AppService.cs",
+        entity => entity.ClassName.ToPluralName()+" /I"+ entity.ClassName.ToSafeName() + "AppService.cs",
+        entity => entity.ClassName.ToPluralName()+" /I"+ entity.ClassName.ToSafeName() + "AppService.cs",
         outputDirectory);
     
     Generator.CreateMultipleEntityClass<ServiceGeneratedClass,ServiceEditableClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName.ToSafeName()+" /"+ entity.ClassName.ToSafeName() + "AppService.Generated.cs",
-        entity => entity.ClassName.ToSafeName()+" /"+ entity.ClassName.ToSafeName() + "AppService.cs",
+        entity => entity.ClassName.ToPluralName()+" /"+ entity.ClassName.ToSafeName() + "AppService.cs",
+        entity => entity.ClassName.ToPluralName()+" /"+ entity.ClassName.ToSafeName() + "AppService.cs",
         outputDirectory);
         
     watch.Stop();

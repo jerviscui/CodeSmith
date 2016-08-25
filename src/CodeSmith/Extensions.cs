@@ -113,6 +113,11 @@ namespace CodeSmith
               : "@" + name;
         }
 
+        public static string ToPluralName(this string name)
+        {
+            return StringUtil.ToPlural(name.ToSafeName());
+        }
+
         public static string ToType(this Type type, CodeLanguage language = CodeLanguage.CSharp)
         {
             return ToType(type.FullName, language);

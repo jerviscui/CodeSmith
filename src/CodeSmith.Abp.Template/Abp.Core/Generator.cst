@@ -82,15 +82,15 @@ public void GeneratorCode()
     
     Generator.CreateMultipleEntityClass<EntityGeneratedClass,EntityEditabledClass,AbpEntity, AbpEntityProperty>(context,
         this,
-        entity => entity.ClassName + @"\" + entity.ClassName.ToSafeName() + ".Generated.cs",
-        entity => entity.ClassName + @"\" + entity.ClassName.ToSafeName() + ".cs",
+        entity => entity.ClassName.ToPluralName() + @"\" + entity.ClassName.ToSafeName() + ".cs",
+        entity => entity.ClassName.ToPluralName() + @"\" + entity.ClassName.ToSafeName() + ".cs",
         outputDirectory);
         
-    Generator.CreateMultipleEntityClass<IRepositoryGeneratedClass,IRepositoryEditabledClass,AbpEntity, AbpEntityProperty>(context,
-        this,
-        entity => entity.ClassName + @"\I" + entity.ClassName.ToSafeName() + "Repository.Generated.cs",
-        entity => entity.ClassName + @"\I" + entity.ClassName.ToSafeName() + "Repository.cs",
-        outputDirectory);
+//    Generator.CreateMultipleEntityClass<IRepositoryGeneratedClass,IRepositoryEditabledClass,AbpEntity, AbpEntityProperty>(context,
+//        this,
+//        entity => entity.ClassName + @"\I" + entity.ClassName.ToSafeName() + "Repository.Generated.cs",
+//        entity => entity.ClassName + @"\I" + entity.ClassName.ToSafeName() + "Repository.cs",
+//        outputDirectory);
         
     watch.Stop();
     Response.WriteLine("Generate Time: " + watch.ElapsedMilliseconds + " ms");
