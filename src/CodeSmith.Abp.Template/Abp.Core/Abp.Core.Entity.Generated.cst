@@ -22,6 +22,9 @@ using Abp.Domain.Entities.Auditing;
 
 namespace <%= AbpCoreNamespace %>.<%= Entity.ClassName.ToPluralName() %>
 {
+    /// <summary>
+    /// <%= Entity.Description %>
+    /// </summary> 
     public class <%= Entity.ClassName.ToSafeName() %><%= Entity.PrimaryKey!=null? " : " + (Entity.PrimaryKey.SystemType.ToType() == "int" ? "FullAuditedEntity" : "FullAuditedEntity<" + Entity.PrimaryKey.SystemType.ToType() + ">") : "" %><%--<%= Entity.Inherited  %>--%>
     {
         public <%= Entity.ClassName.ToSafeName() %>()
